@@ -1,0 +1,44 @@
+{
+    "GRAD_NORM": {
+        "sampling strategy": "uniform",
+        "bounds": [
+            1.0,
+            10.0
+        ]
+    },
+    "ADAM_BETA_1": {
+        "sampling strategy": "uniform",
+        "bounds": [
+            0.9,
+            0.9999
+        ]
+    },
+    "ADAM_BETA_2": {
+        "sampling strategy": "uniform",
+        "bounds": [
+            0.9,
+            0.9999
+        ]
+    },
+    "RANDOM_SEED": {
+        "sampling strategy": "integer",
+        "bounds": [
+            0,
+            100000
+        ]
+    },
+    "NUMPY_SEED": {
+        "sampling strategy": "integer",
+        "bounds": [
+            0,
+            100000
+        ]
+    },
+    "PYTORCH_SEED": {
+        "sampling strategy": "integer",
+        "bounds": [
+            0,
+            100000
+        ]
+    }
+}

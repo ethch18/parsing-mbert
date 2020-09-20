@@ -1,0 +1,47 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+# Combines modified allentune-test and analyze_test.py and uses the conll
+# script for eval
+
+# OUTPUTS_DIR="/m-pinotHD/echau18/bert/parser_outputs"
+OUTPUTS_DIR="/m-pinotSSD/echau18/bert/parser_outputs"
+EMAIL="your email here"
+
+ARGS=( "$@" )
+COMMANDS="${ARGS[@]}"
+
+eval "$(conda shell.bash hook)"
+conda activate allentune
+
+export PYTHONIOENCODING=UTF-8
+
+for i in $COMMANDS; do
+    echo $i
+    # language is the first two characters of the experiment name
+    lang=${i:0:2}
+    test_data="/m-pinotHD/echau18/lrlm/ud_links/$lang/test.conllu"
+    echo "Test data: $test_data"
+
+    for run in `ls -d1 $OUTPUTS_DIR/$i/run*`; do
+        if [ -d "$run/trial" ]; then
+            archive="$run/trial/model.tar.gz"
+            allennlp predict $archive $test_data \
+                --use-dataset-reader \
+                --include-package modules \
+                --predictor dependency-parser \
+                --silent \
+                --extend-namespace head_tags \
+                --extend-namespace head_indices \
+                --cuda-device 0 \
+                --batch-size 64 \
+                --output-file $run/predictions.conllu
+            
+            (python scripts/eval/conll18_ud_eval.py \
+                $test_data $run/predictions.conllu --skip-checks) \
+                >> $OUTPUTS_DIR/$i/test_report.txt
+        fi
+    done
+done
+
+python scripts/eval/analyze_test.py $OUTPUTS_DIR $COMMANDS | \
+    mail -s "test evaluation results" $EMAIL 

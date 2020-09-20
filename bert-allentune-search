@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# OUTPUT_DIR="/m-pinotHD/echau18/bert/parser_outputs"
+OUTPUT_DIR="/m-pinotSSD/echau18/bert/parser_outputs"
+
+ARGS=( "$@" )
+COMMANDS="${ARGS[@]}"
+EMAIL="your email here"
+
+eval "$(conda shell.bash hook)"
+conda activate allentune 
+
+for i in $COMMANDS; do
+    echo $i
+    allentune search --experiment-name $i \
+        --num-cpus 14 \
+        --log-dir $OUTPUT_DIR \
+        --search-space config/ud_search.json \
+        --num-samples 5 \
+        --base-config config/$i.jsonnet \
+        --include-package modules \
+        && (mail -s "search $i is done" $EMAIL \
+                < /usr/local/cuda/version.txt) \
+        || (mail -s "error encountered for search $i" $EMAIL \
+                < /usr/local/cuda/version.txt)
+        allentune-clean $OUTPUT_DIR/$i
+done

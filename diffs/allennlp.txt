@@ -1,0 +1,1808 @@
+commands/evaluate.py
+"""								"""
+The ``evaluate`` subcommand can be used to			The ``evaluate`` subcommand can be used to
+evaluate a trained model against a dataset			evaluate a trained model against a dataset
+and report any metrics calculated by the model.			and report any metrics calculated by the model.
+
+.. code-block:: bash						.. code-block:: bash
+
+    $ allennlp evaluate --help					    $ allennlp evaluate --help
+    usage: allennlp evaluate [-h] [--output-file OUTPUT_FILE]	    usage: allennlp evaluate [-h] [--output-file OUTPUT_FILE]
+                             [--weights-file WEIGHTS_FILE]	                             [--weights-file WEIGHTS_FILE]
+                             [--cuda-device CUDA_DEVICE] [-o 	                             [--cuda-device CUDA_DEVICE] [-o 
+                             [--batch-weight-key BATCH_WEIGHT	                             [--batch-weight-key BATCH_WEIGHT
+                             [--extend-vocab]			                             [--extend-vocab]
+                             [--embedding-sources-mapping EMB	                             [--embedding-sources-mapping EMB
+                             [--include-package INCLUDE_PACKA	                             [--include-package INCLUDE_PACKA
+                             archive_file input_file		                             archive_file input_file
+
+    Evaluate the specified model + dataset			    Evaluate the specified model + dataset
+
+    positional arguments:					    positional arguments:
+      archive_file          path to an archived trained model	      archive_file          path to an archived trained model
+      input_file            path to the file containing the e	      input_file            path to the file containing the e
+
+    optional arguments:						    optional arguments:
+      -h, --help            show this help message and exit	      -h, --help            show this help message and exit
+      --output-file OUTPUT_FILE					      --output-file OUTPUT_FILE
+                            path to output file			                            path to output file
+      --weights-file WEIGHTS_FILE				      --weights-file WEIGHTS_FILE
+                            a path that overrides which weigh	                            a path that overrides which weigh
+      --cuda-device CUDA_DEVICE					      --cuda-device CUDA_DEVICE
+                            id of GPU to use (if any)		                            id of GPU to use (if any)
+      -o OVERRIDES, --overrides OVERRIDES			      -o OVERRIDES, --overrides OVERRIDES
+                            a JSON structure used to override	                            a JSON structure used to override
+                            configuration			                            configuration
+      --batch-weight-key BATCH_WEIGHT_KEY			      --batch-weight-key BATCH_WEIGHT_KEY
+                            If non-empty, name of metric used	                            If non-empty, name of metric used
+                            on a per-batch basis.		                            on a per-batch basis.
+      --extend-vocab        if specified, we will use the ins	      --extend-vocab        if specified, we will use the ins
+                            dataset to extend your vocabulary	                            dataset to extend your vocabulary
+                            was used to initialize embedding 	                            was used to initialize embedding 
+                            need to pass --embedding-sources-	                            need to pass --embedding-sources-
+      --embedding-sources-mapping EMBEDDING_SOURCES_MAPPING	      --embedding-sources-mapping EMBEDDING_SOURCES_MAPPING
+                            a JSON dict defining mapping from	                            a JSON dict defining mapping from
+                            path to embeddingpretrained-file 	                            path to embeddingpretrained-file 
+                            If not passed, and embedding need	                            If not passed, and embedding need
+                            will try to use the original file	                            will try to use the original file
+                            training. If they are not availab	                            training. If they are not availab
+                            vectors for embedding extension.	                            vectors for embedding extension.
+      --include-package INCLUDE_PACKAGE				      --include-package INCLUDE_PACKAGE
+                            additional packages to include	                            additional packages to include
+"""								"""
+from typing import Dict, Any					from typing import Dict, Any
+import argparse							import argparse
+import logging							import logging
+import json							import json
+
+
+from allennlp.commands.subcommand import Subcommand		from allennlp.commands.subcommand import Subcommand
+from allennlp.common.util import prepare_environment		from allennlp.common.util import prepare_environment
+
+from allennlp.data.dataset_readers.dataset_reader import Data	from allennlp.data.dataset_readers.dataset_reader import Data
+from allennlp.data.iterators import DataIterator		from allennlp.data.iterators import DataIterator
+from allennlp.models.archival import load_archive		from allennlp.models.archival import load_archive
+from allennlp.training.util import evaluate			from allennlp.training.util import evaluate
+from allennlp.common import Params				from allennlp.common import Params
+
+logger = logging.getLogger(__name__)  # pylint: disable=inval	logger = logging.getLogger(__name__)  # pylint: disable=inval
+
+
+class Evaluate(Subcommand):					class Evaluate(Subcommand):
+    def add_subparser(self, name: str, parser: argparse._SubP	    def add_subparser(self, name: str, parser: argparse._SubP
+        # pylint: disable=protected-access			        # pylint: disable=protected-access
+        description = '''Evaluate the specified model + datas	        description = '''Evaluate the specified model + datas
+        subparser = parser.add_parser(				        subparser = parser.add_parser(
+                name, description=description, help='Evaluate	                name, description=description, help='Evaluate
+
+        subparser.add_argument('archive_file', type=str, help	        subparser.add_argument('archive_file', type=str, help
+
+        subparser.add_argument('input_file', type=str, help='	        subparser.add_argument('input_file', type=str, help='
+
+        subparser.add_argument('--output-file', type=str, hel	        subparser.add_argument('--output-file', type=str, hel
+
+        subparser.add_argument('--weights-file',		        subparser.add_argument('--weights-file',
+                               type=str,			                               type=str,
+                               help='a path that overrides wh	                               help='a path that overrides wh
+
+        cuda_device = subparser.add_mutually_exclusive_group(	        cuda_device = subparser.add_mutually_exclusive_group(
+        cuda_device.add_argument('--cuda-device',		        cuda_device.add_argument('--cuda-device',
+                                 type=int,			                                 type=int,
+                                 default=-1,			                                 default=-1,
+                                 help='id of GPU to use (if a	                                 help='id of GPU to use (if a
+
+        subparser.add_argument('-o', '--overrides',		        subparser.add_argument('-o', '--overrides',
+                               type=str,			                               type=str,
+                               default="",			                               default="",
+                               help='a JSON structure used to	                               help='a JSON structure used to
+
+        subparser.add_argument('--batch-weight-key',		        subparser.add_argument('--batch-weight-key',
+                               type=str,			                               type=str,
+                               default="",			                               default="",
+                               help='If non-empty, name of me	                               help='If non-empty, name of me
+
+        subparser.add_argument('--extend-vocab',		        subparser.add_argument('--extend-vocab',
+                               action='store_true',		                               action='store_true',
+                               default=False,			                               default=False,
+                               help='if specified, we will us	                               help='if specified, we will us
+                                    'extend your vocabulary. 	                                    'extend your vocabulary. 
+                                    'embedding layers, you ma	                                    'embedding layers, you ma
+
+        subparser.add_argument('--embedding-sources-mapping',	        subparser.add_argument('--embedding-sources-mapping',
+                               type=str,			                               type=str,
+                               default="",			                               default="",
+                               help='a JSON dict defining map	                               help='a JSON dict defining map
+                               'pretrained-file used during t	                               'pretrained-file used during t
+                               'extended, we will try to use 	                               'extended, we will try to use 
+                               'they are not available we wil	                               'they are not available we wil
+
+							      >	        subparser.add_argument('--extend-namespace',
+							      >	                                type=str,
+							      >	                                action='append',
+							      >	                                default=[],
+							      >	                                help='Vocabulary namespaces t
+							      >
+        subparser.set_defaults(func=evaluate_from_args)		        subparser.set_defaults(func=evaluate_from_args)
+
+        return subparser					        return subparser
+
+def evaluate_from_args(args: argparse.Namespace) -> Dict[str,	def evaluate_from_args(args: argparse.Namespace) -> Dict[str,
+    # Disable some of the more verbose logging statements	    # Disable some of the more verbose logging statements
+    logging.getLogger('allennlp.common.params').disabled = Tr	    logging.getLogger('allennlp.common.params').disabled = Tr
+    logging.getLogger('allennlp.nn.initializers').disabled = 	    logging.getLogger('allennlp.nn.initializers').disabled = 
+    logging.getLogger('allennlp.modules.token_embedders.embed	    logging.getLogger('allennlp.modules.token_embedders.embed
+
+    # Load from archive						    # Load from archive
+    archive = load_archive(args.archive_file, args.cuda_devic	    archive = load_archive(args.archive_file, args.cuda_devic
+    config = archive.config					    config = archive.config
+    prepare_environment(config)					    prepare_environment(config)
+    model = archive.model					    model = archive.model
+    model.eval()						    model.eval()
+
+    # Load the evaluation data					    # Load the evaluation data
+
+    # Try to use the validation dataset reader if there is on	    # Try to use the validation dataset reader if there is on
+    # to the default dataset_reader used for both training an	    # to the default dataset_reader used for both training an
+    validation_dataset_reader_params = config.pop('validation	    validation_dataset_reader_params = config.pop('validation
+    if validation_dataset_reader_params is not None:		    if validation_dataset_reader_params is not None:
+        dataset_reader = DatasetReader.from_params(validation	        dataset_reader = DatasetReader.from_params(validation
+    else:							    else:
+        dataset_reader = DatasetReader.from_params(config.pop	        dataset_reader = DatasetReader.from_params(config.pop
+    evaluation_data_path = args.input_file			    evaluation_data_path = args.input_file
+    logger.info("Reading evaluation data from %s", evaluation	    logger.info("Reading evaluation data from %s", evaluation
+    instances = dataset_reader.read(evaluation_data_path)	    instances = dataset_reader.read(evaluation_data_path)
+
+    embedding_sources: Dict[str, str] = (json.loads(args.embe	    embedding_sources: Dict[str, str] = (json.loads(args.embe
+                                         if args.embedding_so	                                         if args.embedding_so
+    if args.extend_vocab:					    if args.extend_vocab:
+        logger.info("Vocabulary is being extended with test i	        logger.info("Vocabulary is being extended with test i
+        model.vocab.extend_from_instances(Params({}), instanc	        model.vocab.extend_from_instances(Params({}), instanc
+        model.extend_embedder_vocab(embedding_sources)		        model.extend_embedder_vocab(embedding_sources)
+							      >
+							      >	    if len(args.extend_namespace) > 0:
+							      >	        model.vocab.extend_namespaces_from_instances(args.ext
+							      >	                                                    instances
+							      >	        
+
+    iterator_params = config.pop("validation_iterator", None)	    iterator_params = config.pop("validation_iterator", None)
+    if iterator_params is None:					    if iterator_params is None:
+        iterator_params = config.pop("iterator")		        iterator_params = config.pop("iterator")
+    iterator = DataIterator.from_params(iterator_params)	    iterator = DataIterator.from_params(iterator_params)
+    iterator.index_with(model.vocab)				    iterator.index_with(model.vocab)
+
+    metrics = evaluate(model, instances, iterator, args.cuda_	    metrics = evaluate(model, instances, iterator, args.cuda_
+
+    logger.info("Finished evaluating.")				    logger.info("Finished evaluating.")
+    logger.info("Metrics:")					    logger.info("Metrics:")
+    for key, metric in metrics.items():				    for key, metric in metrics.items():
+        logger.info("%s: %s", key, metric)			        logger.info("%s: %s", key, metric)
+
+    output_file = args.output_file				    output_file = args.output_file
+    if output_file:						    if output_file:
+        with open(output_file, "w") as file:			        with open(output_file, "w") as file:
+            json.dump(metrics, file, indent=4)			            json.dump(metrics, file, indent=4)
+    return metrics						    return metrics
+
+commands/predict.py
+"""								"""
+The ``predict`` subcommand allows you to make bulk JSON-to-JS	The ``predict`` subcommand allows you to make bulk JSON-to-JS
+or dataset to JSON predictions using a trained model and its	or dataset to JSON predictions using a trained model and its
+:class:`~allennlp.service.predictors.predictor.Predictor` wra	:class:`~allennlp.service.predictors.predictor.Predictor` wra
+
+.. code-block:: bash						.. code-block:: bash
+
+    $ allennlp predict --help					    $ allennlp predict --help
+    usage: allennlp predict [-h] [--output-file OUTPUT_FILE]	    usage: allennlp predict [-h] [--output-file OUTPUT_FILE]
+                            [--weights-file WEIGHTS_FILE]	                            [--weights-file WEIGHTS_FILE]
+                            [--batch-size BATCH_SIZE] [--sile	                            [--batch-size BATCH_SIZE] [--sile
+                            [--cuda-device CUDA_DEVICE] [--us	                            [--cuda-device CUDA_DEVICE] [--us
+                            [--dataset-reader-choice {train,v	                            [--dataset-reader-choice {train,v
+                            [-o OVERRIDES] [--predictor PREDI	                            [-o OVERRIDES] [--predictor PREDI
+                            [--include-package INCLUDE_PACKAG	                            [--include-package INCLUDE_PACKAG
+                            archive_file input_file		                            archive_file input_file
+
+    Run the specified model against a JSON-lines input file.	    Run the specified model against a JSON-lines input file.
+
+    positional arguments:					    positional arguments:
+      archive_file          the archived model to make predic	      archive_file          the archived model to make predic
+      input_file            path to or url of the input file	      input_file            path to or url of the input file
+
+    optional arguments:						    optional arguments:
+      -h, --help            show this help message and exit	      -h, --help            show this help message and exit
+      --output-file OUTPUT_FILE					      --output-file OUTPUT_FILE
+                            path to output file			                            path to output file
+      --weights-file WEIGHTS_FILE				      --weights-file WEIGHTS_FILE
+                            a path that overrides which weigh	                            a path that overrides which weigh
+      --batch-size BATCH_SIZE					      --batch-size BATCH_SIZE
+                            The batch size to use for process	                            The batch size to use for process
+      --silent              do not print output to stdout	      --silent              do not print output to stdout
+      --cuda-device CUDA_DEVICE					      --cuda-device CUDA_DEVICE
+                            id of GPU to use (if any)		                            id of GPU to use (if any)
+      --use-dataset-reader  Whether to use the dataset reader	      --use-dataset-reader  Whether to use the dataset reader
+                            model to load Instances. The vali	                            model to load Instances. The vali
+                            will be used if it exists, otherw	                            will be used if it exists, otherw
+                            to the train dataset reader. This	                            to the train dataset reader. This
+                            overridden with the --dataset-rea	                            overridden with the --dataset-rea
+      --dataset-reader-choice {train,validation}		      --dataset-reader-choice {train,validation}
+                            Indicates which model dataset rea	                            Indicates which model dataset rea
+                            --use-dataset-reader flag is set.	                            --use-dataset-reader flag is set.
+                            validation)				                            validation)
+      -o OVERRIDES, --overrides OVERRIDES			      -o OVERRIDES, --overrides OVERRIDES
+                            a JSON structure used to override	                            a JSON structure used to override
+                            configuration			                            configuration
+      --predictor PREDICTOR					      --predictor PREDICTOR
+                            optionally specify a specific pre	                            optionally specify a specific pre
+      --include-package INCLUDE_PACKAGE				      --include-package INCLUDE_PACKAGE
+                            additional packages to include	                            additional packages to include
+"""								"""
+from typing import List, Iterator, Optional			from typing import List, Iterator, Optional
+import argparse							import argparse
+import sys							import sys
+import json							import json
+
+from allennlp.commands.subcommand import Subcommand		from allennlp.commands.subcommand import Subcommand
+from allennlp.common.checks import check_for_gpu, Configurati	from allennlp.common.checks import check_for_gpu, Configurati
+from allennlp.common.file_utils import cached_path		from allennlp.common.file_utils import cached_path
+from allennlp.common.util import lazy_groups_of			from allennlp.common.util import lazy_groups_of
+from allennlp.models.archival import load_archive		from allennlp.models.archival import load_archive
+from allennlp.predictors.predictor import Predictor, JsonDict	from allennlp.predictors.predictor import Predictor, JsonDict
+from allennlp.data import Instance				from allennlp.data import Instance
+
+class Predict(Subcommand):					class Predict(Subcommand):
+    def add_subparser(self, name: str, parser: argparse._SubP	    def add_subparser(self, name: str, parser: argparse._SubP
+        # pylint: disable=protected-access			        # pylint: disable=protected-access
+        description = '''Run the specified model against a JS	        description = '''Run the specified model against a JS
+        subparser = parser.add_parser(				        subparser = parser.add_parser(
+                name, description=description, help='Use a tr	                name, description=description, help='Use a tr
+
+        subparser.add_argument('archive_file', type=str, help	        subparser.add_argument('archive_file', type=str, help
+        subparser.add_argument('input_file', type=str, help='	        subparser.add_argument('input_file', type=str, help='
+
+        subparser.add_argument('--output-file', type=str, hel	        subparser.add_argument('--output-file', type=str, hel
+        subparser.add_argument('--weights-file',		        subparser.add_argument('--weights-file',
+                               type=str,			                               type=str,
+                               help='a path that overrides wh	                               help='a path that overrides wh
+
+        batch_size = subparser.add_mutually_exclusive_group(r	        batch_size = subparser.add_mutually_exclusive_group(r
+        batch_size.add_argument('--batch-size', type=int, def	        batch_size.add_argument('--batch-size', type=int, def
+
+        subparser.add_argument('--silent', action='store_true	        subparser.add_argument('--silent', action='store_true
+
+        cuda_device = subparser.add_mutually_exclusive_group(	        cuda_device = subparser.add_mutually_exclusive_group(
+        cuda_device.add_argument('--cuda-device', type=int, d	        cuda_device.add_argument('--cuda-device', type=int, d
+
+        subparser.add_argument('--use-dataset-reader',		        subparser.add_argument('--use-dataset-reader',
+                               action='store_true',		                               action='store_true',
+                               help='Whether to use the datas	                               help='Whether to use the datas
+                                    'The validation dataset r	                                    'The validation dataset r
+                                    'fall back to the train d	                                    'fall back to the train d
+                                    'with the --dataset-reade	                                    'with the --dataset-reade
+
+        subparser.add_argument('--dataset-reader-choice',	        subparser.add_argument('--dataset-reader-choice',
+                               type=str,			                               type=str,
+                               choices=['train', 'validation'	                               choices=['train', 'validation'
+                               default='validation',		                               default='validation',
+                               help='Indicates which model da	                               help='Indicates which model da
+                                    'flag is set.')		                                    'flag is set.')
+
+        subparser.add_argument('-o', '--overrides',		        subparser.add_argument('-o', '--overrides',
+                               type=str,			                               type=str,
+                               default="",			                               default="",
+                               help='a JSON structure used to	                               help='a JSON structure used to
+
+        subparser.add_argument('--predictor',			        subparser.add_argument('--predictor',
+                               type=str,			                               type=str,
+                               help='optionally specify a spe	                               help='optionally specify a spe
+
+							      >	        subparser.add_argument('--extend-namespace',
+							      >	                                type=str,
+							      >	                                action='append',
+							      >	                                default=[],
+							      >	                                help='Vocabulary namespaces t
+							      >
+        subparser.set_defaults(func=_predict)			        subparser.set_defaults(func=_predict)
+
+        return subparser					        return subparser
+
+def _get_predictor(args: argparse.Namespace) -> Predictor:	def _get_predictor(args: argparse.Namespace) -> Predictor:
+    check_for_gpu(args.cuda_device)				    check_for_gpu(args.cuda_device)
+    archive = load_archive(args.archive_file,			    archive = load_archive(args.archive_file,
+                           weights_file=args.weights_file,	                           weights_file=args.weights_file,
+                           cuda_device=args.cuda_device,	                           cuda_device=args.cuda_device,
+                           overrides=args.overrides)		                           overrides=args.overrides)
+
+    return Predictor.from_archive(archive, args.predictor,	    return Predictor.from_archive(archive, args.predictor,
+                                  dataset_reader_to_load=args	                                  dataset_reader_to_load=args
+
+
+class _PredictManager:						class _PredictManager:
+
+    def __init__(self,						    def __init__(self,
+                 predictor: Predictor,				                 predictor: Predictor,
+                 input_file: str,				                 input_file: str,
+                 output_file: Optional[str],			                 output_file: Optional[str],
+                 batch_size: int,				                 batch_size: int,
+                 print_to_console: bool,			                 print_to_console: bool,
+                 has_dataset_reader: bool) -> None:	      |	                 has_dataset_reader: bool,
+							      >	                 extend_namespace: List[str]) -> None:
+
+        self._predictor = predictor				        self._predictor = predictor
+        self._input_file = input_file				        self._input_file = input_file
+        if output_file is not None:				        if output_file is not None:
+            self._output_file = open(output_file, "w")		            self._output_file = open(output_file, "w")
+        else:							        else:
+            self._output_file = None				            self._output_file = None
+        self._batch_size = batch_size				        self._batch_size = batch_size
+        self._print_to_console = print_to_console		        self._print_to_console = print_to_console
+        if has_dataset_reader:					        if has_dataset_reader:
+            self._dataset_reader = predictor._dataset_reader 	            self._dataset_reader = predictor._dataset_reader 
+        else:							        else:
+            self._dataset_reader = None				            self._dataset_reader = None
+
+							      >	        self.extend_namespace = extend_namespace
+							      >
+    def _predict_json(self, batch_data: List[JsonDict]) -> It	    def _predict_json(self, batch_data: List[JsonDict]) -> It
+        if len(batch_data) == 1:				        if len(batch_data) == 1:
+            results = [self._predictor.predict_json(batch_dat	            results = [self._predictor.predict_json(batch_dat
+        else:							        else:
+            results = self._predictor.predict_batch_json(batc	            results = self._predictor.predict_batch_json(batc
+        for output in results:					        for output in results:
+            yield self._predictor.dump_line(output)		            yield self._predictor.dump_line(output)
+
+    def _predict_instances(self, batch_data: List[Instance]) 	    def _predict_instances(self, batch_data: List[Instance]) 
+        if len(batch_data) == 1:				        if len(batch_data) == 1:
+            results = [self._predictor.predict_instance(batch	            results = [self._predictor.predict_instance(batch
+        else:							        else:
+            results = self._predictor.predict_batch_instance(	            results = self._predictor.predict_batch_instance(
+        for output in results:					        for output in results:
+            yield self._predictor.dump_line(output)		            yield self._predictor.dump_line(output)
+
+    def _maybe_print_to_console_and_file(self,			    def _maybe_print_to_console_and_file(self,
+                                         index: int,		                                         index: int,
+                                         prediction: str,	                                         prediction: str,
+                                         model_input: str = N	                                         model_input: str = N
+        if self._print_to_console:				        if self._print_to_console:
+            if model_input is not None:				            if model_input is not None:
+                print(f"input {index}: ", model_input)		                print(f"input {index}: ", model_input)
+            print("prediction: ", prediction)			            print("prediction: ", prediction)
+        if self._output_file is not None:			        if self._output_file is not None:
+            self._output_file.write(prediction)			            self._output_file.write(prediction)
+
+    def _get_json_data(self) -> Iterator[JsonDict]:		    def _get_json_data(self) -> Iterator[JsonDict]:
+        if self._input_file == "-":				        if self._input_file == "-":
+            for line in sys.stdin:				            for line in sys.stdin:
+                if not line.isspace():				                if not line.isspace():
+                    yield self._predictor.load_line(line)	                    yield self._predictor.load_line(line)
+        else:							        else:
+            input_file = cached_path(self._input_file)		            input_file = cached_path(self._input_file)
+            with open(input_file, "r") as file_input:		            with open(input_file, "r") as file_input:
+                for line in file_input:				                for line in file_input:
+                    if not line.isspace():			                    if not line.isspace():
+                        yield self._predictor.load_line(line)	                        yield self._predictor.load_line(line)
+
+    def _get_instance_data(self) -> Iterator[Instance]:		    def _get_instance_data(self) -> Iterator[Instance]:
+        if self._input_file == "-":				        if self._input_file == "-":
+            raise ConfigurationError("stdin is not an option 	            raise ConfigurationError("stdin is not an option 
+        elif self._dataset_reader is None:			        elif self._dataset_reader is None:
+            raise ConfigurationError("To generate instances d	            raise ConfigurationError("To generate instances d
+        else:							        else:
+            yield from self._dataset_reader.read(self._input_	            yield from self._dataset_reader.read(self._input_
+
+    def run(self) -> None:					    def run(self) -> None:
+        has_reader = self._dataset_reader is not None		        has_reader = self._dataset_reader is not None
+        index = 0						        index = 0
+							      >
+							      >	        if len(self.extend_namespace) > 0:
+							      >	            _instances = self._get_instance_data()
+							      >	            self._predictor._model.vocab.extend_namespaces_fr
+							      >	                        self.extend_namespace,
+							      >	                        instances=_instances
+							      >	                    )
+							      >	            
+							      >
+        if has_reader:						        if has_reader:
+            for batch in lazy_groups_of(self._get_instance_da	            for batch in lazy_groups_of(self._get_instance_da
+                for model_input_instance, result in zip(batch	                for model_input_instance, result in zip(batch
+                    self._maybe_print_to_console_and_file(ind	                    self._maybe_print_to_console_and_file(ind
+                    index = index + 1				                    index = index + 1
+        else:							        else:
+            for batch_json in lazy_groups_of(self._get_json_d	            for batch_json in lazy_groups_of(self._get_json_d
+                for model_input_json, result in zip(batch_jso	                for model_input_json, result in zip(batch_jso
+                    self._maybe_print_to_console_and_file(ind	                    self._maybe_print_to_console_and_file(ind
+                    index = index + 1				                    index = index + 1
+
+        if self._output_file is not None:			        if self._output_file is not None:
+            self._output_file.close()				            self._output_file.close()
+
+def _predict(args: argparse.Namespace) -> None:			def _predict(args: argparse.Namespace) -> None:
+    predictor = _get_predictor(args)				    predictor = _get_predictor(args)
+
+    if args.silent and not args.output_file:			    if args.silent and not args.output_file:
+        print("--silent specified without --output-file.")	        print("--silent specified without --output-file.")
+        print("Exiting early because no output will be create	        print("Exiting early because no output will be create
+        sys.exit(0)						        sys.exit(0)
+
+    manager = _PredictManager(predictor,			    manager = _PredictManager(predictor,
+                              args.input_file,			                              args.input_file,
+                              args.output_file,			                              args.output_file,
+                              args.batch_size,			                              args.batch_size,
+                              not args.silent,			                              not args.silent,
+                              args.use_dataset_reader)	      |	                              args.use_dataset_reader,
+							      >	                              args.extend_namespace)
+    manager.run()						    manager.run()
+
+data/vocabulary.py
+"""								"""
+A Vocabulary maps strings to integers, allowing for strings t	A Vocabulary maps strings to integers, allowing for strings t
+out-of-vocabulary token.					out-of-vocabulary token.
+"""								"""
+
+import codecs							import codecs
+import copy							import copy
+import logging							import logging
+import os							import os
+from collections import defaultdict				from collections import defaultdict
+from typing import Any, Callable, Dict, Iterable, List, Optio	from typing import Any, Callable, Dict, Iterable, List, Optio
+from typing import TextIO  # pylint: disable=unused-import	from typing import TextIO  # pylint: disable=unused-import
+
+from allennlp.common.util import namespace_match		from allennlp.common.util import namespace_match
+from allennlp.common import Params, Registrable			from allennlp.common import Params, Registrable
+from allennlp.common.checks import ConfigurationError		from allennlp.common.checks import ConfigurationError
+from allennlp.common.tqdm import Tqdm				from allennlp.common.tqdm import Tqdm
+from allennlp.data import instance as adi  # pylint: disable=	from allennlp.data import instance as adi  # pylint: disable=
+
+
+logger = logging.getLogger(__name__)  # pylint: disable=inval	logger = logging.getLogger(__name__)  # pylint: disable=inval
+
+DEFAULT_NON_PADDED_NAMESPACES = ("*tags", "*labels")		DEFAULT_NON_PADDED_NAMESPACES = ("*tags", "*labels")
+DEFAULT_PADDING_TOKEN = "@@PADDING@@"				DEFAULT_PADDING_TOKEN = "@@PADDING@@"
+DEFAULT_OOV_TOKEN = "@@UNKNOWN@@"				DEFAULT_OOV_TOKEN = "@@UNKNOWN@@"
+NAMESPACE_PADDING_FILE = 'non_padded_namespaces.txt'		NAMESPACE_PADDING_FILE = 'non_padded_namespaces.txt'
+
+
+class _NamespaceDependentDefaultDict(defaultdict):		class _NamespaceDependentDefaultDict(defaultdict):
+    """								    """
+    This is a `defaultdict					    This is a `defaultdict
+    <https://docs.python.org/2/library/collections.html#colle	    <https://docs.python.org/2/library/collections.html#colle
+    default value is dependent on the key that is passed.	    default value is dependent on the key that is passed.
+
+    We use "namespaces" in the :class:`Vocabulary` object to 	    We use "namespaces" in the :class:`Vocabulary` object to 
+    mappings from strings to integers, so that we have a cons	    mappings from strings to integers, so that we have a cons
+    labels, characters, or whatever else you want, into integ	    labels, characters, or whatever else you want, into integ
+    namespaces (words and characters) should have integers re	    namespaces (words and characters) should have integers re
+    out-of-vocabulary tokens, while others (labels and tags) 	    out-of-vocabulary tokens, while others (labels and tags) 
+    specify filters on the namespace (the key used in the ``d	    specify filters on the namespace (the key used in the ``d
+    default values depending on whether the namespace passes 	    default values depending on whether the namespace passes 
+
+    To do filtering, we take a set of ``non_padded_namespaces	    To do filtering, we take a set of ``non_padded_namespaces
+    that are either matched exactly against the keys, or trea	    that are either matched exactly against the keys, or trea
+    string starts with ``*``.  In other words, if ``*tags`` i	    string starts with ``*``.  In other words, if ``*tags`` i
+    ``passage_tags``, ``question_tags``, etc. (anything that 	    ``passage_tags``, ``question_tags``, etc. (anything that 
+    ``non_padded`` default value.				    ``non_padded`` default value.
+
+    Parameters							    Parameters
+    ----------							    ----------
+    non_padded_namespaces : ``Iterable[str]``			    non_padded_namespaces : ``Iterable[str]``
+        A set / list / tuple of strings describing which name	        A set / list / tuple of strings describing which name
+        (key) is missing from this dictionary, we will use :f	        (key) is missing from this dictionary, we will use :f
+        the namespace should be padded.  If the given namespa	        the namespace should be padded.  If the given namespa
+        list, we will use ``non_padded_function`` to initiali	        list, we will use ``non_padded_function`` to initiali
+        we will use ``padded_function`` otherwise.		        we will use ``padded_function`` otherwise.
+    padded_function : ``Callable[[], Any]``			    padded_function : ``Callable[[], Any]``
+        A zero-argument function to call to initialize a valu	        A zero-argument function to call to initialize a valu
+        padded.							        padded.
+    non_padded_function : ``Callable[[], Any]``			    non_padded_function : ``Callable[[], Any]``
+        A zero-argument function to call to initialize a valu	        A zero-argument function to call to initialize a valu
+        padded.							        padded.
+    """								    """
+    def __init__(self,						    def __init__(self,
+                 non_padded_namespaces: Iterable[str],		                 non_padded_namespaces: Iterable[str],
+                 padded_function: Callable[[], Any],		                 padded_function: Callable[[], Any],
+                 non_padded_function: Callable[[], Any]) -> N	                 non_padded_function: Callable[[], Any]) -> N
+        self._non_padded_namespaces = set(non_padded_namespac	        self._non_padded_namespaces = set(non_padded_namespac
+        self._padded_function = padded_function			        self._padded_function = padded_function
+        self._non_padded_function = non_padded_function		        self._non_padded_function = non_padded_function
+        super(_NamespaceDependentDefaultDict, self).__init__(	        super(_NamespaceDependentDefaultDict, self).__init__(
+
+    def __missing__(self, key: str):				    def __missing__(self, key: str):
+        if any(namespace_match(pattern, key) for pattern in s	        if any(namespace_match(pattern, key) for pattern in s
+            value = self._non_padded_function()			            value = self._non_padded_function()
+        else:							        else:
+            value = self._padded_function()			            value = self._padded_function()
+        dict.__setitem__(self, key, value)			        dict.__setitem__(self, key, value)
+        return value						        return value
+
+    def add_non_padded_namespaces(self, non_padded_namespaces	    def add_non_padded_namespaces(self, non_padded_namespaces
+        # add non_padded_namespaces which weren't already pre	        # add non_padded_namespaces which weren't already pre
+        self._non_padded_namespaces.update(non_padded_namespa	        self._non_padded_namespaces.update(non_padded_namespa
+
+class _TokenToIndexDefaultDict(_NamespaceDependentDefaultDict	class _TokenToIndexDefaultDict(_NamespaceDependentDefaultDict
+    def __init__(self, non_padded_namespaces: Set[str], paddi	    def __init__(self, non_padded_namespaces: Set[str], paddi
+        super(_TokenToIndexDefaultDict, self).__init__(non_pa	        super(_TokenToIndexDefaultDict, self).__init__(non_pa
+                                                       lambda	                                                       lambda
+                                                       lambda	                                                       lambda
+
+
+class _IndexToTokenDefaultDict(_NamespaceDependentDefaultDict	class _IndexToTokenDefaultDict(_NamespaceDependentDefaultDict
+    def __init__(self, non_padded_namespaces: Set[str], paddi	    def __init__(self, non_padded_namespaces: Set[str], paddi
+        super(_IndexToTokenDefaultDict, self).__init__(non_pa	        super(_IndexToTokenDefaultDict, self).__init__(non_pa
+                                                       lambda	                                                       lambda
+                                                       lambda	                                                       lambda
+
+
+def _read_pretrained_tokens(embeddings_file_uri: str) -> List	def _read_pretrained_tokens(embeddings_file_uri: str) -> List
+    # Moving this import to the top breaks everything (cyclin	    # Moving this import to the top breaks everything (cyclin
+    from allennlp.modules.token_embedders.embedding import Em	    from allennlp.modules.token_embedders.embedding import Em
+
+    logger.info('Reading pretrained tokens from: %s', embeddi	    logger.info('Reading pretrained tokens from: %s', embeddi
+    tokens: List[str] = []					    tokens: List[str] = []
+    with EmbeddingsTextFile(embeddings_file_uri) as embedding	    with EmbeddingsTextFile(embeddings_file_uri) as embedding
+        for line_number, line in enumerate(Tqdm.tqdm(embeddin	        for line_number, line in enumerate(Tqdm.tqdm(embeddin
+            token_end = line.find(' ')				            token_end = line.find(' ')
+            if token_end >= 0:					            if token_end >= 0:
+                token = line[:token_end]			                token = line[:token_end]
+                tokens.append(token)				                tokens.append(token)
+            else:						            else:
+                line_begin = line[:20] + '...' if len(line) >	                line_begin = line[:20] + '...' if len(line) >
+                logger.warning(f'Skipping line number %d: %s'	                logger.warning(f'Skipping line number %d: %s'
+    return tokens						    return tokens
+
+
+def pop_max_vocab_size(params: Params) -> Union[int, Dict[str	def pop_max_vocab_size(params: Params) -> Union[int, Dict[str
+    """								    """
+    max_vocab_size limits the size of the vocabulary, not inc	    max_vocab_size limits the size of the vocabulary, not inc
+
+    max_vocab_size is allowed to be either an int or a Dict[s	    max_vocab_size is allowed to be either an int or a Dict[s
+    But it could also be a string representing an int (in the	    But it could also be a string representing an int (in the
+    substitution). So we need some complex logic to handle it	    substitution). So we need some complex logic to handle it
+    """								    """
+    size = params.pop("max_vocab_size", None, keep_as_dict=Tr	    size = params.pop("max_vocab_size", None, keep_as_dict=Tr
+
+    if isinstance(size, dict):					    if isinstance(size, dict):
+        # This is the Dict[str, int] case.			        # This is the Dict[str, int] case.
+        return size						        return size
+    elif size is not None:					    elif size is not None:
+        # This is the int / str case.				        # This is the int / str case.
+        return int(size)					        return int(size)
+    else:							    else:
+        return None						        return None
+
+
+class Vocabulary(Registrable):					class Vocabulary(Registrable):
+    """								    """
+    A Vocabulary maps strings to integers, allowing for strin	    A Vocabulary maps strings to integers, allowing for strin
+    out-of-vocabulary token.					    out-of-vocabulary token.
+
+    Vocabularies are fit to a particular dataset, which we us	    Vocabularies are fit to a particular dataset, which we us
+    in-vocabulary.						    in-vocabulary.
+
+    Vocabularies also allow for several different namespaces,	    Vocabularies also allow for several different namespaces,
+    'a' as a word, and 'a' as a character, for instance, and 	    'a' as a word, and 'a' as a character, for instance, and 
+    tag and label strings to indices, for a unified :class:`~	    tag and label strings to indices, for a unified :class:`~
+    methods on this class allow you to pass in a namespace; b	    methods on this class allow you to pass in a namespace; b
+    namespace, and you can omit the namespace argument everyw	    namespace, and you can omit the namespace argument everyw
+
+    Parameters							    Parameters
+    ----------							    ----------
+    counter : ``Dict[str, Dict[str, int]]``, optional (defaul	    counter : ``Dict[str, Dict[str, int]]``, optional (defaul
+        A collection of counts from which to initialize this 	        A collection of counts from which to initialize this 
+        counts and, together with the other parameters to thi	        counts and, together with the other parameters to thi
+        words are in-vocabulary.  If this is ``None``, we jus	        words are in-vocabulary.  If this is ``None``, we jus
+        anything.						        anything.
+    min_count : ``Dict[str, int]``, optional (default=None)	    min_count : ``Dict[str, int]``, optional (default=None)
+        When initializing the vocab from a counter, you can s	        When initializing the vocab from a counter, you can s
+        token with a count less than this will not be added t	        token with a count less than this will not be added t
+        counts are `namespace-specific`, so you can specify d	        counts are `namespace-specific`, so you can specify d
+        words tokens, for example.  If a namespace does not h	        words tokens, for example.  If a namespace does not h
+        will add all seen tokens to that namespace.		        will add all seen tokens to that namespace.
+    max_vocab_size : ``Union[int, Dict[str, int]]``, optional	    max_vocab_size : ``Union[int, Dict[str, int]]``, optional
+        If you want to cap the number of tokens in your vocab	        If you want to cap the number of tokens in your vocab
+        parameter.  If you specify a single integer, every na	        parameter.  If you specify a single integer, every na
+        to be no larger than this.  If you specify a dictiona	        to be no larger than this.  If you specify a dictiona
+        ``counter`` can have a separate maximum vocabulary si	        ``counter`` can have a separate maximum vocabulary si
+        of ``None``, which means no cap on the vocabulary siz	        of ``None``, which means no cap on the vocabulary siz
+    non_padded_namespaces : ``Iterable[str]``, optional		    non_padded_namespaces : ``Iterable[str]``, optional
+        By default, we assume you are mapping word / characte	        By default, we assume you are mapping word / characte
+        to reserve word indices for padding and out-of-vocabu	        to reserve word indices for padding and out-of-vocabu
+        mapping NER or SRL tags, or class labels, to integers	        mapping NER or SRL tags, or class labels, to integers
+        indices for padding and out-of-vocabulary tokens.  Us	        indices for padding and out-of-vocabulary tokens.  Us
+        namespaces should `not` have padding and OOV tokens a	        namespaces should `not` have padding and OOV tokens a
+
+        The format of each element of this is either a string	        The format of each element of this is either a string
+        exactly,  or ``*`` followed by a string, which we mat	        exactly,  or ``*`` followed by a string, which we mat
+
+        We try to make the default here reasonable, so that y	        We try to make the default here reasonable, so that y
+        The default is ``("*tags", "*labels")``, so as long a	        The default is ``("*tags", "*labels")``, so as long a
+        "labels" (which is true by default for all tag and la	        "labels" (which is true by default for all tag and la
+        have to specify anything here.				        have to specify anything here.
+    pretrained_files : ``Dict[str, str]``, optional		    pretrained_files : ``Dict[str, str]``, optional
+        If provided, this map specifies the path to optional 	        If provided, this map specifies the path to optional 
+        namespace. This can be used to either restrict the vo	        namespace. This can be used to either restrict the vo
+        in this file, or to ensure that any words in this fil	        in this file, or to ensure that any words in this fil
+        regardless of their count, depending on the value of 	        regardless of their count, depending on the value of 
+        Words which appear in the pretrained embedding file b	        Words which appear in the pretrained embedding file b
+        in the Vocabulary.					        in the Vocabulary.
+    min_pretrained_embeddings : ``Dict[str, int]``, optional	    min_pretrained_embeddings : ``Dict[str, int]``, optional
+        If provided, specifies for each namespace a minimum n	        If provided, specifies for each namespace a minimum n
+        most common words) to keep from pretrained embedding 	        most common words) to keep from pretrained embedding 
+        appearing in the data.					        appearing in the data.
+    only_include_pretrained_words : ``bool``, optional (defau	    only_include_pretrained_words : ``bool``, optional (defau
+        This defines the strategy for using any pretrained em	        This defines the strategy for using any pretrained em
+        specified in ``pretrained_files``. If False, an inclu	        specified in ``pretrained_files``. If False, an inclu
+        which are in the ``counter`` and in the pretrained fi	        which are in the ``counter`` and in the pretrained fi
+        regardless of whether their count exceeds ``min_count	        regardless of whether their count exceeds ``min_count
+        exclusive strategy: words are only included in the Vo	        exclusive strategy: words are only included in the Vo
+        embedding file (their count must still be at least ``	        embedding file (their count must still be at least ``
+    tokens_to_add : ``Dict[str, List[str]]``, optional (defau	    tokens_to_add : ``Dict[str, List[str]]``, optional (defau
+        If given, this is a list of tokens to add to the voca	        If given, this is a list of tokens to add to the voca
+        the tokens to.  This is a way to be sure that certain	        the tokens to.  This is a way to be sure that certain
+        regardless of any other vocabulary computation.		        regardless of any other vocabulary computation.
+    """								    """
+    default_implementation = "default"				    default_implementation = "default"
+
+    def __init__(self,						    def __init__(self,
+                 counter: Dict[str, Dict[str, int]] = None,	                 counter: Dict[str, Dict[str, int]] = None,
+                 min_count: Dict[str, int] = None,		                 min_count: Dict[str, int] = None,
+                 max_vocab_size: Union[int, Dict[str, int]] =	                 max_vocab_size: Union[int, Dict[str, int]] =
+                 non_padded_namespaces: Iterable[str] = DEFAU	                 non_padded_namespaces: Iterable[str] = DEFAU
+                 pretrained_files: Optional[Dict[str, str]] =	                 pretrained_files: Optional[Dict[str, str]] =
+                 only_include_pretrained_words: bool = False,	                 only_include_pretrained_words: bool = False,
+                 tokens_to_add: Dict[str, List[str]] = None,	                 tokens_to_add: Dict[str, List[str]] = None,
+                 min_pretrained_embeddings: Dict[str, int] = 	                 min_pretrained_embeddings: Dict[str, int] = 
+        self._padding_token = DEFAULT_PADDING_TOKEN		        self._padding_token = DEFAULT_PADDING_TOKEN
+        self._oov_token = DEFAULT_OOV_TOKEN			        self._oov_token = DEFAULT_OOV_TOKEN
+        self._non_padded_namespaces = set(non_padded_namespac	        self._non_padded_namespaces = set(non_padded_namespac
+        self._token_to_index = _TokenToIndexDefaultDict(self.	        self._token_to_index = _TokenToIndexDefaultDict(self.
+                                                        self.	                                                        self.
+                                                        self.	                                                        self.
+        self._index_to_token = _IndexToTokenDefaultDict(self.	        self._index_to_token = _IndexToTokenDefaultDict(self.
+                                                        self.	                                                        self.
+                                                        self.	                                                        self.
+        self._retained_counter: Optional[Dict[str, Dict[str, 	        self._retained_counter: Optional[Dict[str, Dict[str, 
+        # Made an empty vocabulary, now extend it.		        # Made an empty vocabulary, now extend it.
+        self._extend(counter,					        self._extend(counter,
+                     min_count,					                     min_count,
+                     max_vocab_size,				                     max_vocab_size,
+                     non_padded_namespaces,			                     non_padded_namespaces,
+                     pretrained_files,				                     pretrained_files,
+                     only_include_pretrained_words,		                     only_include_pretrained_words,
+                     tokens_to_add,				                     tokens_to_add,
+                     min_pretrained_embeddings)			                     min_pretrained_embeddings)
+
+
+    def __getstate__(self):					    def __getstate__(self):
+        """							        """
+        Need to sanitize defaultdict and defaultdict-like obj	        Need to sanitize defaultdict and defaultdict-like obj
+        by converting them to vanilla dicts when we pickle th	        by converting them to vanilla dicts when we pickle th
+        """							        """
+        state = copy.copy(self.__dict__)			        state = copy.copy(self.__dict__)
+        state["_token_to_index"] = dict(state["_token_to_inde	        state["_token_to_index"] = dict(state["_token_to_inde
+        state["_index_to_token"] = dict(state["_index_to_toke	        state["_index_to_token"] = dict(state["_index_to_toke
+
+        if "_retained_counter" in state:			        if "_retained_counter" in state:
+            state["_retained_counter"] = {key: dict(value)	            state["_retained_counter"] = {key: dict(value)
+                                          for key, value in s	                                          for key, value in s
+
+        return state						        return state
+
+    def __setstate__(self, state):				    def __setstate__(self, state):
+        """							        """
+        Conversely, when we unpickle, we need to reload the p	        Conversely, when we unpickle, we need to reload the p
+        into our special DefaultDict subclasses.		        into our special DefaultDict subclasses.
+        """							        """
+        # pylint: disable=attribute-defined-outside-init	        # pylint: disable=attribute-defined-outside-init
+        self.__dict__ = copy.copy(state)			        self.__dict__ = copy.copy(state)
+        self._token_to_index = _TokenToIndexDefaultDict(self.	        self._token_to_index = _TokenToIndexDefaultDict(self.
+                                                        self.	                                                        self.
+                                                        self.	                                                        self.
+        self._token_to_index.update(state["_token_to_index"])	        self._token_to_index.update(state["_token_to_index"])
+        self._index_to_token = _IndexToTokenDefaultDict(self.	        self._index_to_token = _IndexToTokenDefaultDict(self.
+                                                        self.	                                                        self.
+                                                        self.	                                                        self.
+        self._index_to_token.update(state["_index_to_token"])	        self._index_to_token.update(state["_index_to_token"])
+
+    def save_to_files(self, directory: str) -> None:		    def save_to_files(self, directory: str) -> None:
+        """							        """
+        Persist this Vocabulary to files so it can be reloade	        Persist this Vocabulary to files so it can be reloade
+        Each namespace corresponds to one file.			        Each namespace corresponds to one file.
+
+        Parameters						        Parameters
+        ----------						        ----------
+        directory : ``str``					        directory : ``str``
+            The directory where we save the serialized vocabu	            The directory where we save the serialized vocabu
+        """							        """
+        os.makedirs(directory, exist_ok=True)			        os.makedirs(directory, exist_ok=True)
+        if os.listdir(directory):				        if os.listdir(directory):
+            logging.warning("vocabulary serialization directo	            logging.warning("vocabulary serialization directo
+
+        with codecs.open(os.path.join(directory, NAMESPACE_PA	        with codecs.open(os.path.join(directory, NAMESPACE_PA
+            for namespace_str in self._non_padded_namespaces:	            for namespace_str in self._non_padded_namespaces:
+                print(namespace_str, file=namespace_file)	                print(namespace_str, file=namespace_file)
+
+        for namespace, mapping in self._index_to_token.items(	        for namespace, mapping in self._index_to_token.items(
+            # Each namespace gets written to its own file, in	            # Each namespace gets written to its own file, in
+            with codecs.open(os.path.join(directory, namespac	            with codecs.open(os.path.join(directory, namespac
+                num_tokens = len(mapping)			                num_tokens = len(mapping)
+                start_index = 1 if mapping[0] == self._paddin	                start_index = 1 if mapping[0] == self._paddin
+                for i in range(start_index, num_tokens):	                for i in range(start_index, num_tokens):
+                    print(mapping[i].replace('\n', '@@NEWLINE	                    print(mapping[i].replace('\n', '@@NEWLINE
+
+    @classmethod						    @classmethod
+    def from_files(cls, directory: str) -> 'Vocabulary':	    def from_files(cls, directory: str) -> 'Vocabulary':
+        """							        """
+        Loads a ``Vocabulary`` that was serialized using ``sa	        Loads a ``Vocabulary`` that was serialized using ``sa
+
+        Parameters						        Parameters
+        ----------						        ----------
+        directory : ``str``					        directory : ``str``
+            The directory containing the serialized vocabular	            The directory containing the serialized vocabular
+        """							        """
+        logger.info("Loading token dictionary from %s.", dire	        logger.info("Loading token dictionary from %s.", dire
+        with codecs.open(os.path.join(directory, NAMESPACE_PA	        with codecs.open(os.path.join(directory, NAMESPACE_PA
+            non_padded_namespaces = [namespace_str.strip() fo	            non_padded_namespaces = [namespace_str.strip() fo
+
+        vocab = cls(non_padded_namespaces=non_padded_namespac	        vocab = cls(non_padded_namespaces=non_padded_namespac
+
+        # Check every file in the directory.			        # Check every file in the directory.
+        for namespace_filename in os.listdir(directory):	        for namespace_filename in os.listdir(directory):
+            if namespace_filename == NAMESPACE_PADDING_FILE:	            if namespace_filename == NAMESPACE_PADDING_FILE:
+                continue					                continue
+            if namespace_filename.startswith("."):		            if namespace_filename.startswith("."):
+                continue					                continue
+            namespace = namespace_filename.replace('.txt', ''	            namespace = namespace_filename.replace('.txt', ''
+            if any(namespace_match(pattern, namespace) for pa	            if any(namespace_match(pattern, namespace) for pa
+                is_padded = False				                is_padded = False
+            else:						            else:
+                is_padded = True				                is_padded = True
+            filename = os.path.join(directory, namespace_file	            filename = os.path.join(directory, namespace_file
+            vocab.set_from_file(filename, is_padded, namespac	            vocab.set_from_file(filename, is_padded, namespac
+
+        return vocab						        return vocab
+
+    def set_from_file(self,					    def set_from_file(self,
+                      filename: str,				                      filename: str,
+                      is_padded: bool = True,			                      is_padded: bool = True,
+                      oov_token: str = DEFAULT_OOV_TOKEN,	                      oov_token: str = DEFAULT_OOV_TOKEN,
+                      namespace: str = "tokens"):		                      namespace: str = "tokens"):
+        """							        """
+        If you already have a vocabulary file for a trained m	        If you already have a vocabulary file for a trained m
+        use that vocabulary file instead of just setting the 	        use that vocabulary file instead of just setting the 
+        whatever reason, you can do that with this method.  Y	        whatever reason, you can do that with this method.  Y
+        and we assume that you want to use padding and OOV to	        and we assume that you want to use padding and OOV to
+
+        Parameters						        Parameters
+        ----------						        ----------
+        filename : ``str``					        filename : ``str``
+            The file containing the vocabulary to load.  It s	            The file containing the vocabulary to load.  It s
+            line, with nothing else in the line.  The index w	            line, with nothing else in the line.  The index w
+            number in the file (1-indexed if ``is_padded``, 0	            number in the file (1-indexed if ``is_padded``, 0
+            file should contain the OOV token string!		            file should contain the OOV token string!
+        is_padded : ``bool``, optional (default=True)		        is_padded : ``bool``, optional (default=True)
+            Is this vocabulary padded?  For token / word / ch	            Is this vocabulary padded?  For token / word / ch
+            ``True``; while for tag or label vocabularies, th	            ``True``; while for tag or label vocabularies, th
+            ``True``, we add a padding token with index 0, an	            ``True``, we add a padding token with index 0, an
+            present in the file.				            present in the file.
+        oov_token : ``str``, optional (default=DEFAULT_OOV_TO	        oov_token : ``str``, optional (default=DEFAULT_OOV_TO
+            What token does this vocabulary use to represent 	            What token does this vocabulary use to represent 
+            must show up as a line in the vocabulary file.  W	            must show up as a line in the vocabulary file.  W
+            ``oov_token`` with ``self._oov_token``, because w	            ``oov_token`` with ``self._oov_token``, because w
+            namespaces.						            namespaces.
+        namespace : ``str``, optional (default="tokens")	        namespace : ``str``, optional (default="tokens")
+            What namespace should we overwrite with this voca	            What namespace should we overwrite with this voca
+        """							        """
+        if is_padded:						        if is_padded:
+            self._token_to_index[namespace] = {self._padding_	            self._token_to_index[namespace] = {self._padding_
+            self._index_to_token[namespace] = {0: self._paddi	            self._index_to_token[namespace] = {0: self._paddi
+        else:							        else:
+            self._token_to_index[namespace] = {}		            self._token_to_index[namespace] = {}
+            self._index_to_token[namespace] = {}		            self._index_to_token[namespace] = {}
+        with codecs.open(filename, 'r', 'utf-8') as input_fil	        with codecs.open(filename, 'r', 'utf-8') as input_fil
+            lines = input_file.read().split('\n')		            lines = input_file.read().split('\n')
+            # Be flexible about having final newline or not	            # Be flexible about having final newline or not
+            if lines and lines[-1] == '':			            if lines and lines[-1] == '':
+                lines = lines[:-1]				                lines = lines[:-1]
+            for i, line in enumerate(lines):			            for i, line in enumerate(lines):
+                index = i + 1 if is_padded else i		                index = i + 1 if is_padded else i
+                token = line.replace('@@NEWLINE@@', '\n')	                token = line.replace('@@NEWLINE@@', '\n')
+                if token == oov_token:				                if token == oov_token:
+                    token = self._oov_token			                    token = self._oov_token
+                self._token_to_index[namespace][token] = inde	                self._token_to_index[namespace][token] = inde
+                self._index_to_token[namespace][index] = toke	                self._index_to_token[namespace][index] = toke
+        if is_padded:						        if is_padded:
+            assert self._oov_token in self._token_to_index[na	            assert self._oov_token in self._token_to_index[na
+
+    @classmethod						    @classmethod
+    def from_instances(cls,					    def from_instances(cls,
+                       instances: Iterable['adi.Instance'],	                       instances: Iterable['adi.Instance'],
+                       min_count: Dict[str, int] = None,	                       min_count: Dict[str, int] = None,
+                       max_vocab_size: Union[int, Dict[str, i	                       max_vocab_size: Union[int, Dict[str, i
+                       non_padded_namespaces: Iterable[str] =	                       non_padded_namespaces: Iterable[str] =
+                       pretrained_files: Optional[Dict[str, s	                       pretrained_files: Optional[Dict[str, s
+                       only_include_pretrained_words: bool = 	                       only_include_pretrained_words: bool = 
+                       tokens_to_add: Dict[str, List[str]] = 	                       tokens_to_add: Dict[str, List[str]] = 
+                       min_pretrained_embeddings: Dict[str, i	                       min_pretrained_embeddings: Dict[str, i
+        """							        """
+        Constructs a vocabulary given a collection of `Instan	        Constructs a vocabulary given a collection of `Instan
+        We count all of the vocabulary items in the instances	        We count all of the vocabulary items in the instances
+        and the other parameters, to :func:`__init__`.  See t	        and the other parameters, to :func:`__init__`.  See t
+        of what the other parameters do.			        of what the other parameters do.
+        """							        """
+        logger.info("Fitting token dictionary from dataset.")	        logger.info("Fitting token dictionary from dataset.")
+        namespace_token_counts: Dict[str, Dict[str, int]] = d	        namespace_token_counts: Dict[str, Dict[str, int]] = d
+        for instance in Tqdm.tqdm(instances):			        for instance in Tqdm.tqdm(instances):
+            instance.count_vocab_items(namespace_token_counts	            instance.count_vocab_items(namespace_token_counts
+
+        return cls(counter=namespace_token_counts,		        return cls(counter=namespace_token_counts,
+                   min_count=min_count,				                   min_count=min_count,
+                   max_vocab_size=max_vocab_size,		                   max_vocab_size=max_vocab_size,
+                   non_padded_namespaces=non_padded_namespace	                   non_padded_namespaces=non_padded_namespace
+                   pretrained_files=pretrained_files,		                   pretrained_files=pretrained_files,
+                   only_include_pretrained_words=only_include	                   only_include_pretrained_words=only_include
+                   tokens_to_add=tokens_to_add,			                   tokens_to_add=tokens_to_add,
+                   min_pretrained_embeddings=min_pretrained_e	                   min_pretrained_embeddings=min_pretrained_e
+
+    # There's enough logic here to require a custom from_para	    # There's enough logic here to require a custom from_para
+    @classmethod						    @classmethod
+    def from_params(cls, params: Params, instances: Iterable[	    def from_params(cls, params: Params, instances: Iterable[
+        """							        """
+        There are two possible ways to build a vocabulary; fr	        There are two possible ways to build a vocabulary; fr
+        collection of instances, using :func:`Vocabulary.from	        collection of instances, using :func:`Vocabulary.from
+        from a pre-saved vocabulary, using :func:`Vocabulary.	        from a pre-saved vocabulary, using :func:`Vocabulary.
+        You can also extend pre-saved vocabulary with collect	        You can also extend pre-saved vocabulary with collect
+        using this method. This method wraps these options, a	        using this method. This method wraps these options, a
+        specification from a ``Params`` object, generated fro	        specification from a ``Params`` object, generated fro
+        configuration file.					        configuration file.
+
+        Parameters						        Parameters
+        ----------						        ----------
+        params: Params, required.				        params: Params, required.
+        instances: Iterable['adi.Instance'], optional		        instances: Iterable['adi.Instance'], optional
+            If ``params`` doesn't contain a ``directory_path`	            If ``params`` doesn't contain a ``directory_path`
+            the ``Vocabulary`` can be built directly from a c	            the ``Vocabulary`` can be built directly from a c
+            instances (i.e. a dataset). If ``extend`` key is 	            instances (i.e. a dataset). If ``extend`` key is 
+            dataset instances will be ignored and final vocab	            dataset instances will be ignored and final vocab
+            one loaded from ``directory_path``. If ``extend``	            one loaded from ``directory_path``. If ``extend``
+            dataset instances will be used to extend the voca	            dataset instances will be used to extend the voca
+            from ``directory_path`` and that will be final vo	            from ``directory_path`` and that will be final vo
+
+        Returns							        Returns
+        -------							        -------
+        A ``Vocabulary``.					        A ``Vocabulary``.
+        """							        """
+        # pylint: disable=arguments-differ			        # pylint: disable=arguments-differ
+        # Vocabulary is ``Registrable`` so that you can confi	        # Vocabulary is ``Registrable`` so that you can confi
+        # but (unlike most of our registrables) almost everyo	        # but (unlike most of our registrables) almost everyo
+        # base implementation. So instead of having an abstra	        # base implementation. So instead of having an abstra
+        # such, we just add the logic for instantiating a reg	        # such, we just add the logic for instantiating a reg
+        # so that most users can continue doing what they wer	        # so that most users can continue doing what they wer
+        vocab_type = params.pop("type", None)			        vocab_type = params.pop("type", None)
+        if vocab_type is not None:				        if vocab_type is not None:
+            return cls.by_name(vocab_type).from_params(params	            return cls.by_name(vocab_type).from_params(params
+
+        extend = params.pop("extend", False)			        extend = params.pop("extend", False)
+        vocabulary_directory = params.pop("directory_path", N	        vocabulary_directory = params.pop("directory_path", N
+        if not vocabulary_directory and not instances:		        if not vocabulary_directory and not instances:
+            raise ConfigurationError("You must provide either	            raise ConfigurationError("You must provide either
+                                     "vocab_directory key or 	                                     "vocab_directory key or 
+        if extend and not instances:				        if extend and not instances:
+            raise ConfigurationError("'extend' is true but th	            raise ConfigurationError("'extend' is true but th
+        if extend and not vocabulary_directory:			        if extend and not vocabulary_directory:
+            raise ConfigurationError("'extend' is true but th	            raise ConfigurationError("'extend' is true but th
+
+        if vocabulary_directory and instances:			        if vocabulary_directory and instances:
+            if extend:						            if extend:
+                logger.info("Loading Vocab from files and ext	                logger.info("Loading Vocab from files and ext
+            else:						            else:
+                logger.info("Loading Vocab from files instead	                logger.info("Loading Vocab from files instead
+
+        if vocabulary_directory:				        if vocabulary_directory:
+            vocab = cls.from_files(vocabulary_directory)	            vocab = cls.from_files(vocabulary_directory)
+            if not extend:					            if not extend:
+                params.assert_empty("Vocabulary - from files"	                params.assert_empty("Vocabulary - from files"
+                return vocab					                return vocab
+        if extend:						        if extend:
+            vocab.extend_from_instances(params, instances=ins	            vocab.extend_from_instances(params, instances=ins
+            return vocab					            return vocab
+        min_count = params.pop("min_count", None, keep_as_dic	        min_count = params.pop("min_count", None, keep_as_dic
+        max_vocab_size = pop_max_vocab_size(params)		        max_vocab_size = pop_max_vocab_size(params)
+        non_padded_namespaces = params.pop("non_padded_namesp	        non_padded_namespaces = params.pop("non_padded_namesp
+        pretrained_files = params.pop("pretrained_files", {},	        pretrained_files = params.pop("pretrained_files", {},
+        min_pretrained_embeddings = params.pop("min_pretraine	        min_pretrained_embeddings = params.pop("min_pretraine
+        only_include_pretrained_words = params.pop_bool("only	        only_include_pretrained_words = params.pop_bool("only
+        tokens_to_add = params.pop("tokens_to_add", None)	        tokens_to_add = params.pop("tokens_to_add", None)
+        params.assert_empty("Vocabulary - from dataset")	        params.assert_empty("Vocabulary - from dataset")
+        return cls.from_instances(instances=instances,		        return cls.from_instances(instances=instances,
+                                  min_count=min_count,		                                  min_count=min_count,
+                                  max_vocab_size=max_vocab_si	                                  max_vocab_size=max_vocab_si
+                                  non_padded_namespaces=non_p	                                  non_padded_namespaces=non_p
+                                  pretrained_files=pretrained	                                  pretrained_files=pretrained
+                                  only_include_pretrained_wor	                                  only_include_pretrained_wor
+                                  tokens_to_add=tokens_to_add	                                  tokens_to_add=tokens_to_add
+                                  min_pretrained_embeddings=m	                                  min_pretrained_embeddings=m
+
+    def _extend(self,						    def _extend(self,
+                counter: Dict[str, Dict[str, int]] = None,	                counter: Dict[str, Dict[str, int]] = None,
+                min_count: Dict[str, int] = None,		                min_count: Dict[str, int] = None,
+                max_vocab_size: Union[int, Dict[str, int]] = 	                max_vocab_size: Union[int, Dict[str, int]] = 
+                non_padded_namespaces: Iterable[str] = DEFAUL	                non_padded_namespaces: Iterable[str] = DEFAUL
+                pretrained_files: Optional[Dict[str, str]] = 	                pretrained_files: Optional[Dict[str, str]] = 
+                only_include_pretrained_words: bool = False,	                only_include_pretrained_words: bool = False,
+                tokens_to_add: Dict[str, List[str]] = None,	                tokens_to_add: Dict[str, List[str]] = None,
+                min_pretrained_embeddings: Dict[str, int] = N	                min_pretrained_embeddings: Dict[str, int] = N
+        """							        """
+        This method can be used for extending already generat	        This method can be used for extending already generat
+        It takes same parameters as Vocabulary initializer. T	        It takes same parameters as Vocabulary initializer. T
+        and indextotoken mappings of calling vocabulary will 	        and indextotoken mappings of calling vocabulary will 
+        It is an inplace operation so None will be returned.	        It is an inplace operation so None will be returned.
+        """							        """
+        if not isinstance(max_vocab_size, dict):		        if not isinstance(max_vocab_size, dict):
+            int_max_vocab_size = max_vocab_size			            int_max_vocab_size = max_vocab_size
+            max_vocab_size = defaultdict(lambda: int_max_voca	            max_vocab_size = defaultdict(lambda: int_max_voca
+        min_count = min_count or {}				        min_count = min_count or {}
+        pretrained_files = pretrained_files or {}		        pretrained_files = pretrained_files or {}
+        min_pretrained_embeddings = min_pretrained_embeddings	        min_pretrained_embeddings = min_pretrained_embeddings
+        non_padded_namespaces = set(non_padded_namespaces)	        non_padded_namespaces = set(non_padded_namespaces)
+        counter = counter or {}					        counter = counter or {}
+        tokens_to_add = tokens_to_add or {}			        tokens_to_add = tokens_to_add or {}
+
+        self._retained_counter = counter			        self._retained_counter = counter
+        # Make sure vocabulary extension is safe.		        # Make sure vocabulary extension is safe.
+        current_namespaces = {*self._token_to_index}		        current_namespaces = {*self._token_to_index}
+        extension_namespaces = {*counter, *tokens_to_add}	        extension_namespaces = {*counter, *tokens_to_add}
+
+        for namespace in current_namespaces & extension_names	        for namespace in current_namespaces & extension_names
+            # if new namespace was already present		            # if new namespace was already present
+            # Either both should be padded or none should be.	            # Either both should be padded or none should be.
+            original_padded = not any(namespace_match(pattern	            original_padded = not any(namespace_match(pattern
+                                      for pattern in self._no	                                      for pattern in self._no
+            extension_padded = not any(namespace_match(patter	            extension_padded = not any(namespace_match(patter
+                                       for pattern in non_pad	                                       for pattern in non_pad
+            if original_padded != extension_padded:		            if original_padded != extension_padded:
+                raise ConfigurationError("Common namespace {}	                raise ConfigurationError("Common namespace {}
+                                         "setting of padded =	                                         "setting of padded =
+                                         "Hence extension can	                                         "Hence extension can
+
+        # Add new non-padded namespaces for extension		        # Add new non-padded namespaces for extension
+        self._token_to_index.add_non_padded_namespaces(non_pa	        self._token_to_index.add_non_padded_namespaces(non_pa
+        self._index_to_token.add_non_padded_namespaces(non_pa	        self._index_to_token.add_non_padded_namespaces(non_pa
+        self._non_padded_namespaces.update(non_padded_namespa	        self._non_padded_namespaces.update(non_padded_namespa
+
+        for namespace in counter:				        for namespace in counter:
+            if namespace in pretrained_files:			            if namespace in pretrained_files:
+                pretrained_list = _read_pretrained_tokens(pre	                pretrained_list = _read_pretrained_tokens(pre
+                min_embeddings = min_pretrained_embeddings.ge	                min_embeddings = min_pretrained_embeddings.ge
+                if min_embeddings > 0:				                if min_embeddings > 0:
+                    tokens_old = tokens_to_add.get(namespace,	                    tokens_old = tokens_to_add.get(namespace,
+                    tokens_new = pretrained_list[:min_embeddi	                    tokens_new = pretrained_list[:min_embeddi
+                    tokens_to_add[namespace] = tokens_old + t	                    tokens_to_add[namespace] = tokens_old + t
+                pretrained_set = set(pretrained_list)		                pretrained_set = set(pretrained_list)
+            else:						            else:
+                pretrained_set = None				                pretrained_set = None
+            token_counts = list(counter[namespace].items())	            token_counts = list(counter[namespace].items())
+            token_counts.sort(key=lambda x: x[1], reverse=Tru	            token_counts.sort(key=lambda x: x[1], reverse=Tru
+            try:						            try:
+                max_vocab = max_vocab_size[namespace]		                max_vocab = max_vocab_size[namespace]
+            except KeyError:					            except KeyError:
+                max_vocab = None				                max_vocab = None
+            if max_vocab:					            if max_vocab:
+                token_counts = token_counts[:max_vocab]		                token_counts = token_counts[:max_vocab]
+            for token, count in token_counts:			            for token, count in token_counts:
+                if pretrained_set is not None:			                if pretrained_set is not None:
+                    if only_include_pretrained_words:		                    if only_include_pretrained_words:
+                        if token in pretrained_set and count 	                        if token in pretrained_set and count 
+                            self.add_token_to_namespace(token	                            self.add_token_to_namespace(token
+                    elif token in pretrained_set or count >= 	                    elif token in pretrained_set or count >= 
+                        self.add_token_to_namespace(token, na	                        self.add_token_to_namespace(token, na
+                elif count >= min_count.get(namespace, 1):	                elif count >= min_count.get(namespace, 1):
+                    self.add_token_to_namespace(token, namesp	                    self.add_token_to_namespace(token, namesp
+
+        for namespace, tokens in tokens_to_add.items():		        for namespace, tokens in tokens_to_add.items():
+            for token in tokens:				            for token in tokens:
+                self.add_token_to_namespace(token, namespace)	                self.add_token_to_namespace(token, namespace)
+
+    def extend_from_instances(self,				    def extend_from_instances(self,
+                              params: Params,			                              params: Params,
+                              instances: Iterable['adi.Instan	                              instances: Iterable['adi.Instan
+        """							        """
+        Extends an already generated vocabulary using a colle	        Extends an already generated vocabulary using a colle
+        """							        """
+        min_count = params.pop("min_count", None)		        min_count = params.pop("min_count", None)
+        max_vocab_size = pop_max_vocab_size(params)		        max_vocab_size = pop_max_vocab_size(params)
+        non_padded_namespaces = params.pop("non_padded_namesp	        non_padded_namespaces = params.pop("non_padded_namesp
+        pretrained_files = params.pop("pretrained_files", {})	        pretrained_files = params.pop("pretrained_files", {})
+        min_pretrained_embeddings = params.pop("min_pretraine	        min_pretrained_embeddings = params.pop("min_pretraine
+        only_include_pretrained_words = params.pop_bool("only	        only_include_pretrained_words = params.pop_bool("only
+        tokens_to_add = params.pop("tokens_to_add", None)	        tokens_to_add = params.pop("tokens_to_add", None)
+        params.assert_empty("Vocabulary - from dataset")	        params.assert_empty("Vocabulary - from dataset")
+
+        logger.info("Fitting token dictionary from dataset.")	        logger.info("Fitting token dictionary from dataset.")
+        namespace_token_counts: Dict[str, Dict[str, int]] = d	        namespace_token_counts: Dict[str, Dict[str, int]] = d
+        for instance in Tqdm.tqdm(instances):			        for instance in Tqdm.tqdm(instances):
+            instance.count_vocab_items(namespace_token_counts	            instance.count_vocab_items(namespace_token_counts
+        self._extend(counter=namespace_token_counts,		        self._extend(counter=namespace_token_counts,
+                     min_count=min_count,			                     min_count=min_count,
+                     max_vocab_size=max_vocab_size,		                     max_vocab_size=max_vocab_size,
+                     non_padded_namespaces=non_padded_namespa	                     non_padded_namespaces=non_padded_namespa
+                     pretrained_files=pretrained_files,		                     pretrained_files=pretrained_files,
+                     only_include_pretrained_words=only_inclu	                     only_include_pretrained_words=only_inclu
+                     tokens_to_add=tokens_to_add,		                     tokens_to_add=tokens_to_add,
+                     min_pretrained_embeddings=min_pretrained	                     min_pretrained_embeddings=min_pretrained
+
+    def is_padded(self, namespace: str) -> bool:		    def is_padded(self, namespace: str) -> bool:
+        """							        """
+        Returns whether or not there are padding and OOV toke	        Returns whether or not there are padding and OOV toke
+        """							        """
+        return self._index_to_token[namespace][0] == self._pa	        return self._index_to_token[namespace][0] == self._pa
+
+    def add_token_to_namespace(self, token: str, namespace: s	    def add_token_to_namespace(self, token: str, namespace: s
+        """							        """
+        Adds ``token`` to the index, if it is not already pre	        Adds ``token`` to the index, if it is not already pre
+        the token.						        the token.
+        """							        """
+        if not isinstance(token, str):				        if not isinstance(token, str):
+            raise ValueError("Vocabulary tokens must be strin	            raise ValueError("Vocabulary tokens must be strin
+                             "  Got %s (with type %s)" % (rep	                             "  Got %s (with type %s)" % (rep
+        if token not in self._token_to_index[namespace]:	        if token not in self._token_to_index[namespace]:
+            index = len(self._token_to_index[namespace])	            index = len(self._token_to_index[namespace])
+            self._token_to_index[namespace][token] = index	            self._token_to_index[namespace][token] = index
+            self._index_to_token[namespace][index] = token	            self._index_to_token[namespace][index] = token
+            return index					            return index
+        else:							        else:
+            return self._token_to_index[namespace][token]	            return self._token_to_index[namespace][token]
+
+    def add_tokens_to_namespace(self, tokens: List[str], name	    def add_tokens_to_namespace(self, tokens: List[str], name
+        """							        """
+        Adds ``tokens`` to the index, if they are not already	        Adds ``tokens`` to the index, if they are not already
+        indices of the tokens in the order that they were giv	        indices of the tokens in the order that they were giv
+        """							        """
+        return [self.add_token_to_namespace(token, namespace)	        return [self.add_token_to_namespace(token, namespace)
+
+    def get_index_to_token_vocabulary(self, namespace: str = 	    def get_index_to_token_vocabulary(self, namespace: str = 
+        return self._index_to_token[namespace]			        return self._index_to_token[namespace]
+
+    def get_token_to_index_vocabulary(self, namespace: str = 	    def get_token_to_index_vocabulary(self, namespace: str = 
+        return self._token_to_index[namespace]			        return self._token_to_index[namespace]
+
+    def get_token_index(self, token: str, namespace: str = 't	    def get_token_index(self, token: str, namespace: str = 't
+        if token in self._token_to_index[namespace]:		        if token in self._token_to_index[namespace]:
+            return self._token_to_index[namespace][token]	            return self._token_to_index[namespace][token]
+        else:							        else:
+            try:						            try:
+                return self._token_to_index[namespace][self._	                return self._token_to_index[namespace][self._
+            except KeyError:					            except KeyError:
+                logger.error('Namespace: %s', namespace)	                logger.error('Namespace: %s', namespace)
+                logger.error('Token: %s', token)		                logger.error('Token: %s', token)
+                raise						                raise
+
+    def get_token_from_index(self, index: int, namespace: str	    def get_token_from_index(self, index: int, namespace: str
+        return self._index_to_token[namespace][index]		        return self._index_to_token[namespace][index]
+
+    def get_vocab_size(self, namespace: str = 'tokens') -> in	    def get_vocab_size(self, namespace: str = 'tokens') -> in
+        return len(self._token_to_index[namespace])		        return len(self._token_to_index[namespace])
+
+    def __eq__(self, other):					    def __eq__(self, other):
+        if isinstance(self, other.__class__):			        if isinstance(self, other.__class__):
+            return self.__dict__ == other.__dict__		            return self.__dict__ == other.__dict__
+        return False						        return False
+
+    def __str__(self) -> str:					    def __str__(self) -> str:
+        base_string = f"Vocabulary with namespaces:\n"		        base_string = f"Vocabulary with namespaces:\n"
+        non_padded_namespaces = f"\tNon Padded Namespaces: {s	        non_padded_namespaces = f"\tNon Padded Namespaces: {s
+        namespaces = [f"\tNamespace: {name}, Size: {self.get_	        namespaces = [f"\tNamespace: {name}, Size: {self.get_
+                      for name in self._index_to_token]		                      for name in self._index_to_token]
+        return " ".join([base_string, non_padded_namespaces] 	        return " ".join([base_string, non_padded_namespaces] 
+
+    def __repr__(self) -> str:					    def __repr__(self) -> str:
+        # This is essentially the same as __str__, but with n	        # This is essentially the same as __str__, but with n
+        base_string = f"Vocabulary with namespaces: "		        base_string = f"Vocabulary with namespaces: "
+        namespaces = [f"{name}, Size: {self.get_vocab_size(na	        namespaces = [f"{name}, Size: {self.get_vocab_size(na
+                      for name in self._index_to_token]		                      for name in self._index_to_token]
+        non_padded_namespaces = f"Non Padded Namespaces: {sel	        non_padded_namespaces = f"Non Padded Namespaces: {sel
+        return " ".join([base_string] + namespaces + [non_pad	        return " ".join([base_string] + namespaces + [non_pad
+
+    def print_statistics(self) -> None:				    def print_statistics(self) -> None:
+        if self._retained_counter:				        if self._retained_counter:
+            logger.info("Printed vocabulary statistics are on	            logger.info("Printed vocabulary statistics are on
+                        "from instances. If vocabulary is con	                        "from instances. If vocabulary is con
+                        "dataset instances, the directly load	                        "dataset instances, the directly load
+            print("\n\n----Vocabulary Statistics----\n")	            print("\n\n----Vocabulary Statistics----\n")
+            # Since we don't saved counter info, it is imposs	            # Since we don't saved counter info, it is imposs
+            for namespace in self._retained_counter:		            for namespace in self._retained_counter:
+                tokens_with_counts = list(self._retained_coun	                tokens_with_counts = list(self._retained_coun
+                tokens_with_counts.sort(key=lambda x: x[1], r	                tokens_with_counts.sort(key=lambda x: x[1], r
+                print(f"\nTop 10 most frequent tokens in name	                print(f"\nTop 10 most frequent tokens in name
+                for token, freq in tokens_with_counts[:10]:	                for token, freq in tokens_with_counts[:10]:
+                    print(f"\tToken: {token}\t\tFrequency: {f	                    print(f"\tToken: {token}\t\tFrequency: {f
+                # Now sort by token length, not frequency	                # Now sort by token length, not frequency
+                tokens_with_counts.sort(key=lambda x: len(x[0	                tokens_with_counts.sort(key=lambda x: len(x[0
+
+                print(f"\nTop 10 longest tokens in namespace 	                print(f"\nTop 10 longest tokens in namespace 
+                for token, freq in tokens_with_counts[:10]:	                for token, freq in tokens_with_counts[:10]:
+                    print(f"\tToken: {token}\t\tlength: {len(	                    print(f"\tToken: {token}\t\tlength: {len(
+
+                print(f"\nTop 10 shortest tokens in namespace	                print(f"\nTop 10 shortest tokens in namespace
+                for token, freq in reversed(tokens_with_count	                for token, freq in reversed(tokens_with_count
+                    print(f"\tToken: {token}\t\tlength: {len(	                    print(f"\tToken: {token}\t\tlength: {len(
+        else:							        else:
+            # _retained_counter would be set only if instance	            # _retained_counter would be set only if instance
+            logger.info("Vocabulary statistics cannot be prin	            logger.info("Vocabulary statistics cannot be prin
+                        "dataset instances were not used for 	                        "dataset instances were not used for 
+							      >	    def extend_namespaces_from_instances(self,
+							      >	                                         namespaces: List[str
+							      >	                                         instances: Iterable[
+							      >	        logger.info(f"Updating token dictionary for namespace
+							      >	        namespace_token_counts: Dict[str, Dict[str, int]] = d
+							      >	        for instance in Tqdm.tqdm(instances):
+							      >	            instance.count_vocab_items(namespace_token_counts
+
+							      >	        self._extend_namespaces(namespaces=namespaces, counte
+							      >
+							      >	    def _extend_namespaces(self,
+							      >	                           namespaces: List[str] = [],
+							      >	                           counter: Dict[str, Dict[str, int]]
+							      >	        for namespace in namespaces:
+							      >	            if namespace in counter:
+							      >	                token_counts = list(counter[namespace].items(
+							      >	                token_counts.sort(key=lambda x: x[1], reverse
+							      >	                for token, _count in token_counts:
+							      >	                    if token not in self._token_to_index[name
+							      >	                        logger.info(f"Added token {token} to 
+							      >	                        self.add_token_to_namespace(token, na
+							      >
+							      >	    def get_namespaces(self) -> Set[str]:
+							      >	        """
+							      >	        Copied from a newer version
+							      >	        """
+							      >	        return set(self._index_to_token.keys())
+							      >
+							      >	    def extend_from_vocab(self, vocab: 'Vocabulary') -> None:
+							      >	        """
+							      >	        Copied from a newer version
+							      >	        """
+							      >	        self._non_padded_namespaces.update(vocab._non_padded_
+							      >	        self._token_to_index._non_padded_namespaces.update(vo
+							      >	        self._index_to_token._non_padded_namespaces.update(vo
+							      >	        for namespace in vocab.get_namespaces():
+							      >	            for token in vocab.get_token_to_index_vocabulary(
+							      >	                self.add_token_to_namespace(token, namespace)
+
+# the tricky part is that `Vocabulary` is both the base class	# the tricky part is that `Vocabulary` is both the base class
+Vocabulary.register("default")(Vocabulary)			Vocabulary.register("default")(Vocabulary)
+
+models/biaffine_dependency_parser.py
+from typing import Dict, Optional, Tuple, Any, List		from typing import Dict, Optional, Tuple, Any, List
+import logging							import logging
+import copy							import copy
+
+from overrides import overrides					from overrides import overrides
+import torch							import torch
+import torch.nn.functional as F					import torch.nn.functional as F
+from torch.nn.modules import Dropout				from torch.nn.modules import Dropout
+import numpy							import numpy
+
+from allennlp.common.checks import check_dimensions_match, Co	from allennlp.common.checks import check_dimensions_match, Co
+from allennlp.data import Vocabulary				from allennlp.data import Vocabulary
+from allennlp.modules import Seq2SeqEncoder, TextFieldEmbedde	from allennlp.modules import Seq2SeqEncoder, TextFieldEmbedde
+from allennlp.modules.matrix_attention.bilinear_matrix_attent	from allennlp.modules.matrix_attention.bilinear_matrix_attent
+from allennlp.modules import FeedForward			from allennlp.modules import FeedForward
+from allennlp.models.model import Model				from allennlp.models.model import Model
+from allennlp.nn import InitializerApplicator, RegularizerApp	from allennlp.nn import InitializerApplicator, RegularizerApp
+from allennlp.nn.util import get_text_field_mask, get_range_v	from allennlp.nn.util import get_text_field_mask, get_range_v
+from allennlp.nn.util import get_device_of, masked_log_softma	from allennlp.nn.util import get_device_of, masked_log_softma
+from allennlp.nn.chu_liu_edmonds import decode_mst		from allennlp.nn.chu_liu_edmonds import decode_mst
+from allennlp.training.metrics import AttachmentScores		from allennlp.training.metrics import AttachmentScores
+
+logger = logging.getLogger(__name__)  # pylint: disable=inval	logger = logging.getLogger(__name__)  # pylint: disable=inval
+
+POS_TO_IGNORE = {'``', "''", ':', ',', '.', 'PU', 'PUNCT', 'S	POS_TO_IGNORE = {'``', "''", ':', ',', '.', 'PU', 'PUNCT', 'S
+
+@Model.register("biaffine_parser")				@Model.register("biaffine_parser")
+class BiaffineDependencyParser(Model):				class BiaffineDependencyParser(Model):
+    """								    """
+    This dependency parser follows the model of			    This dependency parser follows the model of
+    ` Deep Biaffine Attention for Neural Dependency Parsing (	    ` Deep Biaffine Attention for Neural Dependency Parsing (
+    <https://arxiv.org/abs/1611.01734>`_ .			    <https://arxiv.org/abs/1611.01734>`_ .
+
+    Word representations are generated using a bidirectional 	    Word representations are generated using a bidirectional 
+    followed by separate biaffine classifiers for pairs of wo	    followed by separate biaffine classifiers for pairs of wo
+    predicting whether a directed arc exists between the two 	    predicting whether a directed arc exists between the two 
+    and the dependency label the arc should have. Decoding ca	    and the dependency label the arc should have. Decoding ca
+    be done greedily, or the optimal Minimum Spanning Tree ca	    be done greedily, or the optimal Minimum Spanning Tree ca
+    decoded using Edmond's algorithm by viewing the dependenc	    decoded using Edmond's algorithm by viewing the dependenc
+    a MST on a fully connected graph, where nodes are words a	    a MST on a fully connected graph, where nodes are words a
+    are scored dependency arcs.					    are scored dependency arcs.
+
+    Parameters							    Parameters
+    ----------							    ----------
+    vocab : ``Vocabulary``, required				    vocab : ``Vocabulary``, required
+        A Vocabulary, required in order to compute sizes for 	        A Vocabulary, required in order to compute sizes for 
+    text_field_embedder : ``TextFieldEmbedder``, required	    text_field_embedder : ``TextFieldEmbedder``, required
+        Used to embed the ``tokens`` ``TextField`` we get as 	        Used to embed the ``tokens`` ``TextField`` we get as 
+    encoder : ``Seq2SeqEncoder``				    encoder : ``Seq2SeqEncoder``
+        The encoder (with its own internal stacking) that we 	        The encoder (with its own internal stacking) that we 
+        of tokens.						        of tokens.
+    tag_representation_dim : ``int``, required.			    tag_representation_dim : ``int``, required.
+        The dimension of the MLPs used for dependency tag pre	        The dimension of the MLPs used for dependency tag pre
+    arc_representation_dim : ``int``, required.			    arc_representation_dim : ``int``, required.
+        The dimension of the MLPs used for head arc predictio	        The dimension of the MLPs used for head arc predictio
+    tag_feedforward : ``FeedForward``, optional, (default = N	    tag_feedforward : ``FeedForward``, optional, (default = N
+        The feedforward network used to produce tag represent	        The feedforward network used to produce tag represent
+        By default, a 1 layer feedforward network with an elu	        By default, a 1 layer feedforward network with an elu
+    arc_feedforward : ``FeedForward``, optional, (default = N	    arc_feedforward : ``FeedForward``, optional, (default = N
+        The feedforward network used to produce arc represent	        The feedforward network used to produce arc represent
+        By default, a 1 layer feedforward network with an elu	        By default, a 1 layer feedforward network with an elu
+    pos_tag_embedding : ``Embedding``, optional.		    pos_tag_embedding : ``Embedding``, optional.
+        Used to embed the ``pos_tags`` ``SequenceLabelField``	        Used to embed the ``pos_tags`` ``SequenceLabelField``
+    use_mst_decoding_for_validation : ``bool``, optional (def	    use_mst_decoding_for_validation : ``bool``, optional (def
+        Whether to use Edmond's algorithm to find the optimal	        Whether to use Edmond's algorithm to find the optimal
+        If false, decoding is greedy.				        If false, decoding is greedy.
+    dropout : ``float``, optional, (default = 0.0)		    dropout : ``float``, optional, (default = 0.0)
+        The variational dropout applied to the output of the 	        The variational dropout applied to the output of the 
+    input_dropout : ``float``, optional, (default = 0.0)	    input_dropout : ``float``, optional, (default = 0.0)
+        The dropout applied to the embedded text input.		        The dropout applied to the embedded text input.
+    initializer : ``InitializerApplicator``, optional (defaul	    initializer : ``InitializerApplicator``, optional (defaul
+        Used to initialize the model parameters.		        Used to initialize the model parameters.
+    regularizer : ``RegularizerApplicator``, optional (defaul	    regularizer : ``RegularizerApplicator``, optional (defaul
+        If provided, will be used to calculate the regulariza	        If provided, will be used to calculate the regulariza
+    """								    """
+    def __init__(self,						    def __init__(self,
+                 vocab: Vocabulary,				                 vocab: Vocabulary,
+                 text_field_embedder: TextFieldEmbedder,	                 text_field_embedder: TextFieldEmbedder,
+                 encoder: Seq2SeqEncoder,			                 encoder: Seq2SeqEncoder,
+                 tag_representation_dim: int,			                 tag_representation_dim: int,
+                 arc_representation_dim: int,			                 arc_representation_dim: int,
+                 tag_feedforward: FeedForward = None,		                 tag_feedforward: FeedForward = None,
+                 arc_feedforward: FeedForward = None,		                 arc_feedforward: FeedForward = None,
+                 pos_tag_embedding: Embedding = None,		                 pos_tag_embedding: Embedding = None,
+                 use_mst_decoding_for_validation: bool = True	                 use_mst_decoding_for_validation: bool = True
+                 dropout: float = 0.0,				                 dropout: float = 0.0,
+                 input_dropout: float = 0.0,			                 input_dropout: float = 0.0,
+                 initializer: InitializerApplicator = Initial	                 initializer: InitializerApplicator = Initial
+                 regularizer: Optional[RegularizerApplicator]	                 regularizer: Optional[RegularizerApplicator]
+        super(BiaffineDependencyParser, self).__init__(vocab,	        super(BiaffineDependencyParser, self).__init__(vocab,
+
+        self.text_field_embedder = text_field_embedder		        self.text_field_embedder = text_field_embedder
+        self.encoder = encoder					        self.encoder = encoder
+
+        encoder_dim = encoder.get_output_dim()			        encoder_dim = encoder.get_output_dim()
+
+        self.head_arc_feedforward = arc_feedforward or \	        self.head_arc_feedforward = arc_feedforward or \
+                                        FeedForward(encoder_d	                                        FeedForward(encoder_d
+                                                    arc_repre	                                                    arc_repre
+                                                    Activatio	                                                    Activatio
+        self.child_arc_feedforward = copy.deepcopy(self.head_	        self.child_arc_feedforward = copy.deepcopy(self.head_
+
+        self.arc_attention = BilinearMatrixAttention(arc_repr	        self.arc_attention = BilinearMatrixAttention(arc_repr
+                                                     arc_repr	                                                     arc_repr
+                                                     use_inpu	                                                     use_inpu
+
+        num_labels = self.vocab.get_vocab_size("head_tags")	        num_labels = self.vocab.get_vocab_size("head_tags")
+
+        self.head_tag_feedforward = tag_feedforward or \	        self.head_tag_feedforward = tag_feedforward or \
+                                        FeedForward(encoder_d	                                        FeedForward(encoder_d
+                                                    tag_repre	                                                    tag_repre
+                                                    Activatio	                                                    Activatio
+        self.child_tag_feedforward = copy.deepcopy(self.head_	        self.child_tag_feedforward = copy.deepcopy(self.head_
+
+        self.tag_bilinear = torch.nn.modules.Bilinear(tag_rep	        self.tag_bilinear = torch.nn.modules.Bilinear(tag_rep
+                                                      tag_rep	                                                      tag_rep
+                                                      num_lab	                                                      num_lab
+
+        self._pos_tag_embedding = pos_tag_embedding or None	        self._pos_tag_embedding = pos_tag_embedding or None
+        self._dropout = InputVariationalDropout(dropout)	        self._dropout = InputVariationalDropout(dropout)
+        self._input_dropout = Dropout(input_dropout)		        self._input_dropout = Dropout(input_dropout)
+        self._head_sentinel = torch.nn.Parameter(torch.randn(	        self._head_sentinel = torch.nn.Parameter(torch.randn(
+
+        representation_dim = text_field_embedder.get_output_d	        representation_dim = text_field_embedder.get_output_d
+        if pos_tag_embedding is not None:			        if pos_tag_embedding is not None:
+            representation_dim += pos_tag_embedding.get_outpu	            representation_dim += pos_tag_embedding.get_outpu
+
+        check_dimensions_match(representation_dim, encoder.ge	        check_dimensions_match(representation_dim, encoder.ge
+                               "text field embedding dim", "e	                               "text field embedding dim", "e
+
+        check_dimensions_match(tag_representation_dim, self.h	        check_dimensions_match(tag_representation_dim, self.h
+                               "tag representation dim", "tag	                               "tag representation dim", "tag
+        check_dimensions_match(arc_representation_dim, self.h	        check_dimensions_match(arc_representation_dim, self.h
+                               "arc representation dim", "arc	                               "arc representation dim", "arc
+
+        self.use_mst_decoding_for_validation = use_mst_decodi	        self.use_mst_decoding_for_validation = use_mst_decodi
+
+        tags = self.vocab.get_token_to_index_vocabulary("pos"	        tags = self.vocab.get_token_to_index_vocabulary("pos"
+        punctuation_tag_indices = {tag: index for tag, index 	        punctuation_tag_indices = {tag: index for tag, index 
+        self._pos_to_ignore = set(punctuation_tag_indices.val	        self._pos_to_ignore = set(punctuation_tag_indices.val
+        logger.info(f"Found POS tags corresponding to the fol	        logger.info(f"Found POS tags corresponding to the fol
+                    "Ignoring words with these POS tags for e	                    "Ignoring words with these POS tags for e
+
+        self._attachment_scores = AttachmentScores()		        self._attachment_scores = AttachmentScores()
+        initializer(self)					        initializer(self)
+
+    @overrides							    @overrides
+    def forward(self,  # type: ignore				    def forward(self,  # type: ignore
+                words: Dict[str, torch.LongTensor],		                words: Dict[str, torch.LongTensor],
+                pos_tags: torch.LongTensor,			                pos_tags: torch.LongTensor,
+                metadata: List[Dict[str, Any]],			                metadata: List[Dict[str, Any]],
+                head_tags: torch.LongTensor = None,		                head_tags: torch.LongTensor = None,
+                head_indices: torch.LongTensor = None) -> Dic	                head_indices: torch.LongTensor = None) -> Dic
+        # pylint: disable=arguments-differ			        # pylint: disable=arguments-differ
+        """							        """
+        Parameters						        Parameters
+        ----------						        ----------
+        words : Dict[str, torch.LongTensor], required		        words : Dict[str, torch.LongTensor], required
+            The output of ``TextField.as_array()``, which sho	            The output of ``TextField.as_array()``, which sho
+            ``TextFieldEmbedder``. This output is a dictionar	            ``TextFieldEmbedder``. This output is a dictionar
+            tensors.  At its most basic, using a ``SingleIdTo	            tensors.  At its most basic, using a ``SingleIdTo
+            Tensor(batch_size, sequence_length)}``. This dict	            Tensor(batch_size, sequence_length)}``. This dict
+            for the ``TokenIndexers`` when you created the ``	            for the ``TokenIndexers`` when you created the ``
+            sequence.  The dictionary is designed to be passe	            sequence.  The dictionary is designed to be passe
+            which knows how to combine different word represe	            which knows how to combine different word represe
+            token in your input.				            token in your input.
+        pos_tags : ``torch.LongTensor``, required		        pos_tags : ``torch.LongTensor``, required
+            The output of a ``SequenceLabelField`` containing	            The output of a ``SequenceLabelField`` containing
+            POS tags are required regardless of whether they 	            POS tags are required regardless of whether they 
+            because they are used to filter the evaluation me	            because they are used to filter the evaluation me
+            heads of words which are not punctuation.		            heads of words which are not punctuation.
+        metadata : List[Dict[str, Any]], optional (default=No	        metadata : List[Dict[str, Any]], optional (default=No
+            A dictionary of metadata for each batch element w	            A dictionary of metadata for each batch element w
+                words : ``List[str]``, required.		                words : ``List[str]``, required.
+                    The tokens in the original sentence.	                    The tokens in the original sentence.
+                pos : ``List[str]``, required.			                pos : ``List[str]``, required.
+                    The dependencies POS tags for each word.	                    The dependencies POS tags for each word.
+        head_tags : torch.LongTensor, optional (default = Non	        head_tags : torch.LongTensor, optional (default = Non
+            A torch tensor representing the sequence of integ	            A torch tensor representing the sequence of integ
+            in the dependency parse. Has shape ``(batch_size,	            in the dependency parse. Has shape ``(batch_size,
+        head_indices : torch.LongTensor, optional (default = 	        head_indices : torch.LongTensor, optional (default = 
+            A torch tensor representing the sequence of integ	            A torch tensor representing the sequence of integ
+            word in the dependency parse. Has shape ``(batch_	            word in the dependency parse. Has shape ``(batch_
+
+        Returns							        Returns
+        -------							        -------
+        An output dictionary consisting of:			        An output dictionary consisting of:
+        loss : ``torch.FloatTensor``, optional			        loss : ``torch.FloatTensor``, optional
+            A scalar loss to be optimised.			            A scalar loss to be optimised.
+        arc_loss : ``torch.FloatTensor``			        arc_loss : ``torch.FloatTensor``
+            The loss contribution from the unlabeled arcs.	            The loss contribution from the unlabeled arcs.
+        loss : ``torch.FloatTensor``, optional			        loss : ``torch.FloatTensor``, optional
+            The loss contribution from predicting the depende	            The loss contribution from predicting the depende
+            tags for the gold arcs.				            tags for the gold arcs.
+        heads : ``torch.FloatTensor``				        heads : ``torch.FloatTensor``
+            The predicted head indices for each word. A tenso	            The predicted head indices for each word. A tenso
+            of shape (batch_size, sequence_length).		            of shape (batch_size, sequence_length).
+        head_types : ``torch.FloatTensor``			        head_types : ``torch.FloatTensor``
+            The predicted head types for each arc. A tensor	            The predicted head types for each arc. A tensor
+            of shape (batch_size, sequence_length).		            of shape (batch_size, sequence_length).
+        mask : ``torch.LongTensor``				        mask : ``torch.LongTensor``
+            A mask denoting the padded elements in the batch.	            A mask denoting the padded elements in the batch.
+        """							        """
+        embedded_text_input = self.text_field_embedder(words)	        embedded_text_input = self.text_field_embedder(words)
+        if pos_tags is not None and self._pos_tag_embedding i	        if pos_tags is not None and self._pos_tag_embedding i
+            embedded_pos_tags = self._pos_tag_embedding(pos_t	            embedded_pos_tags = self._pos_tag_embedding(pos_t
+            embedded_text_input = torch.cat([embedded_text_in	            embedded_text_input = torch.cat([embedded_text_in
+        elif self._pos_tag_embedding is not None:		        elif self._pos_tag_embedding is not None:
+            raise ConfigurationError("Model uses a POS embedd	            raise ConfigurationError("Model uses a POS embedd
+
+        mask = get_text_field_mask(words)			        mask = get_text_field_mask(words)
+
+        predicted_heads, predicted_head_tags, mask, arc_nll, 	        predicted_heads, predicted_head_tags, mask, arc_nll, 
+                embedded_text_input, mask, head_tags, head_in	                embedded_text_input, mask, head_tags, head_in
+
+        loss = arc_nll + tag_nll				        loss = arc_nll + tag_nll
+
+        if head_indices is not None and head_tags is not None	        if head_indices is not None and head_tags is not None
+            evaluation_mask = self._get_mask_for_eval(mask[:,	            evaluation_mask = self._get_mask_for_eval(mask[:,
+            # We calculate attatchment scores for the whole s	            # We calculate attatchment scores for the whole s
+            # but excluding the symbolic ROOT token at the st	            # but excluding the symbolic ROOT token at the st
+            # which is why we start from the second element i	            # which is why we start from the second element i
+            self._attachment_scores(predicted_heads[:, 1:],	            self._attachment_scores(predicted_heads[:, 1:],
+                                    predicted_head_tags[:, 1:	                                    predicted_head_tags[:, 1:
+                                    head_indices,		                                    head_indices,
+                                    head_tags,			                                    head_tags,
+                                    evaluation_mask)		                                    evaluation_mask)
+
+        output_dict = {						        output_dict = {
+                "heads": predicted_heads,			                "heads": predicted_heads,
+                "head_tags": predicted_head_tags,		                "head_tags": predicted_head_tags,
+                "arc_loss": arc_nll,				                "arc_loss": arc_nll,
+                "tag_loss": tag_nll,				                "tag_loss": tag_nll,
+                "loss": loss,					                "loss": loss,
+                "mask": mask,					                "mask": mask,
+                "words": [meta["words"] for meta in metadata]	                "words": [meta["words"] for meta in metadata]
+                "pos": [meta["pos"] for meta in metadata]	                "pos": [meta["pos"] for meta in metadata]
+                }						                }
+
+        return output_dict					        return output_dict
+
+    @overrides							    @overrides
+    def decode(self, output_dict: Dict[str, torch.Tensor]) ->	    def decode(self, output_dict: Dict[str, torch.Tensor]) ->
+
+        head_tags = output_dict.pop("head_tags").cpu().detach	        head_tags = output_dict.pop("head_tags").cpu().detach
+        heads = output_dict.pop("heads").cpu().detach().numpy	        heads = output_dict.pop("heads").cpu().detach().numpy
+        mask = output_dict.pop("mask")				        mask = output_dict.pop("mask")
+        lengths = get_lengths_from_binary_sequence_mask(mask)	        lengths = get_lengths_from_binary_sequence_mask(mask)
+        head_tag_labels = []					        head_tag_labels = []
+        head_indices = []					        head_indices = []
+        for instance_heads, instance_tags, length in zip(head	        for instance_heads, instance_tags, length in zip(head
+            instance_heads = list(instance_heads[1:length])	            instance_heads = list(instance_heads[1:length])
+            instance_tags = instance_tags[1:length]		            instance_tags = instance_tags[1:length]
+            labels = [self.vocab.get_token_from_index(label, 	            labels = [self.vocab.get_token_from_index(label, 
+                      for label in instance_tags]		                      for label in instance_tags]
+            head_tag_labels.append(labels)			            head_tag_labels.append(labels)
+            head_indices.append(instance_heads)			            head_indices.append(instance_heads)
+
+        output_dict["predicted_dependencies"] = head_tag_labe	        output_dict["predicted_dependencies"] = head_tag_labe
+        output_dict["predicted_heads"] = head_indices		        output_dict["predicted_heads"] = head_indices
+        return output_dict					        return output_dict
+
+    def _parse(self,						    def _parse(self,
+               embedded_text_input: torch.Tensor,		               embedded_text_input: torch.Tensor,
+               mask: torch.LongTensor,				               mask: torch.LongTensor,
+               head_tags: torch.LongTensor = None,		               head_tags: torch.LongTensor = None,
+               head_indices: torch.LongTensor = None		               head_indices: torch.LongTensor = None
+              ) -> Tuple[torch.Tensor, torch.Tensor, torch.Te	              ) -> Tuple[torch.Tensor, torch.Tensor, torch.Te
+
+        embedded_text_input = self._input_dropout(embedded_te	        embedded_text_input = self._input_dropout(embedded_te
+        encoded_text = self.encoder(embedded_text_input, mask	        encoded_text = self.encoder(embedded_text_input, mask
+
+        batch_size, _, encoding_dim = encoded_text.size()	        batch_size, _, encoding_dim = encoded_text.size()
+
+        head_sentinel = self._head_sentinel.expand(batch_size	        head_sentinel = self._head_sentinel.expand(batch_size
+        # Concatenate the head sentinel onto the sentence rep	        # Concatenate the head sentinel onto the sentence rep
+        encoded_text = torch.cat([head_sentinel, encoded_text	        encoded_text = torch.cat([head_sentinel, encoded_text
+        mask = torch.cat([mask.new_ones(batch_size, 1), mask]	        mask = torch.cat([mask.new_ones(batch_size, 1), mask]
+        if head_indices is not None:				        if head_indices is not None:
+            head_indices = torch.cat([head_indices.new_zeros(	            head_indices = torch.cat([head_indices.new_zeros(
+        if head_tags is not None:				        if head_tags is not None:
+            head_tags = torch.cat([head_tags.new_zeros(batch_	            head_tags = torch.cat([head_tags.new_zeros(batch_
+        float_mask = mask.float()				        float_mask = mask.float()
+        encoded_text = self._dropout(encoded_text)		        encoded_text = self._dropout(encoded_text)
+
+        # shape (batch_size, sequence_length, arc_representat	        # shape (batch_size, sequence_length, arc_representat
+        head_arc_representation = self._dropout(self.head_arc	        head_arc_representation = self._dropout(self.head_arc
+        child_arc_representation = self._dropout(self.child_a	        child_arc_representation = self._dropout(self.child_a
+
+        # shape (batch_size, sequence_length, tag_representat	        # shape (batch_size, sequence_length, tag_representat
+        head_tag_representation = self._dropout(self.head_tag	        head_tag_representation = self._dropout(self.head_tag
+        child_tag_representation = self._dropout(self.child_t	        child_tag_representation = self._dropout(self.child_t
+        # shape (batch_size, sequence_length, sequence_length	        # shape (batch_size, sequence_length, sequence_length
+        attended_arcs = self.arc_attention(head_arc_represent	        attended_arcs = self.arc_attention(head_arc_represent
+                                           child_arc_represen	                                           child_arc_represen
+
+        minus_inf = -1e8					        minus_inf = -1e8
+        minus_mask = (1 - float_mask) * minus_inf		        minus_mask = (1 - float_mask) * minus_inf
+        attended_arcs = attended_arcs + minus_mask.unsqueeze(	        attended_arcs = attended_arcs + minus_mask.unsqueeze(
+
+        if self.training or not self.use_mst_decoding_for_val	        if self.training or not self.use_mst_decoding_for_val
+            predicted_heads, predicted_head_tags = self._gree	            predicted_heads, predicted_head_tags = self._gree
+                                                             	                                                             
+                                                             	                                                             
+                                                             	                                                             
+        else:							        else:
+            predicted_heads, predicted_head_tags = self._mst_	            predicted_heads, predicted_head_tags = self._mst_
+                                                             	                                                             
+                                                             	                                                             
+                                                             	                                                             
+        if head_indices is not None and head_tags is not None	        if head_indices is not None and head_tags is not None
+							      |	            # how many tags are predicted by our model (0-ind
+            arc_nll, tag_nll = self._construct_loss(head_tag_ |	            max_head_tag_index = self.tag_bilinear.out_featur
+                                                    child_tag |	            if torch.any(head_tags > max_head_tag_index):
+                                                    attended_ |	                logger.info("Unseen gold tag!  Skipping loss 
+                                                    head_indi |	                        "to avoid tensor errors")
+                                                    head_tags |	                loss = torch.tensor(0.)
+                                                    mask=mask |	                arc_nll = torch.tensor(0.)
+							      >	                tag_nll = torch.tensor(0.)
+							      >	            else:
+							      >	                arc_nll, tag_nll = self._construct_loss(head_
+							      >	                                                        child
+							      >	                                                        atten
+							      >	                                                        head_
+							      >	                                                        head_
+							      >	                                                        mask=
+        else:							        else:
+            arc_nll, tag_nll = self._construct_loss(head_tag_	            arc_nll, tag_nll = self._construct_loss(head_tag_
+                                                    child_tag	                                                    child_tag
+                                                    attended_	                                                    attended_
+                                                    head_indi	                                                    head_indi
+                                                    head_tags	                                                    head_tags
+                                                    mask=mask	                                                    mask=mask
+
+        return predicted_heads, predicted_head_tags, mask, ar	        return predicted_heads, predicted_head_tags, mask, ar
+
+    def _construct_loss(self,					    def _construct_loss(self,
+                        head_tag_representation: torch.Tensor	                        head_tag_representation: torch.Tensor
+                        child_tag_representation: torch.Tenso	                        child_tag_representation: torch.Tenso
+                        attended_arcs: torch.Tensor,		                        attended_arcs: torch.Tensor,
+                        head_indices: torch.Tensor,		                        head_indices: torch.Tensor,
+                        head_tags: torch.Tensor,		                        head_tags: torch.Tensor,
+                        mask: torch.Tensor) -> Tuple[torch.Te	                        mask: torch.Tensor) -> Tuple[torch.Te
+        """							        """
+        Computes the arc and tag loss for a sequence given go	        Computes the arc and tag loss for a sequence given go
+
+        Parameters						        Parameters
+        ----------						        ----------
+        head_tag_representation : ``torch.Tensor``, required.	        head_tag_representation : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length, t	            A tensor of shape (batch_size, sequence_length, t
+            which will be used to generate predictions for th	            which will be used to generate predictions for th
+            for the given arcs.					            for the given arcs.
+        child_tag_representation : ``torch.Tensor``, required	        child_tag_representation : ``torch.Tensor``, required
+            A tensor of shape (batch_size, sequence_length, t	            A tensor of shape (batch_size, sequence_length, t
+            which will be used to generate predictions for th	            which will be used to generate predictions for th
+            for the given arcs.					            for the given arcs.
+        attended_arcs : ``torch.Tensor``, required.		        attended_arcs : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length, s	            A tensor of shape (batch_size, sequence_length, s
+            a distribution over attachments of a given word t	            a distribution over attachments of a given word t
+        head_indices : ``torch.Tensor``, required.		        head_indices : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length).	            A tensor of shape (batch_size, sequence_length).
+            The indices of the heads for every word.		            The indices of the heads for every word.
+        head_tags : ``torch.Tensor``, required.			        head_tags : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length).	            A tensor of shape (batch_size, sequence_length).
+            The dependency labels of the heads for every word	            The dependency labels of the heads for every word
+        mask : ``torch.Tensor``, required.			        mask : ``torch.Tensor``, required.
+            A mask of shape (batch_size, sequence_length), de	            A mask of shape (batch_size, sequence_length), de
+            elements in the sequence.				            elements in the sequence.
+
+        Returns							        Returns
+        -------							        -------
+        arc_nll : ``torch.Tensor``, required.			        arc_nll : ``torch.Tensor``, required.
+            The negative log likelihood from the arc loss.	            The negative log likelihood from the arc loss.
+        tag_nll : ``torch.Tensor``, required.			        tag_nll : ``torch.Tensor``, required.
+            The negative log likelihood from the arc tag loss	            The negative log likelihood from the arc tag loss
+        """							        """
+        float_mask = mask.float()				        float_mask = mask.float()
+        batch_size, sequence_length, _ = attended_arcs.size()	        batch_size, sequence_length, _ = attended_arcs.size()
+        # shape (batch_size, 1)					        # shape (batch_size, 1)
+        range_vector = get_range_vector(batch_size, get_devic	        range_vector = get_range_vector(batch_size, get_devic
+        # shape (batch_size, sequence_length, sequence_length	        # shape (batch_size, sequence_length, sequence_length
+        normalised_arc_logits = masked_log_softmax(attended_a	        normalised_arc_logits = masked_log_softmax(attended_a
+                                                   mask) * fl	                                                   mask) * fl
+
+        # shape (batch_size, sequence_length, num_head_tags)	        # shape (batch_size, sequence_length, num_head_tags)
+        head_tag_logits = self._get_head_tags(head_tag_repres	        head_tag_logits = self._get_head_tags(head_tag_repres
+        normalised_head_tag_logits = masked_log_softmax(head_	        normalised_head_tag_logits = masked_log_softmax(head_
+                                                        mask.	                                                        mask.
+        # index matrix with shape (batch, sequence_length)	        # index matrix with shape (batch, sequence_length)
+        timestep_index = get_range_vector(sequence_length, ge	        timestep_index = get_range_vector(sequence_length, ge
+        child_index = timestep_index.view(1, sequence_length)	        child_index = timestep_index.view(1, sequence_length)
+        # shape (batch_size, sequence_length)			        # shape (batch_size, sequence_length)
+        arc_loss = normalised_arc_logits[range_vector, child_	        arc_loss = normalised_arc_logits[range_vector, child_
+        tag_loss = normalised_head_tag_logits[range_vector, c	        tag_loss = normalised_head_tag_logits[range_vector, c
+        # We don't care about predictions for the symbolic RO	        # We don't care about predictions for the symbolic RO
+        # so we remove it from the loss.			        # so we remove it from the loss.
+        arc_loss = arc_loss[:, 1:]				        arc_loss = arc_loss[:, 1:]
+        tag_loss = tag_loss[:, 1:]				        tag_loss = tag_loss[:, 1:]
+
+        # The number of valid positions is equal to the numbe	        # The number of valid positions is equal to the numbe
+        # 1 per sequence in the batch, to account for the sym	        # 1 per sequence in the batch, to account for the sym
+        valid_positions = mask.sum() - batch_size		        valid_positions = mask.sum() - batch_size
+
+        arc_nll = -arc_loss.sum() / valid_positions.float()	        arc_nll = -arc_loss.sum() / valid_positions.float()
+        tag_nll = -tag_loss.sum() / valid_positions.float()	        tag_nll = -tag_loss.sum() / valid_positions.float()
+        return arc_nll, tag_nll					        return arc_nll, tag_nll
+
+    def _greedy_decode(self,					    def _greedy_decode(self,
+                       head_tag_representation: torch.Tensor,	                       head_tag_representation: torch.Tensor,
+                       child_tag_representation: torch.Tensor	                       child_tag_representation: torch.Tensor
+                       attended_arcs: torch.Tensor,		                       attended_arcs: torch.Tensor,
+                       mask: torch.Tensor) -> Tuple[torch.Ten	                       mask: torch.Tensor) -> Tuple[torch.Ten
+        """							        """
+        Decodes the head and head tag predictions by decoding	        Decodes the head and head tag predictions by decoding
+        independently for each word and then again, predictin	        independently for each word and then again, predictin
+        these greedily chosen arcs independently. Note that t	        these greedily chosen arcs independently. Note that t
+        is not guaranteed to produce trees (i.e. there maybe 	        is not guaranteed to produce trees (i.e. there maybe 
+        or cycles when children are attached to their parents	        or cycles when children are attached to their parents
+
+        Parameters						        Parameters
+        ----------						        ----------
+        head_tag_representation : ``torch.Tensor``, required.	        head_tag_representation : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length, t	            A tensor of shape (batch_size, sequence_length, t
+            which will be used to generate predictions for th	            which will be used to generate predictions for th
+            for the given arcs.					            for the given arcs.
+        child_tag_representation : ``torch.Tensor``, required	        child_tag_representation : ``torch.Tensor``, required
+            A tensor of shape (batch_size, sequence_length, t	            A tensor of shape (batch_size, sequence_length, t
+            which will be used to generate predictions for th	            which will be used to generate predictions for th
+            for the given arcs.					            for the given arcs.
+        attended_arcs : ``torch.Tensor``, required.		        attended_arcs : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length, s	            A tensor of shape (batch_size, sequence_length, s
+            a distribution over attachments of a given word t	            a distribution over attachments of a given word t
+
+        Returns							        Returns
+        -------							        -------
+        heads : ``torch.Tensor``				        heads : ``torch.Tensor``
+            A tensor of shape (batch_size, sequence_length) r	            A tensor of shape (batch_size, sequence_length) r
+            greedily decoded heads of each word.		            greedily decoded heads of each word.
+        head_tags : ``torch.Tensor``				        head_tags : ``torch.Tensor``
+            A tensor of shape (batch_size, sequence_length) r	            A tensor of shape (batch_size, sequence_length) r
+            dependency tags of the greedily decoded heads of 	            dependency tags of the greedily decoded heads of 
+        """							        """
+        # Mask the diagonal, because the head of a word can't	        # Mask the diagonal, because the head of a word can't
+        attended_arcs = attended_arcs + torch.diag(attended_a	        attended_arcs = attended_arcs + torch.diag(attended_a
+        # Mask padded tokens, because we only want to conside	        # Mask padded tokens, because we only want to conside
+        if mask is not None:					        if mask is not None:
+            minus_mask = (1 - mask).to(dtype=torch.bool).unsq	            minus_mask = (1 - mask).to(dtype=torch.bool).unsq
+            attended_arcs.masked_fill_(minus_mask, -numpy.inf	            attended_arcs.masked_fill_(minus_mask, -numpy.inf
+
+        # Compute the heads greedily.				        # Compute the heads greedily.
+        # shape (batch_size, sequence_length)			        # shape (batch_size, sequence_length)
+        _, heads = attended_arcs.max(dim=2)			        _, heads = attended_arcs.max(dim=2)
+
+        # Given the greedily predicted heads, decode their de	        # Given the greedily predicted heads, decode their de
+        # shape (batch_size, sequence_length, num_head_tags)	        # shape (batch_size, sequence_length, num_head_tags)
+        head_tag_logits = self._get_head_tags(head_tag_repres	        head_tag_logits = self._get_head_tags(head_tag_repres
+                                              child_tag_repre	                                              child_tag_repre
+                                              heads)		                                              heads)
+        _, head_tags = head_tag_logits.max(dim=2)		        _, head_tags = head_tag_logits.max(dim=2)
+        return heads, head_tags					        return heads, head_tags
+
+    def _mst_decode(self,					    def _mst_decode(self,
+                    head_tag_representation: torch.Tensor,	                    head_tag_representation: torch.Tensor,
+                    child_tag_representation: torch.Tensor,	                    child_tag_representation: torch.Tensor,
+                    attended_arcs: torch.Tensor,		                    attended_arcs: torch.Tensor,
+                    mask: torch.Tensor) -> Tuple[torch.Tensor	                    mask: torch.Tensor) -> Tuple[torch.Tensor
+        """							        """
+        Decodes the head and head tag predictions using the E	        Decodes the head and head tag predictions using the E
+        for finding minimum spanning trees on directed graphs	        for finding minimum spanning trees on directed graphs
+        graph are the words in the sentence, and between each	        graph are the words in the sentence, and between each
+        there is an edge in each direction, where the weight 	        there is an edge in each direction, where the weight 
+        to the most likely dependency label probability for t	        to the most likely dependency label probability for t
+        then generated from this directed graph.		        then generated from this directed graph.
+
+        Parameters						        Parameters
+        ----------						        ----------
+        head_tag_representation : ``torch.Tensor``, required.	        head_tag_representation : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length, t	            A tensor of shape (batch_size, sequence_length, t
+            which will be used to generate predictions for th	            which will be used to generate predictions for th
+            for the given arcs.					            for the given arcs.
+        child_tag_representation : ``torch.Tensor``, required	        child_tag_representation : ``torch.Tensor``, required
+            A tensor of shape (batch_size, sequence_length, t	            A tensor of shape (batch_size, sequence_length, t
+            which will be used to generate predictions for th	            which will be used to generate predictions for th
+            for the given arcs.					            for the given arcs.
+        attended_arcs : ``torch.Tensor``, required.		        attended_arcs : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length, s	            A tensor of shape (batch_size, sequence_length, s
+            a distribution over attachments of a given word t	            a distribution over attachments of a given word t
+
+        Returns							        Returns
+        -------							        -------
+        heads : ``torch.Tensor``				        heads : ``torch.Tensor``
+            A tensor of shape (batch_size, sequence_length) r	            A tensor of shape (batch_size, sequence_length) r
+            greedily decoded heads of each word.		            greedily decoded heads of each word.
+        head_tags : ``torch.Tensor``				        head_tags : ``torch.Tensor``
+            A tensor of shape (batch_size, sequence_length) r	            A tensor of shape (batch_size, sequence_length) r
+            dependency tags of the optimally decoded heads of	            dependency tags of the optimally decoded heads of
+        """							        """
+        batch_size, sequence_length, tag_representation_dim =	        batch_size, sequence_length, tag_representation_dim =
+
+        lengths = mask.data.sum(dim=1).long().cpu().numpy()	        lengths = mask.data.sum(dim=1).long().cpu().numpy()
+
+        expanded_shape = [batch_size, sequence_length, sequen	        expanded_shape = [batch_size, sequence_length, sequen
+        head_tag_representation = head_tag_representation.uns	        head_tag_representation = head_tag_representation.uns
+        head_tag_representation = head_tag_representation.exp	        head_tag_representation = head_tag_representation.exp
+        child_tag_representation = child_tag_representation.u	        child_tag_representation = child_tag_representation.u
+        child_tag_representation = child_tag_representation.e	        child_tag_representation = child_tag_representation.e
+        # Shape (batch_size, sequence_length, sequence_length	        # Shape (batch_size, sequence_length, sequence_length
+        pairwise_head_logits = self.tag_bilinear(head_tag_rep	        pairwise_head_logits = self.tag_bilinear(head_tag_rep
+
+        # Note that this log_softmax is over the tag dimensio	        # Note that this log_softmax is over the tag dimensio
+        # of tags which are invalid (e.g are a pair which inc	        # of tags which are invalid (e.g are a pair which inc
+        # Shape (batch, num_labels,sequence_length, sequence_	        # Shape (batch, num_labels,sequence_length, sequence_
+        normalized_pairwise_head_logits = F.log_softmax(pairw	        normalized_pairwise_head_logits = F.log_softmax(pairw
+
+        # Mask padded tokens, because we only want to conside	        # Mask padded tokens, because we only want to conside
+        minus_inf = -1e8					        minus_inf = -1e8
+        minus_mask = (1 - mask.float()) * minus_inf		        minus_mask = (1 - mask.float()) * minus_inf
+        attended_arcs = attended_arcs + minus_mask.unsqueeze(	        attended_arcs = attended_arcs + minus_mask.unsqueeze(
+
+        # Shape (batch_size, sequence_length, sequence_length	        # Shape (batch_size, sequence_length, sequence_length
+        normalized_arc_logits = F.log_softmax(attended_arcs, 	        normalized_arc_logits = F.log_softmax(attended_arcs, 
+
+        # Shape (batch_size, num_head_tags, sequence_length, 	        # Shape (batch_size, num_head_tags, sequence_length, 
+        # This energy tensor expresses the following relation	        # This energy tensor expresses the following relation
+        # energy[i,j] = "Score that i is the head of j". In t	        # energy[i,j] = "Score that i is the head of j". In t
+        # case, we have heads pointing to their children.	        # case, we have heads pointing to their children.
+        batch_energy = torch.exp(normalized_arc_logits.unsque	        batch_energy = torch.exp(normalized_arc_logits.unsque
+        return self._run_mst_decoding(batch_energy, lengths)	        return self._run_mst_decoding(batch_energy, lengths)
+
+    @staticmethod						    @staticmethod
+    def _run_mst_decoding(batch_energy: torch.Tensor, lengths	    def _run_mst_decoding(batch_energy: torch.Tensor, lengths
+        heads = []						        heads = []
+        head_tags = []						        head_tags = []
+        for energy, length in zip(batch_energy.detach().cpu()	        for energy, length in zip(batch_energy.detach().cpu()
+            scores, tag_ids = energy.max(dim=0)			            scores, tag_ids = energy.max(dim=0)
+            # Although we need to include the root node so th	            # Although we need to include the root node so th
+            # we do not want any word to be the parent of the	            # we do not want any word to be the parent of the
+            # Here, we enforce this by setting the scores for	            # Here, we enforce this by setting the scores for
+            # edges to be 0.					            # edges to be 0.
+            scores[0, :] = 0					            scores[0, :] = 0
+            # Decode the heads. Because we modify the scores 	            # Decode the heads. Because we modify the scores 
+            # adding in word -> ROOT edges, we need to find t	            # adding in word -> ROOT edges, we need to find t
+            instance_heads, _ = decode_mst(scores.numpy(), le	            instance_heads, _ = decode_mst(scores.numpy(), le
+
+            # Find the labels which correspond to the edges i	            # Find the labels which correspond to the edges i
+            instance_head_tags = []				            instance_head_tags = []
+            for child, parent in enumerate(instance_heads):	            for child, parent in enumerate(instance_heads):
+                instance_head_tags.append(tag_ids[parent, chi	                instance_head_tags.append(tag_ids[parent, chi
+            # We don't care what the head or tag is for the r	            # We don't care what the head or tag is for the r
+            # not necesarily the same in the batched vs unbat	            # not necesarily the same in the batched vs unbat
+            # Here we'll just set them to zero.			            # Here we'll just set them to zero.
+            instance_heads[0] = 0				            instance_heads[0] = 0
+            instance_head_tags[0] = 0				            instance_head_tags[0] = 0
+            heads.append(instance_heads)			            heads.append(instance_heads)
+            head_tags.append(instance_head_tags)		            head_tags.append(instance_head_tags)
+        return torch.from_numpy(numpy.stack(heads)), torch.fr	        return torch.from_numpy(numpy.stack(heads)), torch.fr
+
+    def _get_head_tags(self,					    def _get_head_tags(self,
+                       head_tag_representation: torch.Tensor,	                       head_tag_representation: torch.Tensor,
+                       child_tag_representation: torch.Tensor	                       child_tag_representation: torch.Tensor
+                       head_indices: torch.Tensor) -> torch.T	                       head_indices: torch.Tensor) -> torch.T
+        """							        """
+        Decodes the head tags given the head and child tag re	        Decodes the head tags given the head and child tag re
+        and a tensor of head indices to compute tags for. Not	        and a tensor of head indices to compute tags for. Not
+        either gold or predicted heads, depending on whether 	        either gold or predicted heads, depending on whether 
+        being called to compute the loss, or if it's being ca	        being called to compute the loss, or if it's being ca
+
+        Parameters						        Parameters
+        ----------						        ----------
+        head_tag_representation : ``torch.Tensor``, required.	        head_tag_representation : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length, t	            A tensor of shape (batch_size, sequence_length, t
+            which will be used to generate predictions for th	            which will be used to generate predictions for th
+            for the given arcs.					            for the given arcs.
+        child_tag_representation : ``torch.Tensor``, required	        child_tag_representation : ``torch.Tensor``, required
+            A tensor of shape (batch_size, sequence_length, t	            A tensor of shape (batch_size, sequence_length, t
+            which will be used to generate predictions for th	            which will be used to generate predictions for th
+            for the given arcs.					            for the given arcs.
+        head_indices : ``torch.Tensor``, required.		        head_indices : ``torch.Tensor``, required.
+            A tensor of shape (batch_size, sequence_length). 	            A tensor of shape (batch_size, sequence_length). 
+            for every word.					            for every word.
+
+        Returns							        Returns
+        -------							        -------
+        head_tag_logits : ``torch.Tensor``			        head_tag_logits : ``torch.Tensor``
+            A tensor of shape (batch_size, sequence_length, n	            A tensor of shape (batch_size, sequence_length, n
+            representing logits for predicting a distribution	            representing logits for predicting a distribution
+            for each arc.					            for each arc.
+        """							        """
+        batch_size = head_tag_representation.size(0)		        batch_size = head_tag_representation.size(0)
+        # shape (batch_size,)					        # shape (batch_size,)
+        range_vector = get_range_vector(batch_size, get_devic	        range_vector = get_range_vector(batch_size, get_devic
+
+        # This next statement is quite a complex piece of ind	        # This next statement is quite a complex piece of ind
+        # need to read the docs to understand. See here:	        # need to read the docs to understand. See here:
+        # https://docs.scipy.org/doc/numpy-1.13.0/reference/a	        # https://docs.scipy.org/doc/numpy-1.13.0/reference/a
+        # In effect, we are selecting the indices correspondi	        # In effect, we are selecting the indices correspondi
+        # sequence length dimension for each element in the b	        # sequence length dimension for each element in the b
+
+        # shape (batch_size, sequence_length, tag_representat	        # shape (batch_size, sequence_length, tag_representat
+        selected_head_tag_representations = head_tag_represen	        selected_head_tag_representations = head_tag_represen
+        selected_head_tag_representations = selected_head_tag	        selected_head_tag_representations = selected_head_tag
+        # shape (batch_size, sequence_length, num_head_tags)	        # shape (batch_size, sequence_length, num_head_tags)
+        head_tag_logits = self.tag_bilinear(selected_head_tag	        head_tag_logits = self.tag_bilinear(selected_head_tag
+                                            child_tag_represe	                                            child_tag_represe
+        return head_tag_logits					        return head_tag_logits
+
+    def _get_mask_for_eval(self,				    def _get_mask_for_eval(self,
+                           mask: torch.LongTensor,		                           mask: torch.LongTensor,
+                           pos_tags: torch.LongTensor) -> tor	                           pos_tags: torch.LongTensor) -> tor
+        """							        """
+        Dependency evaluation excludes words are punctuation.	        Dependency evaluation excludes words are punctuation.
+        Here, we create a new mask to exclude word indices wh	        Here, we create a new mask to exclude word indices wh
+        have a "punctuation-like" part of speech tag.		        have a "punctuation-like" part of speech tag.
+
+        Parameters						        Parameters
+        ----------						        ----------
+        mask : ``torch.LongTensor``, required.			        mask : ``torch.LongTensor``, required.
+            The original mask.					            The original mask.
+        pos_tags : ``torch.LongTensor``, required.		        pos_tags : ``torch.LongTensor``, required.
+            The pos tags for the sequence.			            The pos tags for the sequence.
+
+        Returns							        Returns
+        -------							        -------
+        A new mask, where any indices equal to labels		        A new mask, where any indices equal to labels
+        we should be ignoring are masked.			        we should be ignoring are masked.
+        """							        """
+        new_mask = mask.detach()				        new_mask = mask.detach()
+        for label in self._pos_to_ignore:			        for label in self._pos_to_ignore:
+            label_mask = pos_tags.eq(label).long()		            label_mask = pos_tags.eq(label).long()
+            new_mask = new_mask * (1 - label_mask)		            new_mask = new_mask * (1 - label_mask)
+        return new_mask						        return new_mask
+
+    @overrides							    @overrides
+    def get_metrics(self, reset: bool = False) -> Dict[str, f	    def get_metrics(self, reset: bool = False) -> Dict[str, f
+        return self._attachment_scores.get_metric(reset)	        return self._attachment_scores.get_metric(reset)
+

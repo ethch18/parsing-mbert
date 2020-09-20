@@ -1,0 +1,9 @@
+irish (ga)
+http://homes.cs.washington.edu/~echau18/files/parsing-mbert/ga.tgz
+maltese (mt)
+http://homes.cs.washington.edu/~echau18/files/parsing-mbert/mt.tgz
+singlish (sg)
+http://homes.cs.washington.edu/~echau18/files/parsing-mbert/sg.tgz
+vietnamese (vi)
+http://homes.cs.washington.edu/~echau18/files/parsing-mbert/vi.tgz
+

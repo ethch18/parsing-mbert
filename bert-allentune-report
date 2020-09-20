@@ -1,0 +1,26 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+# Combines allentune-report and analyze_runs.py
+
+# OUTPUTS_DIR="/m-pinotHD/echau18/bert/parser_outputs"
+OUTPUTS_DIR="/m-pinotSSD/echau18/bert/parser_outputs"
+EMAIL="your email here"
+
+ARGS=( "$@" )
+COMMANDS="${ARGS[@]}"
+
+eval "$(conda shell.bash hook)"
+conda activate allentune
+
+export PYTHONIOENCODING=UTF-8
+
+for i in $COMMANDS; do
+    echo $i
+    allentune report --log-dir $OUTPUTS_DIR/$i \
+        --performance-metric best_validation_LAS \
+        >> $OUTPUTS_DIR/$i/report.txt \
+        && (cat $OUTPUTS_DIR/$i/results.jsonl >> $OUTPUTS_DIR/$i/report.txt)
+done
+
+python scripts/eval/analyze_runs.py $OUTPUTS_DIR $COMMANDS | \
+    mail -s "dev evaluation results" $EMAIL

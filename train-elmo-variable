@@ -1,0 +1,33 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+OUTPUT_DIR="/m-pinotHD/echau18/bert/outputs"
+DATA_DIR="/m-pinotHD/echau18/bert/data"
+
+EMAIL="your email here"
+
+ARGS=( "$@" )
+
+LANG=("${ARGS[0]}")
+EPOCHS=("${ARGS[1]}")
+
+eval "$(conda shell.bash hook)"
+conda activate bilmtf
+
+EXPERIMENT_NAME=elmo_"$LANG"_"$EPOCHS"
+
+cd ~/ark/bert/elmo
+mkdir $OUTPUT_DIR/$EXPERIMENT_NAME
+
+export PYTHONIOENCODING="utf-8"
+python bin/train_elmo_configurable.py --variable --lang $LANG \
+    --n_epochs $EPOCHS \
+    --train_prefix="$DATA_DIR/$LANG/unlabeled/elmo_format/train_*" \
+    --vocab_file $DATA_DIR/$LANG/unlabeled/elmo_format/vocab.txt \
+    --save_dir $OUTPUT_DIR/$EXPERIMENT_NAME
+
+python bin/dump_weights.py --save_dir $OUTPUT_DIR/$EXPERIMENT_NAME \
+    --outfile $OUTPUT_DIR/$EXPERIMENT_NAME/weights.hdf5
+
+mail -s "$EXPERIMENT_NAME is done training.  Make sure to update options.json" \
+    $EMAIL < $OUTPUT_DIR/$EXPERIMENT_NAME/options.json

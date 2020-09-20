@@ -1,0 +1,156 @@
+{
+   "dataset_reader": {
+      "token_indexers": {
+         "bert": {
+            "do_lowercase": false,
+            "pretrained_model": "/m-pinotHD/echau18/bert/mbert/vocab.txt",
+            "truncate_long_sequences": false,
+            "type": "bert-pretrained",
+            "use_starting_offsets": true
+         }
+      },
+      "type": "universal_dependencies"
+   },
+   "iterator": {
+      "batch_size": 64,
+      "sorting_keys": [
+         [
+            "words",
+            "num_tokens"
+         ]
+      ],
+      "type": "bucket"
+   },
+   "model": {
+      "arc_representation_dim": 100,
+      "dropout": 0.29999999999999999,
+      "encoder": {
+         "hidden_size": 400,
+         "input_size": 768,
+         "num_layers": 3,
+         "recurrent_dropout_probability": 0.29999999999999999,
+         "type": "stacked_bidirectional_lstm",
+         "use_highway": true
+      },
+      "initializer": [
+         [
+            ".*projection.*weight",
+            {
+               "type": "xavier_uniform"
+            }
+         ],
+         [
+            ".*projection.*bias",
+            {
+               "type": "zero"
+            }
+         ],
+         [
+            ".*tag_bilinear.*weight",
+            {
+               "type": "xavier_uniform"
+            }
+         ],
+         [
+            ".*tag_bilinear.*bias",
+            {
+               "type": "zero"
+            }
+         ],
+         [
+            ".*weight_ih.*",
+            {
+               "type": "xavier_uniform"
+            }
+         ],
+         [
+            ".*weight_hh.*",
+            {
+               "type": "orthogonal"
+            }
+         ],
+         [
+            ".*bias_ih.*",
+            {
+               "type": "zero"
+            }
+         ],
+         [
+            ".*bias_hh.*",
+            {
+               "type": "lstm_hidden_bias"
+            }
+         ]
+      ],
+      "input_dropout": 0.29999999999999999,
+      "tag_representation_dim": 100,
+      "text_field_embedder": {
+         "allow_unmatched_keys": true,
+         "embedder_to_indexer_map": {
+            "bert": [
+               "bert",
+               "bert-offsets"
+            ]
+         },
+         "token_embedders": {
+            "bert": {
+               "layer_dropout": 0.10000000000000001,
+               "pretrained_model": "/m-pinotHD/echau18/bert/mbert",
+               "requires_grad": false,
+               "top_layer_only": false,
+               "type": "bert-pretrained-with-dropout"
+            }
+         }
+      },
+      "type": "biaffine_parser",
+      "use_mst_decoding_for_validation": false
+   },
+   "numpy_seed": 13370,
+   "pytorch_seed": 1337,
+   "random_seed": 133,
+   "train_data_path": "/m-pinotHD/echau18/lrlm/ud_links/ga/train.conllu",
+   "trainer": {
+      "cuda_device": 0,
+      "grad_norm": 2,
+      "learning_rate_scheduler": null,
+      "num_epochs": 200,
+      "optimizer": {
+         "betas": [
+            0.90000000000000002,
+            0.98999999999999999
+         ],
+         "lr": 0.001,
+         "parameter_groups": [
+            [
+               [
+                  "^text_field_embedder.*.bert_model.embeddings",
+                  "^text_field_embedder.*.bert_model.encoder"
+               ],
+               { }
+            ],
+            [
+               [
+                  "^text_field_embedder.*._scalar_mix",
+                  "^text_field_embedder.*.pooler",
+                  "^_head_sentinel",
+                  "^encoder",
+                  "^head_arc_feedforward",
+                  "^child_arc_feedforward",
+                  "^arc_attention",
+                  "^head_tag_feedforward",
+                  "^child_tag_feedforward",
+                  "^tag_bilinear",
+                  "^_pos_tag_embedding"
+               ],
+               { }
+            ]
+         ],
+         "type": "dense_sparse_adam"
+      },
+      "patience": 20,
+      "should_log_learning_rate": true,
+      "should_log_parameter_statistics": true,
+      "validation_metric": "+LAS"
+   },
+   "validation_data_path": "/m-pinotHD/echau18/lrlm/ud_links/ga/dev.conllu"
+}

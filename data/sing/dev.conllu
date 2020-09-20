@@ -1,0 +1,2863 @@
+1	then	_	ADV	ADV	_	4	advmod	_	_
+2	will	_	AUX	AUX	_	4	aux	_	_
+3	super	_	ADV	ADV	_	4	advmod	_	_
+4	clutter	_	VERB	VERB	_	0	root	_	_
+5	the	_	DET	DET	_	6	det	_	_
+6	screen	_	NOUN	NOUN	_	4	dobj	_	_
+7	lor	_	INTJ	INTJ	_	4	discourse	_	_
+8	.	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Friendly	_	NOUN	NOUN	_	3	nsubj	_	_
+2	all	_	ADV	DET	_	3	advmod	_	_
+3	ok	_	ADJ	PROPN	_	0	root	_	_
+4	must	_	AUX	AUX	_	5	aux	_	_
+5	start	_	VERB	VERB	_	3	parataxis	_	_
+6	season	_	NOUN	NOUN	_	5	dobj	_	_
+7	lose	_	VERB	VERB	_	5	conj	_	_
+8	la	_	INTJ	INTJ	_	7	discourse	_	_
+9	draw	_	VERB	VERB	_	7	parataxis	_	_
+10	la	_	INTJ	INTJ	_	9	discourse	_	_
+11	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Still	still	ADV	ADV	_	2	advmod	_	_
+2	go	go	VERB	VERB	_	0	root	_	_
+3	sell	sell	VERB	VERB	_	2	xcomp	_	_
+4	on	on	ADP	ADP	_	5	case	_	_
+5	support	support	NOUN	NOUN	_	3	nmod	_	_
+6	.	.	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Looks	look	VERB	VERB	_	0	root	_	_
+2	very	very	ADV	ADV	_	3	advmod	_	_
+3	delicious	delicious	ADJ	ADJ	_	1	xcomp	_	_
+4	and	and	CONJ	CONJ	_	3	cc	_	_
+5	nutritional	nutritional	ADJ	ADJ	_	3	conj	_	_
+6	leh	leh	INTJ	INTJ	_	1	discourse	_	_
+
+1	Than	_	ADV	ADP	_	4	advmod	_	_
+2	im	_	PRON	PRON	_	4	nsubj	_	_
+3	not	_	PART	PART	_	4	neg	_	_
+4	normal	_	ADJ	ADJ	_	0	root	_	_
+5	liao	_	ADV	ADV	_	4	advmod	_	_
+6	loh	_	INTJ	INTJ	_	4	discourse	_	_
+7	...	_	PUNCT	PUNCT	_	4	punct	_	_
+8	.	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Me	_	PRON	PRON	_	5	nsubj	_	_
+2	only	_	ADV	ADV	_	5	advmod	_	_
+3	in	_	ADP	ADP	_	5	case	_	_
+4	HDB	_	PROPN	PROPN	_	5	compound	_	_
+5	flat	_	NOUN	NOUN	_	0	root	_	_
+6	leh	_	INTJ	INTJ	_	5	discourse	_	_
+7	!	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	hey	_	INTJ	INTJ	_	2	discourse	_	_
+2	beta	_	ADJ	ADJ	_	0	root	_	_
+3	than	_	ADP	ADP	_	4	case	_	_
+4	noting	_	PRON	PRON	_	2	nmod	_	_
+5	hor	_	INTJ	INTJ	_	4	discourse	_	_
+6	.	_	PUNCT	PUNCT	_	2	punct	_	_
+7	.	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	you	you	PROPN	PROPN	_	2	nsubj	_	_
+2	betting	betting	VERB	VERB	_	0	root	_	_
+3	more	more	ADJ	ADJ	_	4	amod	_	_
+4	downside	downside	NOUN	NOUN	_	2	dobj	_	_
+5	from	from	ADP	ADP	_	6	case	_	_
+6	here	here	ADV	ADV	_	2	nmod	_	_
+7	?	?	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Do	_	VERB	VERB	_	0	root	_	_
+2	moi	_	PRON	PRON	_	1	iobj	_	_
+3	wat	_	NOUN	NOUN	_	1	dobj	_	_
+4	first	_	ADV	ADV	_	1	advmod	_	_
+5	?	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Not	_	ADV	ADV	_	2	neg	_	_
+2	taking	_	VERB	VERB	_	0	root	_	_
+3	into	_	ADP	ADP	_	5	case	_	_
+4	account	_	NOUN	NOUN	_	5	compound	_	_
+5	E	_	NOUN	NOUN	_	2	nmod	_	_
+6	and	_	CONJ	CONJ	_	5	cc	_	_
+7	City	_	NOUN	NOUN	_	8	compound	_	_
+8	Direct	_	NOUN	NOUN	_	5	conj	_	_
+9	.	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Think	_	VERB	VERB	_	0	root	_	_
+2	it	_	PRON	PRON	_	4	nsubjpass	_	_
+3	is	_	AUX	AUX	_	4	auxpass	_	_
+4	called	_	VERB	VERB	_	1	ccomp	_	_
+5	Komtar	_	PROPN	PROPN	_	6	compound	_	_
+6	JBCC	_	PROPN	PROPN	_	4	dobj	_	_
+7	(	_	PUNCT	PUNCT	_	10	punct	_	_
+8	JB	_	PROPN	PROPN	_	9	compound	_	_
+9	city	_	NOUN	NOUN	_	10	compound	_	_
+10	centre	_	NOUN	NOUN	_	6	appos	_	_
+11	)	_	PUNCT	PUNCT	_	10	punct	_	_
+12	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Dont	_	AUX	AUX	_	2	aux	_	_
+2	need	_	VERB	VERB	_	0	root	_	_
+3	la	_	INTJ	INTJ	_	2	discourse	_	_
+4	...	_	PUNCT	PUNCT	_	2	punct	_	_
+5	sgx	_	PROPN	PROPN	_	6	compound	_	_
+6	ceo	_	PROPN	PROPN	_	8	nsubj	_	_
+7	should	_	AUX	AUX	_	8	aux	_	_
+8	extend	_	VERB	VERB	_	2	parataxis	_	_
+9	to	_	ADP	ADP	_	10	case	_	_
+10	6pm	_	NOUN	NOUN	_	8	nmod:tmod	_	_
+11	since	_	SCONJ	ADP	_	14	mark	_	_
+12	market	_	NOUN	NOUN	_	14	nsubj	_	_
+13	so	_	ADV	ADV	_	14	advmod	_	_
+14	bouyant	_	ADJ	ADJ	_	8	advcl	_	_
+
+1	u	_	PRON	PRON	_	4	nsubj	_	_
+2	are	_	VERB	VERB	_	4	cop	_	_
+3	a	_	DET	DET	_	4	det	_	_
+4	ghost	_	NOUN	NOUN	_	0	root	_	_
+5	leh	_	INTJ	INTJ	_	4	discourse	_	_
+6	,	_	PUNCT	PUNCT	_	4	punct	_	_
+7	how	_	ADV	ADV	_	9	advmod	_	_
+8	to	_	PART	PART	_	9	mark	_	_
+9	catch	_	VERB	VERB	_	4	parataxis	_	_
+10	u	_	PRON	PRON	_	9	dobj	_	_
+11	?	_	PUNCT	PUNCT	_	9	dobj	_	_
+
+1	U	u	PRON	PRON	_	2	nsubj	_	_
+2	buy	buy	VERB	VERB	_	9	advcl	_	_
+3	wat	wat	PRON	PRON	_	2	dobj	_	_
+4	lose	lose	VERB	VERB	_	2	conj	_	_
+5	wat	wat	PRON	PRON	_	4	dobj	_	_
+6	...	...	PUNCT	PUNCT	_	2	punct	_	_
+7	of	of	ADV	ADV	_	9	advmod	_	_
+8	course	course	ADV	ADV	_	7	mwe	_	_
+9	lose	lose	VERB	VERB	_	0	root	_	_
+10	money	money	NOUN	NOUN	_	9	dobj	_	_
+11	lah	lah	INTJ	INTJ	_	9	discourse	_	_
+
+1	Think	think	VERB	VERB	_	0	root	_	_
+2	no	no	DET	DET	_	4	neg	_	_
+3	more	more	NOUN	NOUN	_	4	amod	_	_
+4	rushing	rushing	VERB	VERB	_	1	ccomp	_	_
+5	.	.	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Dun	_	AUX	AUX	_	2	aux	_	_
+2	stay	_	VERB	VERB	_	6	advcl	_	_
+3	hotel	_	NOUN	ADV	_	2	dobj	_	_
+4	sure	_	ADV	ADJ	_	6	advmod	_	_
+5	can	_	AUX	AUX	_	6	aux	_	_
+6	find	_	VERB	VERB	_	0	root	_	_
+7	cheap	_	ADJ	ADJ	_	9	amod	_	_
+8	airbnb	_	PROPN	PROPN	_	9	compound	_	_
+9	apt/room	_	NOUN	NOUN	_	6	dobj	_	_
+10	.	_	PUNCT	PUNCT	_	6	punct	_	_
+
+1	Neber	_	ADV	ADV	_	2	advmod	_	_
+2	ask	_	VERB	VERB	_	0	root	_	_
+3	viet	_	ADJ	ADJ	_	4	amod	_	_
+4	auntie	_	NOUN	NOUN	_	2	dobj	_	_
+5	bu	_	INTJ	PART	_	2	discourse	_	_
+6	if	_	SCONJ	SCONJ	_	7	mark	_	_
+7	got	_	VERB	VERB	_	2	advcl	_	_
+8	provide	_	VERB	VERB	_	7	xcomp	_	_
+9	freelance	_	NOUN	NOUN	_	10	compound	_	_
+10	services	_	NOUN	NOUN	_	8	dobj	_	_
+11	?	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	At	_	ADP	ADP	_	2	case	_	_
+2	home	_	NOUN	NOUN	_	4	nmod	_	_
+3	I	_	PRON	PRON	_	4	nsubj	_	_
+4	speak	_	VERB	VERB	_	0	root	_	_
+5	Cantonese	_	PROPN	PROPN	_	4	dobj	_	_
+6	.	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Overnight	_	ADJ	ADJ	_	2	amod	_	_
+2	flight	_	NOUN	NOUN	_	6	nsubj	_	_
+3	to	_	ADP	ADP	_	4	case	_	_
+4	Singapore	_	PROPN	PROPN	_	2	nmod	_	_
+5	,	_	PUNCT	PUNCT	_	2	punct	_	_
+6	reach	_	VERB	VERB	_	0	root	_	_
+7	SG	_	PROPN	PROPN	_	6	dobj	_	_
+8	at	_	ADP	ADP	_	10	case	_	_
+9	5.40	_	NUM	NUM	_	10	nummod	_	_
+10	am	_	NOUN	NOUN	_	6	nmod	_	_
+
+1	Typical	_	ADJ	ADJ	_	4	amod	_	_
+2	sinkkie	_	ADJ	ADJ	_	3	amod	_	_
+3	woman	_	NOUN	NOUN	_	4	compound	_	_
+4	mentality	_	NOUN	NOUN	_	5	nsubj	_	_
+5	kiasi	_	ADJ	ADJ	_	0	root	_	_
+6	kiasu	_	ADJ	ADJ	_	5	dup	_	_
+7	kiabo	_	ADJ	ADJ	_	5	conj	_	_
+
+1	haha	_	INTJ	INTJ	_	3	discourse	_	_
+2	i	_	PRON	PRON	_	3	nsubj	_	_
+3	got	_	VERB	VERB	_	0	root	_	_
+4	come	_	VERB	VERB	_	3	xcomp	_	_
+5	in	_	ADP	ADP	_	4	compound:prt	_	_
+6	one	_	INTJ	INTJ	_	3	discourse	_	_
+7	hokay	_	INTJ	INTJ	_	3	discourse	_	_
+8	.	_	PUNCT	PUNCT	_	3	punct	_	_
+9	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	My	_	PRON	PRON	_	2	nmod:poss	_	_
+2	in-law	_	NOUN	NOUN	_	3	nsubj	_	_
+3	makan	_	VERB	VERB	_	0	root	_	_
+4	everything	_	PRON	PRON	_	3	dobj	_	_
+5	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	not	_	ADV	ADV	_	2	neg	_	_
+2	fair	_	ADJ	ADJ	_	0	root	_	_
+3	tio	_	INTJ	INTJ	_	2	discourse	_	_
+4	bo	_	INTJ	INTJ	_	3	mwe	_	_
+5	??	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	kena	_	VERB	VERB	_	0	root	_	_
+2	few	_	ADJ	ADJ	_	3	amod	_	_
+3	times	_	NOUN	NOUN	_	1	nmod:npmod	_	_
+4	by	_	ADP	ADP	_	7	case	_	_
+5	ang	_	NOUN	NOUN	_	6	compound	_	_
+6	mor	_	NOUN	NOUN	_	7	compound	_	_
+7	cars	_	NOUN	NOUN	_	1	nmod	_	_
+8	liao	_	ADV	ADV	_	1	advmod	_	_
+9	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	if	if	SCONJ	SCONJ	_	3	mark	_	_
+2	you	you	PRON	PRON	_	3	nsubj	_	_
+3	wan	want	VERB	VERB	_	9	advcl	_	_
+4	na	to	PART	PART	_	5	mark	_	_
+5	continue	continue	VERB	VERB	_	3	xcomp	_	_
+6	donating	donating	VERB	VERB	_	5	xcomp	_	_
+7	,	,	PUNCT	PUNCT	_	9	punct	_	_
+8	dun	dun	AUX	AUX	_	9	aux	_	_
+9	blame	blame	VERB	VERB	_	0	root	_	_
+10	others	others	NOUN	NOUN	_	9	dobj	_	_
+11	later	later	ADV	ADV	_	9	advmod	_	_
+12	,	,	PUNCT	PUNCT	_	9	punct	_	_
+13	ok	ok	INTJ	INTJ	_	9	parataxis	_	_
+
+1	Our	_	PRON	PRON	_	3	nmod:poss	_	_
+2	PAP	_	PROPN	PROPN	_	3	compound	_	_
+3	govt	_	NOUN	NOUN	_	4	nsubj	_	_
+4	laughing	_	VERB	VERB	_	0	root	_	_
+5	to	_	ADP	ADP	_	7	case	_	_
+6	the	_	DET	DET	_	7	det	_	_
+7	banks	_	NOUN	NOUN	_	4	nmod	_	_
+8	but	_	CONJ	CONJ	_	4	cc	_	_
+9	sin.kies	_	NOUN	NOUN	_	10	nsubjpass	_	_
+10	fooked	_	NOUN	NOUN	_	4	conj	_	_
+11	by	_	ADP	ADP	_	15	case	_	_
+12	chao	_	ADJ	ADJ	_	14	amod	_	_
+13	ang	_	NOUN	NOUN	_	14	compound	_	_
+14	mo	_	NOUN	NOUN	_	15	compound	_	_
+15	monkeys	_	NOUN	NOUN	_	10	nmod	_	_
+16	...	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Bo	_	ADV	ADV	_	2	neg	_	_
+2	leave	_	VERB	VERB	_	0	root	_	_
+3	to	_	PART	PART	_	4	mark	_	_
+4	clear	_	VERB	VERB	_	2	xcomp	_	_
+5	...	_	PUNCT	PUNCT	_	2	punct	_	_
+6	Jan	_	PROPN	ADJ	_	7	compound	_	_
+7	weather	_	NOUN	NOUN	_	9	nsubj	_	_
+8	sibei	_	ADV	ADV	_	9	advmod	_	_
+9	song	_	ADJ	ADJ	_	2	parataxis	_	_
+
+1	NTUC	_	PROPN	PROPN	_	3	compound	_	_
+2	Vietnamese	_	ADJ	ADJ	_	3	amod	_	_
+3	gals	_	NOUN	NOUN	_	5	nsubj	_	_
+4	are	_	VERB	VERB	_	5	cop	_	_
+5	those	_	PRON	PRON	_	0	root	_	_
+6	who	_	PRON	PRON	_	7	nsubj	_	_
+7	married	_	VERB	VERB	_	5	acl:relcl	_	_
+8	over	_	ADP	ADP	_	9	case	_	_
+9	here	_	ADV	ADV	_	7	nmod	_	_
+10	lah	_	INTJ	INTJ	_	5	discourse	_	_
+
+1	What	what	PRON	PRON	_	0	root	_	_
+2	computer	computer	NOUN	NOUN	_	3	compound	_	_
+3	speed	speed	NOUN	NOUN	_	1	nsubj	_	_
+4	?	?	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Sg	_	PROPN	PROPN	_	3	nsubj	_	_
+2	so	_	ADV	ADV	_	3	advmod	_	_
+3	boring	_	ADJ	ADJ	_	0	root	_	_
+4	...	_	PUNCT	PUNCT	_	3	punct	_	_
+5	all	_	ADV	ADV	_	6	nsubj	_	_
+6	seen	_	VERB	VERB	_	3	parataxis	_	_
+7	n	_	CONJ	CONJ	_	6	cc	_	_
+8	eaten	_	VERB	VERB	_	6	conj	_	_
+9	before	_	ADV	ADV	_	6	advmod	_	_
+10	liao	_	ADV	ADV	_	6	advmod	_	_
+11	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	do	do	AUX	AUX	_	4	aux	_	_
+2	n't	n't	PART	PART	_	4	neg	_	_
+3	just	just	ADV	ADV	_	4	advmod	_	_
+4	count	count	VERB	VERB	_	0	root	_	_
+5	on	on	ADP	ADP	_	6	case	_	_
+6	luck	luck	NOUN	NOUN	_	4	nmod	_	_
+7	!	!	PUNCT	PUNCT	_	4	punct	_	_
+
+1	if	if	SCONJ	SCONJ	_	5	mark	_	_
+2	one	one	NOUN	NOUN	_	5	nsubj	_	_
+3	ca	ca	AUX	AUX	_	5	aux	_	_
+4	n't	n't	PART	PART	_	5	neg	_	_
+5	stomach	stomach	VERB	VERB	_	9	advcl	_	_
+6	the	the	DET	DET	_	7	det	_	_
+7	risk	risk	NOUN	NOUN	_	5	dobj	_	_
+8	better	better	ADV	ADV	_	9	aux	_	_
+9	siam	siam	VERB	VERB	_	0	root	_	_
+10	.	.	PUNCT	PUNCT	_	9	punct	_	_
+
+1	EOD	eod	PROPN	PROPN	_	2	compound	_	_
+2	chart	chart	NOUN	NOUN	_	4	nsubj	_	_
+3	havent	havent	AUX	AUX	_	4	aux	_	_
+4	update	update	VERB	VERB	_	0	root	_	_
+5	yet	yet	ADV	ADV	_	4	advmod	_	_
+
+1	wait	_	VERB	VERB	_	0	root	_	_
+2	u	_	PRON	PRON	_	3	dobj	_	_
+3	grow	_	VERB	VERB	_	1	ccomp	_	_
+4	FAT	_	ADJ	ADJ	_	3	xcomp	_	_
+5	like	_	ADP	ADP	_	6	case	_	_
+6	me	_	PRON	PRON	_	4	nmod	_	_
+
+1	got	_	VERB	VERB	_	0	root	_	_
+2	folks	_	NOUN	NOUN	_	1	dobj	_	_
+3	to	_	PART	PART	_	4	mark	_	_
+4	go	_	VERB	VERB	_	1	xcomp	_	_
+5	buy	_	VERB	VERB	_	4	xcomp	_	_
+6	mooncakes	_	NOUN	NOUN	_	5	dobj	_	_
+7	to	_	PART	PART	_	8	mark	_	_
+8	bring	_	VERB	VERB	_	5	xcomp	_	_
+9	to	_	ADP	ADP	_	10	case	_	_
+10	office	_	NOUN	NOUN	_	8	nmod	_	_
+11	...	_	PUNCT	PUNCT	_	1	punct	_	_
+12	owe	_	VERB	VERB	_	1	parataxis	_	_
+13	them	_	PRON	PRON	_	12	iobj	_	_
+14	money	_	NOUN	NOUN	_	12	dobj	_	_
+
+1	Not	_	ADV	ADV	_	2	neg	_	_
+2	affected	_	VERB	VERB	_	0	root	_	_
+3	today	_	NOUN	NOUN	_	2	nmod:tmod	_	_
+4	,	_	PUNCT	PUNCT	_	2	punct	_	_
+5	BB	_	PROPN	PROPN	_	7	nsubj	_	_
+6	happily	_	ADV	ADV	_	7	advmod	_	_
+7	collecting	_	VERB	VERB	_	2	parataxis	_	_
+
+1	I	_	PRON	PRON	_	2	nsubj	_	_
+2	see	_	VERB	VERB	_	0	root	_	_
+3	Paya	_	PROPN	PROPN	_	4	name	_	_
+4	lebar	_	PROPN	PROPN	_	2	dobj	_	_
+5	25.8	_	NUM	NUM	_	2	xcomp	_	_
+6	liao	_	ADV	ADV	_	2	advmod	_	_
+7	.	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Let	_	VERB	VERB	_	0	root	_	_
+2	bb	_	PROPN	PROPN	_	3	nsubj	_	_
+3	play	_	VERB	VERB	_	1	ccomp	_	_
+4	themselves	_	PRON	PRON	_	3	nmod:npmod	_	_
+5	lor	_	INTJ	INTJ	_	1	discourse	_	_
+6	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Cry	_	NOUN	VERB	_	2	compound	_	_
+2	wolf	_	NOUN	NOUN	_	4	nsubj	_	_
+3	is	_	VERB	VERB	_	4	cop	_	_
+4	dangerous	_	ADJ	ADJ	_	0	root	_	_
+5	leh	_	INTJ	INTJ	_	4	discourse	_	_
+6	!	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	maybe	_	ADV	ADV	_	2	advmod	_	_
+2	ditched	_	VERB	VERB	_	0	root	_	_
+3	by	_	ADP	ADP	_	4	case	_	_
+4	gf	_	NOUN	NOUN	_	2	nmod	_	_
+5	...	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Tangsen	_	PROPN	PROPN	_	2	nsubj	_	_
+2	favourite	_	VERB	ADJ	_	0	root	_	_
+3	angmo	_	NOUN	NOUN	_	2	dobj	_	_
+4	and	_	CONJ	CONJ	_	2	cc	_	_
+5	Japs	_	PROPN	PROPN	_	8	compound	_	_
+6	superior	_	ADJ	ADJ	_	8	amod	_	_
+7	gene	_	NOUN	NOUN	_	8	compound	_	_
+8	customers	_	NOUN	NOUN	_	11	nsubj	_	_
+9	can	_	AUX	AUX	_	11	aux	_	_
+10	not	_	PART	PART	_	11	neg	_	_
+11	help	_	VERB	VERB	_	2	conj	_	_
+12	Tangsen	_	PROPN	PROPN	_	11	dobj	_	_
+13	!	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	most	_	ADV	ADV	_	4	advmod	_	_
+2	will	_	AUX	AUX	_	4	aux	_	_
+3	just	_	ADV	ADV	_	4	advmod	_	_
+4	talk	_	VERB	VERB	_	0	root	_	_
+5	BS	_	NOUN	NOUN	_	4	dobj	_	_
+6	during	_	ADP	ADP	_	8	case	_	_
+7	lesson	_	NOUN	NOUN	_	8	compound	_	_
+8	time	_	NOUN	NOUN	_	4	nmod:tmod	_	_
+
+1	lets	_	VERB	VERB	_	0	root	_	_
+2	have	_	VERB	VERB	_	1	xcomp	_	_
+3	a	_	DET	DET	_	5	det	_	_
+4	SMU	_	PROPN	PROPN	_	5	compound	_	_
+5	meet	_	NOUN	VERB	_	2	dobj	_	_
+6	?	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	We	_	PRON	PRON	_	3	nsubj	_	_
+2	same	_	ADJ	ADJ	_	3	amod	_	_
+3	district	_	NOUN	NOUN	_	0	root	_	_
+4	,	_	PUNCT	PUNCT	_	3	punct	_	_
+5	i	_	PRON	PRON	_	6	nsubj	_	_
+6	tiagong	_	VERB	VERB	_	3	parataxis	_	_
+7	from	_	ADP	ADP	_	8	case	_	_
+8	grandparents	_	NOUN	NOUN	_	6	nmod	_	_
+9	i	_	PRON	PRON	_	11	nsubj	_	_
+10	also	_	ADV	ADV	_	11	advmod	_	_
+11	poleng	_	PROPN	PROPN	_	3	parataxis	_	_
+12	one	_	INTJ	INTJ	_	11	discourse	_	_
+13	,	_	PUNCT	PUNCT	_	3	punct	_	_
+14	some	_	DET	DET	_	16	det	_	_
+15	ulu	_	NOUN	NOUN	_	16	compound	_	_
+16	village	_	NOUN	NOUN	_	3	parataxis	_	_
+17	within	_	ADP	ADP	_	18	case	_	_
+18	there	_	PRON	PRON	_	16	nmod	_	_
+
+1	Dun	_	AUX	AUX	_	2	aux	_	_
+2	worry	_	VERB	ADV	_	0	root	_	_
+3	come	_	VERB	VERB	_	2	parataxis	_	_
+4	Japan	_	PROPN	PROPN	_	3	dobj	_	_
+5	again	_	ADV	ADV	_	3	advmod	_	_
+6	!!	_	PUNCT	INTJ	_	3	punct	_	_
+7	''	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	pervert	_	ADJ	ADJ	_	2	amod	_	_
+2	gay	_	NOUN	ADJ	_	4	nsubj	_	_
+3	oso	_	ADV	ADV	_	4	advmod	_	_
+4	have	_	VERB	VERB	_	0	root	_	_
+5	,	_	PUNCT	PUNCT	_	4	punct	_	_
+6	hetero	_	NOUN	ADJ	_	8	nsubj	_	_
+7	oso	_	ADV	NOUN	_	8	advmod	_	_
+8	have	_	VERB	VERB	_	4	parataxis	_	_
+9	.	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	last	_	ADJ	ADJ	_	2	amod	_	_
+2	paper	_	NOUN	NOUN	_	0	root	_	_
+3	of	_	ADP	ADP	_	6	case	_	_
+4	my	_	PRON	PRON	_	6	nmod:poss	_	_
+5	undergrad	_	NOUN	NOUN	_	6	compound	_	_
+6	life	_	NOUN	NOUN	_	2	nmod	_	_
+7	in	_	ADP	ADP	_	8	case	_	_
+8	NTU	_	PROPN	PROPN	_	2	nmod	_	_
+9	tmr	_	NOUN	NOUN	_	10	compound	_	_
+10	mornings	_	NOUN	NOUN	_	2	nmod:tmod	_	_
+11	!!!!!!	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	My	my	PRON	PRON	_	4	nmod:poss	_	_
+2	new	new	ADJ	ADJ	_	3	amod	_	_
+3	year	year	NOUN	NOUN	_	4	compound	_	_
+4	resolution	resolution	NOUN	NOUN	_	6	nsubj	_	_
+5	is	is	AUX	AUX	_	6	aux	_	_
+6	going	going	VERB	VERB	_	0	root	_	_
+7	to	to	PART	PART	_	8	mark	_	_
+8	take	take	VERB	VERB	_	6	xcomp	_	_
+9	effect	effect	NOUN	NOUN	_	8	dobj	_	_
+10	soon	soon	ADV	ADV	_	8	advmod	_	_
+11	liao	liao	ADV	ADV	_	8	advmod	_	_
+12	lah	lah	INTJ	INTJ	_	6	discourse	_	_
+13	!	!	PUNCT	PUNCT	_	6	punct	_	_
+
+1	I	i	PRON	PRON	_	3	nsubj	_	_
+2	just	just	ADV	ADV	_	3	advmod	_	_
+3	deleted	deleted	VERB	VERB	_	0	root	_	_
+4	all	all	DET	DET	_	3	dobj	_	_
+5	without	without	SCONJ	SCONJ	_	6	mark	_	_
+6	reading	reading	VERB	VERB	_	3	advcl	_	_
+7	lah	lah	INTJ	INTJ	_	3	discourse	_	_
+8	!	!	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Quite	quite	ADV	ADV	_	2	advmod	_	_
+2	certain	certain	ADJ	ADJ	_	0	root	_	_
+3	they	they	PRON	PRON	_	6	nsubj	_	_
+4	in	in	ADP	ADP	_	6	case	_	_
+5	the	the	DET	DET	_	6	det	_	_
+6	market	market	NOUN	NOUN	_	2	ccomp	_	_
+7	...	...	PUNCT	PUNCT	_	2	punct	_	_
+8	.	.	PUNCT	PUNCT	_	2	punct	_	_
+9	HUAT	huat	INTJ	INTJ	_	2	discourse	_	_
+10	ah	ah	INTJ	INTJ	_	9	discourse	_	_
+11	!	!	PUNCT	PUNCT	_	9	punct	_	_
+
+1	oldbies	_	NOUN	NOUN	_	3	nsubj	_	_
+2	must	_	AUX	AUX	_	3	aux	_	_
+3	lead	_	VERB	VERB	_	0	root	_	_
+4	good	_	ADJ	ADJ	_	5	amod	_	_
+5	example	_	NOUN	NOUN	_	3	dobj	_	_
+6	on	_	ADP	ADP	_	9	mark	_	_
+7	how	_	ADV	ADV	_	9	advmod	_	_
+8	to	_	PART	PART	_	9	mark	_	_
+9	do	_	VERB	VERB	_	3	advcl	_	_
+10	it	_	PRON	PRON	_	9	dobj	_	_
+11	mah	_	INTJ	INTJ	_	3	discourse	_	_
+12	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	where	where	ADV	ADV	_	4	advmod	_	_
+2	got	got	VERB	VERB	_	1	acl	_	_
+3	money	money	NOUN	NOUN	_	2	dobj	_	_
+4	go	go	VERB	VERB	_	0	root	_	_
+5	where	where	ADV	ADV	_	4	advmod	_	_
+6	ma	ma	INTJ	INTJ	_	4	discourse	_	_
+7	,	,	PUNCT	PUNCT	_	4	punct	_	_
+
+1	All	all	NOUN	NOUN	_	3	nsubj	_	_
+2	very	very	ADV	ADV	_	3	advmod	_	_
+3	evil	evil	ADJ	ADJ	_	0	root	_	_
+4	one	one	INTJ	INTJ	_	3	discourse	_	_
+5	.	.	PUNCT	PUNCT	_	3	punct	_	_
+6	Its	it	PRON	PRON	_	3	parataxis	_	_
+7	just	just	ADV	ADV	_	11	advmod	_	_
+8	that	that	SCONJ	SCONJ	_	11	mark	_	_
+9	you	you	PRON	PRON	_	11	nsubj	_	_
+10	dun	dun	AUX	AUX	_	11	aux	_	_
+11	know	know	VERB	VERB	_	6	ccomp	_	_
+12	only	only	ADV	ADV	_	11	advmod	_	_
+
+1	the	_	DET	DET	_	3	det	_	_
+2	hand	_	NOUN	NOUN	_	3	compound	_	_
+3	game	_	NOUN	NOUN	_	7	nsubj	_	_
+4	many	_	ADJ	ADJ	_	5	amod	_	_
+5	yrs	_	NOUN	NOUN	_	6	nmod:npmod	_	_
+6	ago	_	ADV	ADV	_	7	advmod	_	_
+7	got	_	VERB	VERB	_	0	root	_	_
+8	a	_	DET	DET	_	10	det	_	_
+9	jap	_	PROPN	PROPN	_	10	compound	_	_
+10	show	_	NOUN	NOUN	_	7	dobj	_	_
+11	got	_	VERB	VERB	_	7	conj	_	_
+12	play	_	NOUN	NOUN	_	11	dobj	_	_
+
+1	nothing	_	PRON	NOUN	_	0	root	_	_
+2	to	_	PART	PART	_	3	mark	_	_
+3	do	_	VERB	VERB	_	1	acl	_	_
+4	with	_	ADP	ADP	_	6	case	_	_
+5	hong	_	PROPN	PROPN	_	6	name	_	_
+6	leong	_	PROPN	PROPN	_	3	nmod	_	_
+7	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	best	_	ADJ	ADJ	_	0	root	_	_
+2	if	_	SCONJ	SCONJ	_	6	mark	_	_
+3	ish	_	VERB	VERB	_	6	cop	_	_
+4	a	_	DET	DET	_	6	det	_	_
+5	story	_	NOUN	NOUN	_	6	dobj	_	_
+6	hero	_	NOUN	NOUN	_	1	advcl	_	_
+
+1	CNN	cnn	PROPN	PROPN	_	2	nsubj	_	_
+2	means	mean	VERB	VERB	_	0	root	_	_
+3	Clinton	clinton	PROPN	PROPN	_	5	name	_	_
+4	News	news	PROPN	PROPN	_	5	name	_	_
+5	Network	network	PROPN	PROPN	_	2	dobj	_	_
+6	.	.	PUNCT	PUNCT	_	2	punct	_	_
+
+1	yaya	_	PROPN	INTJ	_	5	nsubj	_	_
+2	papa	_	PROPN	INTJ	_	1	mwe	_	_
+3	ya	_	PROPN	INTJ	_	1	mwe	_	_
+4	...	_	PUNCT	PUNCT	_	1	punct	_	_
+5	bullied	_	VERB	VERB	_	0	root	_	_
+6	pioneer	_	NOUN	NOUN	_	7	compound	_	_
+7	folks	_	NOUN	NOUN	_	5	dobj	_	_
+8	.	_	PUNCT	PUNCT	_	5	punct	_	_
+9	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Angmoh	angmoh	NOUN	NOUN	_	2	compound	_	_
+2	media	medium	NOUN	NOUN	_	4	nsubj	_	_
+3	not	not	PART	PART	_	4	neg	_	_
+4	happy	happy	ADJ	ADJ	_	0	root	_	_
+5	!	!	PUNCT	PUNCT	_	4	punct	_	_
+
+1	He	_	PRON	PRON	_	4	nsubj	_	_
+2	is	_	VERB	VERB	_	4	cop	_	_
+3	my	_	PRON	PRON	_	4	nmod:poss	_	_
+4	idol	_	NOUN	NOUN	_	0	root	_	_
+5	hor	_	INTJ	INTJ	_	4	discourse	_	_
+6	!!!	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	wha	_	INTJ	INTJ	_	5	discourse	_	_
+2	lau	_	INTJ	INTJ	_	1	discourse	_	_
+3	...	_	PUNCT	PUNCT	_	1	punct	_	_
+4	damn	_	ADV	ADV	_	5	advmod	_	_
+5	cool	_	ADJ	ADJ	_	0	root	_	_
+6	sian	_	ADJ	ADJ	_	5	parataxis	_	_
+7	some	_	DET	DET	_	12	nsubj	_	_
+8	of	_	ADP	ADP	_	11	case	_	_
+9	the	_	DET	DET	_	11	det	_	_
+10	head	_	NOUN	NOUN	_	11	compound	_	_
+11	porter	_	NOUN	NOUN	_	7	nmod	_	_
+12	back	_	ADV	ADV	_	6	parataxis	_	_
+13	.	_	PUNCT	PUNCT	_	5	punct	_	_
+14	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	lol	_	INTJ	INTJ	_	5	discourse	_	_
+2	like	_	ADP	ADP	_	3	case	_	_
+3	dat	_	PRON	PRON	_	5	nmod	_	_
+4	oso	_	ADV	ADV	_	5	advmod	_	_
+5	can	_	AUX	AUX	_	0	root	_	_
+
+1	SK	sk	PROPN	PROPN	_	4	nsubj	_	_
+2	will	will	AUX	AUX	_	4	aux	_	_
+3	forever	forever	ADV	ADV	_	4	advmod	_	_
+4	stronger	stronger	ADJ	ADJ	_	0	root	_	_
+5	than	than	ADP	ADP	_	6	case	_	_
+6	sg	sg	PROPN	PROPN	_	4	nmod	_	_
+7	.	.	PUNCT	PUNCT	_	4	punct	_	_
+
+1	AiYo	aiyo	INTJ	INTJ	_	4	discourse	_	_
+2	,	,	PUNCT	PUNCT	_	4	punct	_	_
+3	like	like	ADP	ADP	_	4	case	_	_
+4	that	that	PRON	PRON	_	0	root	_	_
+5	only	only	ADV	ADV	_	4	advmod	_	_
+6	Arhh	arhh	INTJ	INTJ	_	4	discourse	_	_
+7	?	?	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Last	_	ADJ	ADJ	_	2	amod	_	_
+2	time	_	NOUN	NOUN	_	4	nmod:tmod	_	_
+3	I	_	PRON	PRON	_	4	nsubj	_	_
+4	saw	_	VERB	VERB	_	0	root	_	_
+5	my	_	PRON	PRON	_	6	nmod:poss	_	_
+6	MP	_	PROPN	PROPN	_	8	nsubj	_	_
+7	was	_	VERB	VERB	_	8	cop	_	_
+8	GE	_	PROPN	PROPN	_	4	ccomp	_	_
+
+1	Why	why	ADV	ADV	_	3	advmod	_	_
+2	no	no	DET	DET	_	3	neg	_	_
+3	drama	drama	NOUN	NOUN	_	0	root	_	_
+4	tonight	tonight	NOUN	NOUN	_	3	nmod:tmod	_	_
+5	leh	leh	INTJ	INTJ	_	3	discourse	_	_
+6	?	?	PUNCT	PUNCT	_	3	punct	_	_
+
+1	U	_	PRON	PRON	_	2	nsubj	_	_
+2	sure	_	ADJ	ADJ	_	0	root	_	_
+3	they	_	PRON	PRON	_	4	nsubj	_	_
+4	nothing	_	PROPN	PROPN	_	2	ccomp	_	_
+5	?	_	PUNCT	PUNCT	_	2	discourse	_	_
+
+1	Now	_	ADV	ADV	_	3	advmod	_	_
+2	Verizon	_	PROPN	PROPN	_	3	nsubj	_	_
+3	tighten	_	VERB	VERB	_	0	root	_	_
+4	their	_	PRON	PRON	_	5	nmod:poss	_	_
+5	policies	_	NOUN	NOUN	_	3	dobj	_	_
+6	liao	_	ADV	ADV	_	3	advmod	_	_
+7	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Is	_	VERB	VERB	_	5	aux	_	_
+2	your	_	PRON	PRON	_	4	nmod:poss	_	_
+3	phone	_	NOUN	NOUN	_	4	compound	_	_
+4	GPS	_	NOUN	NOUN	_	5	nsubj	_	_
+5	working	_	VERB	VERB	_	0	root	_	_
+6	fine	_	ADJ	ADJ	_	5	xcomp	_	_
+7	?!	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	which	_	DET	DET	_	3	det	_	_
+2	challenger	_	NOUN	NOUN	_	3	compound	_	_
+3	outlet	_	NOUN	NOUN	_	0	root	_	_
+4	u	_	PRON	PRON	_	5	nsubj	_	_
+5	bought	_	VERB	VERB	_	3	acl:relcl	_	_
+6	tat	_	PRON	PRON	_	5	dobj	_	_
+7	?	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	you	you	PRON	PRON	_	2	nsubj	_	_
+2	watched	watched	VERB	VERB	_	0	root	_	_
+3	too	too	ADV	ADV	_	4	advmod	_	_
+4	much	much	ADJ	ADJ	_	5	amod	_	_
+5	movie	movie	NOUN	NOUN	_	2	dobj	_	_
+6	lah	lah	INTJ	INTJ	_	2	discourse	_	_
+7	!	!	PUNCT	PUNCT	_	2	punct	_	_
+
+1	your	your	PRON	PRON	_	2	nmod:poss	_	_
+2	jesus	jesus	PROPN	PROPN	_	5	nsubj	_	_
+3	is	is	VERB	VERB	_	5	cop	_	_
+4	also	also	ADV	ADV	_	5	advmod	_	_
+5	fake	fake	ADJ	ADJ	_	0	root	_	_
+6	one	one	INTJ	INTJ	_	5	discourse	_	_
+7	la	la	INTJ	INTJ	_	5	discourse	_	_
+8	.	.	PUNCT	PUNCT	_	5	punct	_	_
+
+1	3	3	NUM	NUM	_	2	nummod	_	_
+2	bank	bank	NOUN	NOUN	_	4	nsubjpass	_	_
+3	kena	kena	AUX	AUX	_	4	auxpass	_	_
+4	whacked	whacked	VERB	VERB	_	0	root	_	_
+5	jialat	jialat	ADJ	ADJ	_	4	discourse	_	_
+6	jialat	jialat	ADJ	ADJ	_	5	mwe	_	_
+7	.	.	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Shortists	shortists	NOUN	NOUN	_	4	nsubj	_	_
+2	last	last	ADJ	ADJ	_	3	amod	_	_
+3	min	min	NOUN	NOUN	_	4	nmod:tmod	_	_
+4	panic	panic	VERB	VERB	_	0	root	_	_
+5	covering	covering	VERB	VERB	_	4	xcomp	_	_
+6	.	.	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Canteen	_	NOUN	NOUN	_	5	nsubj	_	_
+2	16	_	NUM	NUM	_	1	nummod	_	_
+3	not	_	PART	PART	_	5	neg	_	_
+4	so	_	ADV	ADV	_	5	advmod	_	_
+5	nice	_	ADJ	ADJ	_	0	root	_	_
+6	liao	_	ADV	ADV	_	5	advmod	_	_
+7	lea	_	INTJ	INTJ	_	5	discourse	_	_
+8	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Suddenly	suddenly	ADV	ADV	_	3	advmod	_	_
+2	everyone	everyone	PRON	PRON	_	3	nsubj	_	_
+3	writing	writing	VERB	VERB	_	0	root	_	_
+4	nice	nice	ADJ	ADJ	_	5	amod	_	_
+5	things	thing	NOUN	NOUN	_	3	dobj	_	_
+6	about	about	ADP	ADP	_	10	case	_	_
+7	this	this	DET	DET	_	10	det	_	_
+8	guarantee	guarantee	VERB	VERB	_	9	advmod	_	_
+9	Huat	huat	ADJ	ADJ	_	10	amod	_	_
+10	stock	stock	NOUN	NOUN	_	5	nmod	_	_
+11	!	!	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Kateks	_	NOUN	NOUN	_	2	nsubj	_	_
+2	die	_	VERB	VERB	_	0	root	_	_
+3	lagi	_	ADJ	NOUN	_	4	amod	_	_
+4	pain	_	NOUN	NOUN	_	2	nmod:npmod	_	_
+5	pain	_	NOUN	NOUN	_	4	dup	_	_
+
+1	the	_	DET	DET	_	2	det	_	_
+2	ramen	_	NOUN	NOUN	_	3	nsubj	_	_
+3	ho	_	ADV	ADV	_	0	root	_	_
+4	jiak	_	VERB	VERB	_	3	mwe	_	_
+5	mah	_	INTJ	INTJ	_	3	discourse	_	_
+6	?	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	aiya	_	INTJ	INTJ	_	5	discourse	_	_
+2	those	_	DET	DET	_	4	det	_	_
+3	mediacorpse	_	ADJ	ADJ	_	4	amod	_	_
+4	writers	_	NOUN	NOUN	_	5	nsubj	_	_
+5	wan	_	VERB	VERB	_	0	root	_	_
+6	na	_	PART	PART	_	7	mark	_	_
+7	create	_	VERB	VERB	_	5	xcomp	_	_
+8	impact	_	NOUN	NOUN	_	7	dobj	_	_
+9	by	_	ADP	ADP	_	10	mark	_	_
+10	killing	_	VERB	NOUN	_	7	advcl	_	_
+11	of	_	ADP	ADP	_	13	case	_	_
+12	familiar	_	ADJ	ADJ	_	13	amod	_	_
+13	characters	_	NOUN	NOUN	_	10	nmod	_	_
+14	ma	_	INTJ	INTJ	_	5	discourse	_	_
+15	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Things	_	NOUN	NOUN	_	6	nsubj	_	_
+2	connected	_	VERB	VERB	_	1	acl	_	_
+3	with	_	ADP	ADP	_	4	case	_	_
+4	Angmo	_	NOUN	NOUN	_	2	nmod	_	_
+5	are	_	VERB	VERB	_	6	cop	_	_
+6	better	_	ADJ	ADJ	_	0	root	_	_
+7	.	_	PUNCT	PUNCT	_	6	punct	_	_
+
+1	haven	_	AUX	AUX	_	2	aux	_	_
+2	got	_	VERB	VERB	_	0	root	_	_
+3	any	_	DET	DET	_	4	det	_	_
+4	dc	_	NOUN	NOUN	_	2	dobj	_	_
+5	whatsoever	_	INTJ	INTJ	_	2	discourse	_	_
+6	...	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	When	when	ADV	ADV	_	5	mark	_	_
+2	a	a	DET	DET	_	3	det	_	_
+3	suay	suay	ADJ	ADJ	_	5	nsubj	_	_
+4	siao	siao	ADJ	ADJ	_	3	mwe	_	_
+5	jump	jump	VERB	VERB	_	10	advcl	_	_
+6	in	in	ADP	ADP	_	5	compound:prt	_	_
+7	twice	twice	ADV	ADV	_	5	advmod	_	_
+8	,	,	PUNCT	PUNCT	_	10	punct	_	_
+9	you	you	PRON	PRON	_	10	nsubj	_	_
+10	know	know	VERB	VERB	_	0	root	_	_
+11	it	it	PRON	PRON	_	13	nsubj	_	_
+12	's	's	VERB	VERB	_	13	cop	_	_
+13	time	time	NOUN	NOUN	_	10	ccomp	_	_
+14	to	to	PART	PART	_	15	mark	_	_
+15	exit	exit	VERB	VERB	_	13	acl	_	_
+16	.	.	PUNCT	PUNCT	_	10	punct	_	_
+
+1	You	_	PRON	PRON	_	2	nsubj	_	_
+2	going	_	VERB	VERB	_	0	root	_	_
+3	to	_	PART	PART	_	4	mark	_	_
+4	chia	_	VERB	VERB	_	2	xcomp	_	_
+5	jiak	_	VERB	VERB	_	4	mwe	_	_
+6	?	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Can	_	AUX	AUX	_	2	aux	_	_
+2	recommend	_	VERB	VERB	_	0	root	_	_
+3	other	_	ADJ	ADJ	_	4	amod	_	_
+4	brands/models	_	NOUN	NOUN	_	2	dobj	_	_
+5	with	_	ADP	ADP	_	6	case	_	_
+6	pricing	_	NOUN	NOUN	_	2	nmod	_	_
+7	also	_	ADV	ADV	_	2	advmod	_	_
+8	?	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Blur	_	ADJ	ADJ	_	5	csubj	_	_
+2	and	_	CONJ	CONJ	_	1	cc	_	_
+3	lost	_	VERB	VERB	_	1	conj	_	_
+4	name	_	NOUN	NOUN	_	3	compound	_	_
+5	suit	_	VERB	NOUN	_	0	root	_	_
+6	u	_	PRON	PRON	_	5	dobj	_	_
+7	well	_	ADV	ADV	_	5	advmod	_	_
+
+1	If	if	SCONJ	SCONJ	_	4	mark	_	_
+2	govt	govt	NOUN	NOUN	_	4	nsubj	_	_
+3	so	so	ADV	ADV	_	4	advmod	_	_
+4	worried	worried	ADJ	ADJ	_	17	advcl	_	_
+5	about	about	SCONJ	SCONJ	_	8	mark	_	_
+6	sg	sg	PROPN	PROPN	_	8	nsubj	_	_
+7	not	not	PART	PART	_	8	neg	_	_
+8	able	able	ADJ	ADJ	_	4	advcl	_	_
+9	to	to	PART	PART	_	10	mark	_	_
+10	foot	foot	VERB	VERB	_	8	xcomp	_	_
+11	medical	medical	ADJ	ADJ	_	12	amod	_	_
+12	bills	bill	NOUN	NOUN	_	10	dobj	_	_
+13	,	,	PUNCT	PUNCT	_	4	punct	_	_
+14	then	then	ADV	ADV	_	17	advmod	_	_
+15	it	it	PRON	PRON	_	17	nsubj	_	_
+16	should	should	AUX	AUX	_	17	aux	_	_
+17	look	look	VERB	VERB	_	0	root	_	_
+18	at	at	ADP	ADP	_	20	case	_	_
+19	some	some	DET	DET	_	20	det	_	_
+20	ways	way	NOUN	NOUN	_	17	nmod	_	_
+21	to	to	PART	PART	_	22	mark	_	_
+22	coshare	coshare	VERB	VERB	_	20	acl	_	_
+23	this	this	DET	DET	_	24	det	_	_
+24	costs	cost	NOUN	NOUN	_	22	dobj	_	_
+25	.	.	PUNCT	PUNCT	_	17	punct	_	_
+
+1	Becos	_	SCONJ	SCONJ	_	3	mark	_	_
+2	they	_	PRON	PRON	_	3	nsubj	_	_
+3	believe	_	VERB	VERB	_	0	root	_	_
+4	LKY	_	PROPN	PROPN	_	6	nsubj	_	_
+5	still	_	ADV	ADV	_	6	advmod	_	_
+6	alive	_	ADJ	ADJ	_	3	ccomp	_	_
+7	mah	_	INTJ	INTJ	_	3	discourse	_	_
+8	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	High	_	ADJ	ADJ	_	2	amod	_	_
+2	tech	_	NOUN	NOUN	_	5	compound	_	_
+3	wanton	_	NOUN	NOUN	_	4	compount	_	_
+4	mee	_	NOUN	NOUN	_	5	compound	_	_
+5	stall	_	NOUN	NOUN	_	0	root	_	_
+6	leh	_	INTJ	INTJ	_	5	discourse	_	_
+7	!	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	But	but	CONJ	CONJ	_	3	cc	_	_
+2	Starhub	starhub	PROPN	PROPN	_	3	nsubj	_	_
+3	got	got	VERB	VERB	_	0	root	_	_
+4	no	no	DET	DET	_	5	neg	_	_
+5	stock	stock	NOUN	NOUN	_	3	dobj	_	_
+6	.	.	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Wonder	_	VERB	VERB	_	0	root	_	_
+2	if	_	SCONJ	SCONJ	_	4	mark	_	_
+3	anyone	_	PRON	PRON	_	4	nsubj	_	_
+4	watched	_	VERB	VERB	_	1	ccomp	_	_
+5	the	_	DET	DET	_	6	det	_	_
+6	Oscars	_	PROPN	PROPN	_	4	dobj	_	_
+
+1	how	_	ADV	ADV	_	5	advmod	_	_
+2	come	_	VERB	VERB	_	1	mwe	_	_
+3	chinese	_	ADJ	ADJ	_	4	amod	_	_
+4	phrase	_	NOUN	NOUN	_	5	nsubj	_	_
+5	got	_	VERB	VERB	_	0	root	_	_
+6	english	_	PROPN	ADJ	_	5	dobj	_	_
+7	one	_	INTJ	NOUN	_	5	discourse	_	_
+8	.	_	PUNCT	PUNCT	_	5	punct	_	_
+9	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	no	_	DET	DET	_	3	neg	_	_
+2	chio	_	ADJ	ADJ	_	3	amod	_	_
+3	bu	_	NOUN	NOUN	_	8	advcl	_	_
+4	one	_	INTJ	INTJ	_	3	discourse	_	_
+5	,	_	PUNCT	PUNCT	_	3	punct	_	_
+6	so	_	SCONJ	ADV	_	8	mark	_	_
+7	quite	_	ADV	ADV	_	8	advmod	_	_
+8	sian	_	ADJ	ADJ	_	0	root	_	_
+9	ar	_	INTJ	INTJ	_	8	discourse	_	_
+10	.	_	PUNCT	PUNCT	_	8	punct	_	_
+
+1	Pm	_	NOUN	NOUN	_	3	nsubj	_	_
+2	cant	_	AUX	AUX	_	3	aux	_	_
+3	find	_	VERB	VERB	_	0	root	_	_
+4	capable	_	ADJ	ADJ	_	5	amod	_	_
+5	succesor	_	NOUN	NOUN	_	3	dobj	_	_
+
+1	Speak	_	VERB	VERB	_	0	root	_	_
+2	like	_	ADP	ADP	_	4	case	_	_
+3	Pinoy	_	NOUN	NOUN	_	4	compound	_	_
+4	bether	_	NOUN	NOUN	_	1	nmod	_	_
+5	lah	_	INTJ	INTJ	_	1	discourse	_	_
+
+1	I	i	PRON	PRON	_	3	nsubj	_	_
+2	only	only	ADV	ADV	_	3	advmod	_	_
+3	eat	eat	VERB	VERB	_	0	root	_	_
+4	ang	ang	NOUN	NOUN	_	3	dobj	_	_
+5	ku	ku	NOUN	NOUN	_	4	mwe	_	_
+6	kueh	kueh	NOUN	NOUN	_	4	mwe	_	_
+
+1	meet	_	VERB	VERB	_	0	root	_	_
+2	up	_	ADP	ADP	_	1	compound:prt	_	_
+3	at	_	ADP	ADP	_	5	case	_	_
+4	yishun	_	PROPN	PROPN	_	5	compound	_	_
+5	mrt	_	PROPN	PROPN	_	1	nmod	_	_
+6	only	_	ADV	ADV	_	1	advmod	_	_
+7	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	confirm	_	VERB	VERB	_	0	root	_	_
+2	not	_	ADV	ADV	_	4	neg	_	_
+3	more	_	ADV	ADV	_	4	advmod	_	_
+4	siao	_	ADJ	ADJ	_	1	xcomp	_	_
+5	than	_	ADP	ADP	_	6	case	_	_
+6	me	_	PRON	PRON	_	4	nmod	_	_
+
+1	No	_	DET	DET	_	2	neg	_	_
+2	wonderer	_	NOUN	NOUN	_	3	nmod	_	_
+3	siasway	_	VERB	VERB	_	0	root	_	_
+4	aso	_	ADV	AUX	_	3	advmod	_	_
+5	cried	_	VERB	VERB	_	3	conj	_	_
+
+1	super	super	ADV	ADV	_	2	advmod	_	_
+2	cheong	cheong	VERB	VERB	_	0	root	_	_
+3	like	like	ADP	ADP	_	4	case	_	_
+4	sunmoon	sunmoon	NOUN	NOUN	_	2	nmod	_	_
+5	today	today	NOUN	NOUN	_	2	nmod:tmod	_	_
+6	can	can	AUX	AUX	_	2	aux	_	_
+7	?	?	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Got	_	VERB	VERB	_	0	root	_	_
+2	credit	_	NOUN	NOUN	_	3	compound	_	_
+3	card	_	NOUN	NOUN	_	1	dobj	_	_
+4	for	_	ADP	ADP	_	6	case	_	_
+5	everyday	_	NOUN	NOUN	_	6	compound	_	_
+6	usage	_	NOUN	NOUN	_	1	nmod	_	_
+7	meh	_	INTJ	INTJ	_	1	discourse	_	_
+8	??????	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Have	_	AUX	AUX	_	3	aux	_	_
+2	been	_	AUX	AUX	_	3	aux	_	_
+3	applying	_	VERB	VERB	_	7	csubj	_	_
+4	but	_	CONJ	CONJ	_	3	cc	_	_
+5	nvr	_	ADV	ADV	_	6	neg	_	_
+6	accept	_	VERB	NOUN	_	3	conj	_	_
+7	seems	_	VERB	VERB	_	0	conj	_	_
+8	like	_	SCONJ	SCONJ	_	10	mark	_	_
+9	kena	_	AUX	AUX	_	10	auxpass	_	_
+10	reject	_	NOUN	NOUN	_	7	advcl	_	_
+11	like	_	ADP	ADP	_	12	case	_	_
+12	that	_	PRON	PRON	_	7	nmod	_	_
+
+1	Lol	_	INTJ	INTJ	_	4	discourse	_	_
+2	,	_	PUNCT	PUNCT	_	4	punct	_	_
+3	later	_	ADV	ADV	_	4	advmod	_	_
+4	give	_	VERB	VERB	_	0	root	_	_
+5	u	_	SYM	SYM	_	4	advmod	_	_
+6	1	_	NUM	NUM	_	8	nummod	_	_
+7	good	_	ADJ	ADJ	_	8	amod	_	_
+8	archer	_	NOUN	NOUN	_	4	dobj	_	_
+9	then	_	ADV	ADV	_	4	advmod	_	_
+10	hoseh	_	INTJ	INTJ	_	4	discourse	_	_
+11	liaos	_	INTJ	INTJ	_	4	discourse	_	_
+
+1	wah	_	INTJ	INTJ	_	11	discourse	_	_
+2	lan	_	INTJ	INTJ	_	1	discourse	_	_
+3	eh	_	INTJ	INTJ	_	1	discourse	_	_
+4	...	_	PUNCT	PUNCT	_	1	punct	_	_
+5	medical	_	ADJ	ADJ	_	6	amod	_	_
+6	facility	_	NOUN	NOUN	_	8	nsubj	_	_
+7	fully	_	ADV	ADV	_	8	advmod	_	_
+8	booked	_	VERB	VERB	_	11	csubj	_	_
+9	not	_	PART	PART	_	11	neg	_	_
+10	your	_	PRON	PRON	_	11	nmod:poss	_	_
+11	fault	_	NOUN	NOUN	_	0	root	_	_
+12	what	_	INTJ	INTJ	_	11	discourse	_	_
+13	,	_	PUNCT	PUNCT	_	11	punct	_	_
+
+1	wah	wah	INTJ	INTJ	_	6	discourse	_	_
+2	my	my	PRON	PRON	_	4	nmod:poss	_	_
+3	this	this	DET	DET	_	4	det	_	_
+4	thread	thread	NOUN	NOUN	_	6	nsubj	_	_
+5	530	530	NUM	NUM	_	6	nummod	_	_
+6	page	page	NOUN	NOUN	_	0	root	_	_
+7	leow	leow	ADV	ADV	_	6	advmod	_	_
+8	.	.	PUNCT	PUNCT	_	6	punct	_	_
+
+1	Today	today	NOUN	NOUN	_	2	nsubj	_	_
+2	got	got	VERB	VERB	_	0	root	_	_
+3	no	no	DET	DET	_	4	neg	_	_
+4	shit	shit	NOUN	NOUN	_	2	dobj	_	_
+5	to	to	PART	PART	_	6	mark	_	_
+6	mouth	mouth	VERB	VERB	_	4	acl	_	_
+7	out	out	ADV	ADV	_	6	advmod	_	_
+8	today	today	NOUN	NOUN	_	2	nmod:tmod	_	_
+9	?	?	PUNCT	PUNCT	_	2	punct	_	_
+
+1	All	all	DET	DET	_	4	det	_	_
+2	6	6	NUM	NUM	_	4	nummod	_	_
+3	"	"	PUNCT	PUNCT	_	4	punct	_	_
+4	NO	no	ADJ	ADJ	_	7	nsubj	_	_
+5	"	"	PUNCT	PUNCT	_	4	punct	_	_
+6	from	from	ADP	ADP	_	7	case	_	_
+7	WP	wp	PROPN	PROPN	_	0	root	_	_
+8	ah	ah	INTJ	INTJ	_	7	discourse	_	_
+9	!	!	PUNCT	PUNCT	_	7	punct	_	_
+
+1	TONIGHT	_	NOUN	NOUN	_	3	nmod:tmod	_	_
+2	I	_	PRON	PRON	_	3	nsubj	_	_
+3	DRIVE	_	VERB	VERB	_	0	root	_	_
+4	CAR	_	NOUN	NOUN	_	3	dobj	_	_
+5	AND	_	CONJ	CONJ	_	3	cc	_	_
+6	BANG	_	VERB	VERB	_	3	conj	_	_
+7	THOSE	_	PRON	DET	_	6	dobj	_	_
+8	THAT	_	PRON	PRON	_	9	nsubj	_	_
+9	SAY	_	VERB	VERB	_	7	acl:relcl	_	_
+10	I	_	PRON	PRON	_	11	nsubj	_	_
+11	BRO	_	VERB	VERB	_	9	ccomp	_	_
+
+1	let	let	VERB	VERB	_	0	root	_	_
+2	me	me	PRON	PRON	_	3	nsubj	_	_
+3	feed	feed	VERB	VERB	_	1	ccomp	_	_
+4	my	my	PRON	PRON	_	6	nmod:poss	_	_
+5	fat	fat	ADJ	ADJ	_	6	amod	_	_
+6	ego	ego	NOUN	NOUN	_	3	dobj	_	_
+7	mah	mah	INTJ	INTJ	_	1	discourse	_	_
+8	...	...	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Islamic	_	ADJ	ADJ	_	2	amod	_	_
+2	State	_	NOUN	NOUN	_	4	nsubj	_	_
+3	all	_	DET	DET	_	2	det	_	_
+4	Muslims	_	PROPN	PROPN	_	0	root	_	_
+5	leh	_	INTJ	INTJ	_	4	discourse	_	_
+6	!	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	got	_	VERB	VERB	_	0	root	_	_
+2	bar	_	NOUN	NOUN	_	1	dobj	_	_
+3	make	_	VERB	VERB	_	1	conj	_	_
+4	it	_	PRON	PRON	_	3	dobj	_	_
+5	centre	_	ADJ	ADJ	_	6	amod	_	_
+6	piece	_	NOUN	NOUN	_	3	xcomp	_	_
+7	mah	_	INTJ	INTJ	_	3	discourse	_	_
+8	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	As	_	ADV	ADV	_	2	advmod	_	_
+2	long	_	ADV	ADV	_	11	advmod	_	_
+3	as	_	SCONJ	SCONJ	_	5	mark	_	_
+4	dun	_	AUX	AUX	_	5	aux	_	_
+5	play	_	VERB	VERB	_	2	advcl	_	_
+6	wu	_	PROPN	PROPN	_	8	name	_	_
+7	jian	_	PROPN	PROPN	_	8	name	_	_
+8	dao	_	PROPN	PROPN	_	5	dobj	_	_
+9	with	_	ADP	ADP	_	10	case	_	_
+10	me	_	PRON	PRON	_	5	nmod	_	_
+11	can	_	AUX	AUX	_	0	root	_	_
+12	le	_	X	X	_	11	discourse	_	_
+13	.	_	PUNCT	PUNCT	_	11	punct	_	_
+
+1	Now	now	ADV	ADV	_	3	advmod	_	_
+2	US	u	PROPN	PROPN	_	3	nsubj	_	_
+3	has	ha	VERB	VERB	_	0	root	_	_
+4	TPP	tpp	PROPN	PROPN	_	3	dobj	_	_
+5	,	,	PUNCT	PUNCT	_	3	punct	_	_
+6	no	no	DET	DET	_	7	neg	_	_
+7	patent	patent	NOUN	NOUN	_	9	nsubj	_	_
+8	must	must	AUX	AUX	_	9	aux	_	_
+9	pay	pay	VERB	VERB	_	3	parataxis	_	_
+10	pay	pay	VERB	VERB	_	9	conj	_	_
+11	pay	pay	VERB	VERB	_	9	conj	_	_
+12	.	.	PUNCT	PUNCT	_	3	punct	_	_
+
+1	If	if	SCONJ	SCONJ	_	3	mark	_	_
+2	no	no	DET	DET	_	3	neg	_	_
+3	wear	wear	VERB	VERB	_	6	advcl	_	_
+4	maybe	maybe	AUX	AUX	_	6	aux	_	_
+5	he	he	PRON	PRON	_	6	nsubj	_	_
+6	vomit	vomit	VERB	VERB	_	0	root	_	_
+7	blood	blood	NOUN	NOUN	_	6	dobj	_	_
+8	liao	liao	ADV	ADV	_	6	advmod	_	_
+9	!	!	PUNCT	PUNCT	_	6	punct	_	_
+
+1	Sian	_	ADJ	INTJ	_	0	root	_	_
+2	got	_	VERB	VERB	_	1	advcl	_	_
+3	Astro	_	NOUN	NOUN	_	2	dobj	_	_
+4	on	_	ADP	ADP	_	5	case	_	_
+5	Thurs	_	PROPN	PROPN	_	2	nmod:tmod	_	_
+6	,	_	PUNCT	PUNCT	_	2	punct	_	_
+7	S/U-ed	_	VERB	VERB	_	2	parataxis	_	_
+8	but	_	CONJ	CONJ	_	7	cc	_	_
+9	scared	_	ADJ	ADJ	_	7	conj	_	_
+10	get	_	VERB	VERB	_	9	advcl	_	_
+11	U.	_	NOUN	NOUN	_	10	dobj	_	_
+12	...	_	PUNCT	PUNCT	_	7	punct	_	_
+13	C	_	NOUN	NOUN	_	15	nsubj	_	_
+14	also	_	ADV	ADV	_	15	advmod	_	_
+15	hard	_	ADJ	ADJ	_	2	parataxis	_	_
+16	to	_	PART	PART	_	17	mark	_	_
+17	get	_	VERB	VERB	_	15	advcl	_	_
+18	reh	_	INTJ	INTJ	_	15	discourse	_	_
+
+1	u	_	PRON	PRON	_	2	nsubj	_	_
+2	buy	_	VERB	VERB	_	0	root	_	_
+3	condo	_	NOUN	NOUN	_	2	dobj	_	_
+4	already	_	ADV	ADV	_	2	advmod	_	_
+5	,	_	PUNCT	PUNCT	_	2	punct	_	_
+6	u	_	PRON	PRON	_	9	nsubj	_	_
+7	can	_	AUX	AUX	_	9	aux	_	_
+8	not	_	PART	PART	_	9	neg	_	_
+9	buy	_	VERB	VERB	_	2	parataxis	_	_
+10	HDB	_	PROPN	PROPN	_	9	dobj	_	_
+11	unless	_	SCONJ	SCONJ	_	13	mark	_	_
+12	u	_	PRON	PRON	_	13	nsubj	_	_
+13	sell	_	VERB	VERB	_	9	advcl	_	_
+14	the	_	DET	DET	_	15	det	_	_
+15	condo	_	NOUN	NOUN	_	13	dobj	_	_
+16	...	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Hope	_	VERB	VERB	_	0	root	_	_
+2	to	_	PART	PART	_	3	mark	_	_
+3	see	_	VERB	VERB	_	1	xcomp	_	_
+4	SMRT	_	PROPN	PROPN	_	5	compound	_	_
+5	AMDEP	_	NOUN	NOUN	_	6	nsubj	_	_
+6	take	_	NOUN	NOUN	_	3	ccomp	_	_
+7	in	_	ADP	ADP	_	10	case	_	_
+8	more	_	ADJ	ADV	_	10	amod	_	_
+9	MAN	_	NOUN	NOUN	_	10	compound	_	_
+10	buses	_	NOUN	NOUN	_	6	nmod	_	_
+11	soon	_	ADV	ADV	_	6	advmod	_	_
+12	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	happy	_	ADJ	ADJ	_	5	csubj	_	_
+2	n	_	CONJ	CONJ	_	1	cc	_	_
+3	can	_	AUX	AUX	_	4	aux	_	_
+4	afford	_	VERB	VERB	_	1	conj	_	_
+5	ok	_	ADJ	ADJ	_	0	root	_	_
+6	liao	_	ADV	ADV	_	5	advmod	_	_
+7	lor	_	INTJ	INTJ	_	5	discourse	_	_
+8	.	_	PUNCT	PUNCT	_	5	punct	_	_
+9	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	too	_	ADV	ADV	_	2	advmod	_	_
+2	bad	_	ADJ	ADJ	_	0	root	_	_
+3	,	_	PUNCT	PUNCT	_	2	punct	_	_
+4	well	_	ADV	ADV	_	8	discourse	_	_
+5	yr	_	PRON	PRON	_	6	nmod:poss	_	_
+6	alliance	_	NOUN	NOUN	_	8	nsubj	_	_
+7	should	_	AUX	AUX	_	8	aux	_	_
+8	have	_	VERB	VERB	_	2	parataxis	_	_
+9	such	_	DET	ADJ	_	10	det	_	_
+10	offer	_	NOUN	NOUN	_	8	dobj	_	_
+11	oso	_	ADV	ADV	_	8	advmod	_	_
+12	mah	_	INTJ	INTJ	_	8	discourse	_	_
+
+1	u	_	PRON	PRON	_	2	nsubj	_	_
+2	know	_	VERB	VERB	_	0	root	_	_
+3	what	_	PRON	PRON	_	6	nsubj	_	_
+4	is	_	VERB	VERB	_	6	cop	_	_
+5	real	_	ADJ	ADJ	_	6	amod	_	_
+6	politik	_	NOUN	NOUN	_	2	ccomp	_	_
+7	??	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Heng	_	INTJ	INTJ	_	5	discourse	_	_
+2	ah	_	INTJ	INTJ	_	1	discourse	_	_
+3	not	_	PART	PART	_	5	neg	_	_
+4	the	_	DET	DET	_	5	det	_	_
+5	units	_	NOUN	NOUN	_	0	root	_	_
+6	i	_	PRON	PRON	_	7	nsubj	_	_
+7	want	_	VERB	VERB	_	5	acl:relcl	_	_
+8	lol	_	INTJ	INTJ	_	5	discourse	_	_
+9	!	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	today	_	NOUN	NOUN	_	4	nmod:tmod	_	_
+2	toto	_	PROPN	PROPN	_	4	nsubj	_	_
+3	also	_	ADV	ADV	_	4	advmod	_	_
+4	tio	_	VERB	VERB	_	0	root	_	_
+5	jia	_	ADJ	ADJ	_	4	xcomp	_	_
+6	liao	_	ADV	ADV	_	4	advmod	_	_
+7	.	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	walao	_	INTJ	INTJ	_	5	discourse	_	_
+2	eh	_	INTJ	INTJ	_	1	discourse	_	_
+3	...	_	PUNCT	PUNCT	_	1	punct	_	_
+4	must	_	AUX	AUX	_	5	aux	_	_
+5	noe	_	VERB	VERB	_	0	root	_	_
+6	them	_	PRON	PRON	_	5	dobj	_	_
+7	one	_	INTJ	INTJ	_	5	discourse	_	_
+8	meh	_	INTJ	INTJ	_	5	discourse	_	_
+9	?	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Emirati	emirati	PROPN	PROPN	_	2	compound	_	_
+2	high-rollers	high-rollers	NOUN	NOUN	_	4	nsubj	_	_
+3	are	are	AUX	AUX	_	4	aux	_	_
+4	spending	spending	VERB	VERB	_	0	root	_	_
+5	big	big	ADJ	ADJ	_	4	xcomp	_	_
+6	on	on	ADP	ADP	_	9	case	_	_
+7	personalized	personalized	ADJ	ADJ	_	9	amod	_	_
+8	license	license	NOUN	NOUN	_	9	compound	_	_
+9	plates	plate	NOUN	NOUN	_	4	nmod	_	_
+10	.	.	PUNCT	PUNCT	_	4	punct	_	_
+
+1	All	all	DET	DET	_	2	nsubj	_	_
+2	fake	fake	ADJ	ADJ	_	0	root	_	_
+3	one	one	INTJ	INTJ	_	2	discourse	_	_
+4	lah	lah	INTJ	INTJ	_	2	discourse	_	_
+5	!	!	PUNCT	PUNCT	_	2	punct	_	_
+
+1	but	_	CONJ	CONJ	_	4	cc	_	_
+2	then	_	ADV	ADV	_	4	advmod	_	_
+3	i	_	PRON	PRON	_	4	nsubj	_	_
+4	remb	_	VERB	VERB	_	0	root	_	_
+5	u	_	PRON	PRON	_	7	nsubj	_	_
+6	guys	_	NOUN	NOUN	_	5	appos	_	_
+7	saying	_	VERB	VERB	_	4	ccomp	_	_
+8	OM	_	PROPN	PROPN	_	10	nsubj	_	_
+9	is	_	VERB	VERB	_	10	cop	_	_
+10	draggy	_	ADJ	ADJ	_	7	ccomp	_	_
+
+1	Like	_	SCONJ	ADP	_	4	mark	_	_
+2	kena	_	AUX	VERB	_	4	auxpass	_	_
+3	wheel	_	NOUN	NOUN	_	4	nsubjpass	_	_
+4	clamped	_	VERB	VERB	_	6	advcl	_	_
+5	must	_	AUX	AUX	_	6	aux	_	_
+6	pay	_	VERB	VERB	_	0	root	_	_
+7	to	_	PART	PART	_	8	mark	_	_
+8	release	_	VERB	VERB	_	6	xcomp	_	_
+9	loh	_	INTJ	INTJ	_	6	discourse	_	_
+
+1	Wah	wah	INTJ	INTJ	_	6	discourse	_	_
+2	lau	lau	INTJ	INTJ	_	1	discourse	_	_
+3	that	that	PRON	PRON	_	6	nsubj	_	_
+4	is	is	AUX	AUX	_	6	cop	_	_
+5	network	network	NOUN	NOUN	_	6	compound	_	_
+6	speed	speed	NOUN	NOUN	_	0	root	_	_
+7	la	la	INTJ	INTJ	_	6	discourse	_	_
+8	.	.	PUNCT	PUNCT	_	6	punct	_	_
+
+1	Rape	_	VERB	VERB	_	3	csubj	_	_
+2	itself	_	PRON	PRON	_	1	nmod:npmod	_	_
+3	is	_	VERB	VERB	_	0	root	_	_
+4	harm	_	VERB	VERB	_	3	ccomp	_	_
+5	the	_	DET	DET	_	6	det	_	_
+6	victim	_	NOUN	NOUN	_	4	dobj	_	_
+7	liao	_	ADV	ADV	_	3	advmod	_	_
+
+1	Tomorrow	tomorrow	NOUN	NOUN	_	10	nmod:tmod	_	_
+2	if	if	SCONJ	SCONJ	_	3	mark	_	_
+3	go	go	VERB	VERB	_	10	advcl	_	_
+4	up	up	ADV	ADV	_	3	advmod	_	_
+5	some	some	DET	DET	_	6	det	_	_
+6	more	more	ADV	ADV	_	3	advmod	_	_
+7	then	then	ADV	ADV	_	10	advmod	_	_
+8	we	we	PRON	PRON	_	10	nsubj	_	_
+9	will	will	AUX	AUX	_	10	aux	_	_
+10	know	know	VERB	VERB	_	0	root	_	_
+11	.	.	PUNCT	PUNCT	_	10	punct	_	_
+
+1	Whatever	whatever	PRON	PRON	_	7	advcl	_	_
+2	you	you	PRON	PRON	_	3	nsubj	_	_
+3	do	do	VERB	VERB	_	1	acl:relcl	_	_
+4	,	,	PUNCT	PUNCT	_	1	punct	_	_
+5	do	do	AUX	AUX	_	7	aux	_	_
+6	n't	n't	PART	PART	_	7	neg	_	_
+7	wallop	wallop	VERB	VERB	_	0	root	_	_
+8	your	your	PRON	PRON	_	9	nmod:poss	_	_
+9	food	food	NOUN	NOUN	_	7	dobj	_	_
+10	without	without	SCONJ	SCONJ	_	11	mark	_	_
+11	chewing	chewing	VERB	VERB	_	7	advcl	_	_
+12	.	.	PUNCT	PUNCT	_	7	punct	_	_
+
+1	Stay	_	VERB	VERB	_	0	root	_	_
+2	another	_	DET	DET	_	3	det	_	_
+3	night	_	NOUN	NOUN	_	1	nmod:tmod	_	_
+4	at	_	ADP	ADP	_	6	case	_	_
+5	Sunrise	_	NOUN	NOUN	_	6	compound	_	_
+6	BB	_	PROPN	PROPN	_	1	nmod	_	_
+7	at	_	ADP	ADP	_	8	case	_	_
+8	NTD1099	_	PROPN	PROPN	_	1	nmod	_	_
+
+1	PAP	pap	PROPN	PROPN	_	2	compound	_	_
+2	govt	govt	NOUN	NOUN	_	3	nsubj	_	_
+3	talk	talk	VERB	VERB	_	0	root	_	_
+4	and	and	CONJ	CONJ	_	3	cc	_	_
+5	all	all	DET	DET	_	7	det	_	_
+6	ordinary	ordinary	ADJ	ADJ	_	7	amod	_	_
+7	Singaporeans	singaporean	NOUN	NOUN	_	8	nsubj	_	_
+8	pay	pay	VERB	VERB	_	3	conj	_	_
+9	.	.	PUNCT	PUNCT	_	3	punct	_	_
+
+1	after	_	ADP	ADP	_	2	case	_	_
+2	that	_	PRON	PRON	_	4	nmod	_	_
+3	didnt	_	AUX	AUX	_	4	aux	_	_
+4	follow	_	VERB	VERB	_	0	root	_	_
+5	liao	_	ADV	ADV	_	4	advmod	_	_
+
+1	U	_	PRON	PRON	_	4	nsubj	_	_
+2	do	_	AUX	AUX	_	4	aux	_	_
+3	n't	_	PART	PART	_	4	neg	_	_
+4	know	_	VERB	VERB	_	0	root	_	_
+5	about	_	ADP	ADP	_	7	case	_	_
+6	10yrs	_	NOUN	NOUN	_	7	compound	_	_
+7	cycle	_	NOUN	NOUN	_	4	nmod	_	_
+8	meh	_	INTJ	INTJ	_	4	discourse	_	_
+9	??	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	cos	_	SCONJ	SCONJ	_	4	mark	_	_
+2	its	_	PRON	PRON	_	4	nsubj	_	_
+3	not	_	PART	PART	_	4	neg	_	_
+4	avaliable	_	ADJ	ADJ	_	0	root	_	_
+5	at	_	ADP	ADP	_	8	case	_	_
+6	the	_	DET	DET	_	8	det	_	_
+7	IT	_	PROPN	PROPN	_	8	compound	_	_
+8	show	_	NOUN	VERB	_	4	nmod	_	_
+9	or	_	ADP	ADP	_	8	cc	_	_
+10	at	_	ADP	ADP	_	13	case	_	_
+11	Poly	_	NOUN	NOUN	_	12	compound	_	_
+12	road	_	NOUN	NOUN	_	13	compound	_	_
+13	shows	_	NOUN	NOUN	_	8	conj	_	_
+14	.	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Ya	_	INTJ	INTJ	_	3	discourse	_	_
+2	you	_	PRON	PRON	_	3	nsubj	_	_
+3	got	_	VERB	VERB	_	0	root	_	_
+4	it	_	PRON	PRON	_	3	dobj	_	_
+5	right	_	ADJ	ADV	_	3	xcomp	_	_
+6	liao	_	ADV	ADV	_	3	advmod	_	_
+
+1	maybe	_	ADV	ADV	_	3	advmod	_	_
+2	u	_	PRON	PRON	_	3	nsubj	_	_
+3	wan	_	VERB	VERB	_	0	root	_	_
+4	na	_	PART	PART	_	5	mark	_	_
+5	pack	_	VERB	VERB	_	3	xcomp	_	_
+6	ur	_	PRON	PRON	_	7	nmod:poss	_	_
+7	suitcase	_	NOUN	NOUN	_	5	dobj	_	_
+8	lighter	_	ADJ	ADJ	_	5	xcomp	_	_
+
+1	during	during	ADP	ADP	_	2	case	_	_
+2	halt	halt	NOUN	NOUN	_	4	nmod	_	_
+3	PBK	pbk	PROPN	PROPN	_	4	nsubj	_	_
+4	go	go	VERB	VERB	_	0	root	_	_
+5	karaoke	karaoke	NOUN	NOUN	_	4	dobj	_	_
+6	enjoy	enjoy	NOUN	NOUN	_	4	xcomp	_	_
+7	himself	himself	PRON	PRON	_	6	dobj	_	_
+8	.	.	PUNCT	PUNCT	_	4	punct	_	_
+
+1	u	_	PRON	PRON	_	2	nsubj	_	_
+2	want	_	VERB	VERB	_	0	root	_	_
+3	grab	_	VERB	VERB	_	2	xcomp	_	_
+4	wat	_	PRON	PRON	_	3	dobj	_	_
+5	?	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Ownself	_	PRON	PRON	_	2	nsubj	_	_
+2	fix	_	VERB	VERB	_	0	root	_	_
+3	Ownself	_	PRON	PRON	_	2	dobj	_	_
+4	lah	_	INTJ	INTJ	_	2	discourse	_	_
+5	!	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Heng	_	INTJ	INTJ	_	5	discourse	_	_
+2	seh	_	INTJ	INTJ	_	1	discourse	_	_
+3	,	_	PUNCT	PUNCT	_	5	punct	_	_
+4	dun	_	AUX	AUX	_	5	aux	_	_
+5	stay	_	VERB	VERB	_	0	root	_	_
+6	at	_	ADP	ADP	_	7	case	_	_
+7	BNL	_	PROPN	PROPN	_	5	nmod	_	_
+8	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	wah	wah	INTJ	INTJ	_	3	discourse	_	_
+2	.	.	PUNCT	PUNCT	_	3	punct	_	_
+3	got	got	VERB	VERB	_	0	root	_	_
+4	people	people	NOUN	NOUN	_	5	nsubj	_	_
+5	die	die	VERB	VERB	_	3	ccomp	_	_
+6	liao	liao	ADV	ADV	_	3	advmod	_	_
+7	.	.	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Try	_	VERB	VERB	_	0	root	_	_
+2	breast-feeding	_	VERB	VERB	_	1	xcomp	_	_
+3	first	_	ADV	ADV	_	1	advmod	_	_
+4	lah	_	INTJ	INTJ	_	1	discourse	_	_
+5	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	You	_	PRON	PRON	_	6	nsubj	_	_
+2	never	_	ADV	ADV	_	6	neg	_	_
+3	been	_	VERB	VERB	_	6	cop	_	_
+4	to	_	PART	PART	_	6	case	_	_
+5	taman	_	PROPN	PROPN	_	6	compound	_	_
+6	sentosa	_	PROPN	PROPN	_	0	root	_	_
+7	ah	_	INTJ	INTJ	_	6	discourse	_	_
+8	?	_	PUNCT	PUNCT	_	6	punct	_	_
+
+1	This	this	DET	DET	_	3	det	_	_
+2	WikiLeaks	wikileaks	PROPN	PROPN	_	3	compound	_	_
+3	Email	email	NOUN	NOUN	_	4	nsubj	_	_
+4	Proves	prof	VERB	VERB	_	0	root	_	_
+5	Cheryl	cheryl	PROPN	PROPN	_	6	name	_	_
+6	Mills	mill	PROPN	PROPN	_	10	nsubj	_	_
+7	And	and	CONJ	CONJ	_	6	cc	_	_
+8	Hillary	hillary	PROPN	PROPN	_	9	name	_	_
+9	Clinton	clinton	PROPN	PROPN	_	6	conj	_	_
+10	Lied	lied	VERB	VERB	_	4	ccomp	_	_
+11	To	to	ADP	ADP	_	13	case	_	_
+12	The	the	DET	DET	_	13	det	_	_
+13	FBI	fbi	PROPN	PROPN	_	10	nmod	_	_
+
+1	wah	_	INTJ	INTJ	_	11	discourse	_	_
+2	lan	_	INTJ	INTJ	_	1	discourse	_	_
+3	,	_	PUNCT	PUNCT	_	1	punct	_	_
+4	the	_	DET	DET	_	6	det	_	_
+5	alkaline	_	NOUN	NOUN	_	6	compound	_	_
+6	cleaners	_	NOUN	NOUN	_	11	nsubj	_	_
+7	on	_	ADP	ADP	_	8	case	_	_
+8	TB	_	PROPN	PROPN	_	6	nmod	_	_
+9	a	_	DET	DET	_	10	det	_	_
+10	bit	_	NOUN	NOUN	_	11	nmod:npmod	_	_
+11	kua	_	ADJ	ADJ	_	0	root	_	_
+12	zhang	_	ADJ	ADJ	_	11	mwe	_	_
+13	,	_	PUNCT	PUNCT	_	11	punct	_	_
+14	too	_	ADV	ADV	_	15	advmod	_	_
+15	caustic	_	ADJ	ADJ	_	11	parataxis	_	_
+16	?	_	PUNCT	PUNCT	_	15	punct	_	_
+
+1	Is	is	VERB	VERB	_	3	cop	_	_
+2	WIKILEAKS	wikileaks	PROPN	PROPN	_	3	nsubj	_	_
+3	about	about	ADJ	ADJ	_	0	root	_	_
+4	to	to	PART	PART	_	5	mark	_	_
+5	release	release	VERB	VERB	_	3	xcomp	_	_
+6	HILLARY	hillary	PROPN	PROPN	_	10	nmod:poss	_	_
+7	's	's	PART	PART	_	6	case	_	_
+8	33,0	33,0	NUM	NUM	_	10	nummod	_	_
+9	deleted	deleted	VERB	VERB	_	10	amod	_	_
+10	emails	email	NOUN	NOUN	_	5	dobj	_	_
+11	?	?	PUNCT	PUNCT	_	3	punct	_	_
+
+1	i	_	PRON	PRON	_	3	nsubj	_	_
+2	dun	_	AUX	AUX	_	3	aux	_	_
+3	noe	_	VERB	VERB	_	0	root	_	_
+4	hw	_	ADV	ADV	_	3	advmod	_	_
+5	to	_	PART	PART	_	6	mark	_	_
+6	use	_	VERB	VERB	_	3	xcomp	_	_
+7	hwz	_	PROPN	PROPN	_	9	compound	_	_
+8	app	_	NOUN	NOUN	_	9	compound	_	_
+9	ifone	_	PROPN	PROPN	_	6	dobj	_	_
+10	to	_	ADP	ADP	_	11	mark	_	_
+11	upload	_	VERB	VERB	_	6	advcl	_	_
+12	pix	_	NOUN	NOUN	_	11	dobj	_	_
+13	leh	_	INTJ	INTJ	_	3	discourse	_	_
+
+1	Jades	_	PROPN	PROPN	_	2	nsubj	_	_
+2	did	_	VERB	VERB	_	0	root	_	_
+3	u	_	PRON	PRON	_	2	iobj	_	_
+4	no	_	DET	DET	_	5	neg	_	_
+5	harm	_	NOUN	NOUN	_	2	dobj	_	_
+
+1	Wah	_	INTJ	INTJ	_	4	discourse	_	_
+2	finally	_	ADV	ADV	_	4	advmod	_	_
+3	,	_	PUNCT	PUNCT	_	4	punct	_	_
+4	think	_	VERB	VERB	_	0	root	_	_
+5	my	_	PRON	PRON	_	6	nmod:poss	_	_
+6	oven	_	NOUN	NOUN	_	8	nsubj	_	_
+7	can	_	AUX	AUX	_	8	aux	_	_
+8	hoot	_	VERB	VERB	_	4	ccomp	_	_
+9	liao	_	ADV	ADV	_	8	advmod	_	_
+
+1	but	but	CONJ	CONJ	_	3	cc	_	_
+2	i	i	PRON	PRON	_	3	nsubj	_	_
+3	need	need	VERB	VERB	_	0	root	_	_
+4	to	to	PART	PART	_	5	mark	_	_
+5	warn	warn	VERB	VERB	_	3	xcomp	_	_
+6	you	you	PRON	PRON	_	5	dobj	_	_
+7	.	.	PUNCT	PUNCT	_	5	punct	_	_
+8	very	very	ADV	ADV	_	9	advmod	_	_
+9	tiring	tiring	ADJ	ADJ	_	5	parataxis	_	_
+10	one	one	INTJ	INTJ	_	9	discourse	_	_
+
+1	if	_	SCONJ	SCONJ	_	2	mark	_	_
+2	hear	_	VERB	VERB	_	8	advcl	_	_
+3	chiuz	_	NOUN	NOUN	_	4	nsubj	_	_
+4	talk	_	VERB	VERB	_	2	ccomp	_	_
+5	,	_	PUNCT	PUNCT	_	8	punct	_	_
+6	hmm	_	INTJ	INTJ	_	8	discourse	_	_
+7	...	_	PUNCT	PUNCT	_	8	punct	_	_
+8	punish	_	VERB	VERB	_	0	root	_	_
+9	chiuz	_	NOUN	NOUN	_	8	dobj	_	_
+10	!	_	PUNCT	PUNCT	_	8	punct	_	_
+
+1	thats	_	PRON	PRON	_	2	nsubj	_	_
+2	y	_	ADV	ADV	_	0	root	_	_
+3	i	_	PRON	PRON	_	4	nsubj	_	_
+4	tell	_	VERB	VERB	_	2	acl:relcl	_	_
+5	u	_	PRON	PRON	_	4	dobj	_	_
+6	,	_	PUNCT	PUNCT	_	4	punct	_	_
+7	soon	_	ADV	ADV	_	13	advmod	_	_
+8	another	_	DET	DET	_	11	det	_	_
+9	great	_	ADJ	ADJ	_	11	amod	_	_
+10	flame	_	NOUN	NOUN	_	11	compound	_	_
+11	war	_	NOUN	NOUN	_	13	nsubj	_	_
+12	will	_	AUX	AUX	_	13	aux	_	_
+13	occur	_	VERB	VERB	_	2	parataxis	_	_
+14	.	_	PUNCT	PUNCT	_	2	punct	_	_
+15	.	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Check	_	VERB	VERB	_	0	root	_	_
+2	wib	_	NOUN	NOUN	_	3	compound	_	_
+3	chiu	_	PRON	PRON	_	1	dobj	_	_
+4	all	_	DET	DET	_	3	det	_	_
+5	...	_	PUNCT	PUNCT	_	1	punct	_	_
+6	Actually	_	ADV	ADV	_	10	advmod	_	_
+7	e	_	DET	DET	_	10	det	_	_
+8	post	_	NOUN	NOUN	_	10	compound	_	_
+9	hospital	_	NOUN	NOUN	_	10	compound	_	_
+10	part	_	NOUN	NOUN	_	1	parataxis	_	_
+11	hor	_	INTJ	INTJ	_	10	discourse	_	_
+12	...	_	PUNCT	PUNCT	_	1	punct	_	_
+13	if	_	SCONJ	SCONJ	_	16	mark	_	_
+14	i	_	PRON	PRON	_	16	nsubj	_	_
+15	kanna	_	AUX	AUX	_	16	aux	_	_
+16	warded	_	VERB	VERB	_	18	advcl	_	_
+17	again	_	ADV	ADV	_	16	advmod	_	_
+18	means	_	VERB	VERB	_	1	parataxis	_	_
+19	it	_	PRON	PRON	_	20	nsubj	_	_
+20	resets	_	VERB	VERB	_	18	ccomp	_	_
+21	?	_	PUNCT	PUNCT	_	18	punct	_	_
+
+1	When	when	ADV	ADV	_	0	root	_	_
+2	will	will	AUX	AUX	_	1	aux	_	_
+3	be	be	VERB	VERB	_	1	cop	_	_
+4	Krisenergy	krisenergy	PROPN	PROPN	_	5	compound	_	_
+5	turn	turn	NOUN	NOUN	_	1	nsubj	_	_
+6	ah	ah	INTJ	INTJ	_	1	discourse	_	_
+7	?	?	PUNCT	PUNCT	_	1	punct	_	_
+
+1	shake	_	VERB	VERB	_	5	csubj	_	_
+2	leg	_	NOUN	NOUN	_	1	dobj	_	_
+3	at	_	ADP	ADP	_	4	case	_	_
+4	home	_	NOUN	NOUN	_	1	nmod	_	_
+5	wait	_	VERB	VERB	_	0	root	_	_
+6	for	_	ADP	ADP	_	8	case	_	_
+7	house	_	NOUN	NOUN	_	8	compound	_	_
+8	visit	_	NOUN	NOUN	_	5	nmod	_	_
+
+1	I	i	PRON	PRON	_	2	nsubj	_	_
+2	joint	joint	VERB	VERB	_	0	root	_	_
+3	BB	bb	PROPN	PROPN	_	2	dobj	_	_
+4	to	to	PART	PART	_	5	mark	_	_
+5	kill	kill	VERB	VERB	_	2	advcl	_	_
+6	ASTI	asti	PROPN	PROPN	_	8	compound	_	_
+7	big	big	ADJ	ADJ	_	8	amod	_	_
+8	shortist	shortist	NOUN	NOUN	_	5	dobj	_	_
+9	!	!	PUNCT	PUNCT	_	2	punct	_	_
+
+1	how	_	ADV	ADV	_	3	advmod	_	_
+2	to	_	PART	PART	_	3	mark	_	_
+3	input	_	VERB	VERB	_	0	root	_	_
+4	chinese	_	ADJ	ADJ	_	5	amod	_	_
+5	characters	_	NOUN	NOUN	_	3	dobj	_	_
+6	leh	_	INTJ	INTJ	_	3	discourse	_	_
+
+1	really	_	ADV	ADV	_	2	advmod	_	_
+2	stupid	_	ADJ	ADJ	_	0	root	_	_
+3	and	_	CONJ	CONJ	_	2	cc	_	_
+4	evil	_	ADJ	ADJ	_	2	conj	_	_
+5	to	_	PART	PART	_	6	mark	_	_
+6	create	_	VERB	VERB	_	2	advcl	_	_
+7	the	_	DET	DET	_	8	det	_	_
+8	disaster	_	NOUN	NOUN	_	6	dobj	_	_
+9	.	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Really	_	ADV	ADV	_	2	advmod	_	_
+2	xia	_	VERB	VERB	_	0	root	_	_
+3	sway	_	VERB	VERB	_	2	mwe	_	_
+4	his	_	PRON	PRON	_	5	nmod:poss	_	_
+5	father	_	NOUN	NOUN	_	2	dobj	_	_
+
+1	got	_	VERB	VERB	_	0	root	_	_
+2	matte	_	ADJ	ADJ	_	7	amod	_	_
+3	or	_	CONJ	CONJ	_	2	cc	_	_
+4	anti	_	ADJ	ADJ	_	2	conj	_	_
+5	glare	_	NOUN	NOUN	_	6	compound	_	_
+6	screen	_	NOUN	NOUN	_	7	compound	_	_
+7	protector	_	NOUN	NOUN	_	1	dobj	_	_
+8	from	_	ADP	ADP	_	10	case	_	_
+9	local	_	ADJ	ADJ	_	10	amod	_	_
+10	shops	_	NOUN	NOUN	_	1	nmod	_	_
+11	?	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	an	_	DET	DET	_	3	det	_	_
+2	ang	_	NOUN	NOUN	_	3	compound	_	_
+3	moh	_	NOUN	NOUN	_	0	root	_	_
+4	tho	_	INTJ	INTJ	_	3	discourse	_	_
+5	.	_	PUNCT	PUNCT	_	3	punct	_	_
+6	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Buy	_	VERB	VERB	_	0	root	_	_
+2	low	_	ADJ	ADJ	_	1	xcomp	_	_
+3	from	_	ADP	ADP	_	4	case	_	_
+4	shortist	_	NOUN	NOUN	_	1	nmod	_	_
+5	and	_	CONJ	CONJ	_	1	cc	_	_
+6	sell	_	VERB	VERB	_	1	conj	_	_
+7	higher	_	ADJ	ADJ	_	6	xcomp	_	_
+8	to	_	ADP	ADP	_	9	case	_	_
+9	kateks	_	NOUN	NOUN	_	6	nmod	_	_
+
+1	Later	later	ADV	ADV	_	7	advmod	_	_
+2	those	those	DET	DET	_	3	det	_	_
+3	32c	32c	NOUN	NOUN	_	7	nsubj	_	_
+4	will	will	AUX	AUX	_	7	aux	_	_
+5	also	also	ADV	ADV	_	7	advmod	_	_
+6	up	up	ADP	ADP	_	7	case	_	_
+7	lorry	lorry	NOUN	NOUN	_	0	root	_	_
+8	.	.	PUNCT	PUNCT	_	7	punct	_	_
+
+1	time	_	NOUN	NOUN	_	3	nsubj	_	_
+2	slow	_	ADV	ADJ	_	3	xcomp	_	_
+3	set	_	VERB	VERB	_	5	csubj	_	_
+4	jin	_	ADV	ADV	_	5	advmod	_	_
+5	mafan	_	ADJ	ADJ	_	0	root	_	_
+6	one	_	INTJ	INTJ	_	5	discourse	_	_
+7	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	seems	_	VERB	VERB	_	0	root	_	_
+2	from	_	ADP	ADP	_	3	case	_	_
+3	everyone	_	PRON	PRON	_	4	nmod:poss	_	_
+4	response	_	NOUN	NOUN	_	7	nmod	_	_
+5	his	_	PRON	PRON	_	7	nsubj	_	_
+6	very	_	ADV	ADV	_	7	advmod	_	_
+7	handsome	_	ADJ	ADJ	_	1	ccomp	_	_
+8	arh	_	INTJ	INTJ	_	1	discourse	_	_
+9	?	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	lai	_	VERB	VERB	_	0	root	_	_
+2	arh	_	INTJ	INTJ	_	1	discourse	_	_
+3	...	_	PUNCT	PUNCT	_	1	punct	_	_
+4	faster	_	ADV	ADV	_	5	advmod	_	_
+5	cheong	_	VERB	VERB	_	1	parataxis	_	_
+6	back	_	ADV	ADV	_	5	advmod	_	_
+7	to	_	ADP	ADP	_	8	case	_	_
+8	190	_	NUM	NUM	_	5	nmod	_	_
+9	,	_	PUNCT	PUNCT	_	8	punct	_	_
+10	191	_	NUM	NUM	_	8	conj	_	_
+11	...	_	PUNCT	PUNCT	_	5	punct	_	_
+12	!!!	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	but	_	CONJ	CONJ	_	8	cc	_	_
+2	if	_	SCONJ	SCONJ	_	6	mark	_	_
+3	ur	_	PRON	PRON	_	4	nmod:poss	_	_
+4	photo	_	NOUN	NOUN	_	6	nsubjpass	_	_
+5	kena	_	AUX	AUX	_	6	auxpass	_	_
+6	edited	_	VERB	VERB	_	8	advcl	_	_
+7	u	_	PRON	PRON	_	8	nsubj	_	_
+8	wan	_	VERB	VERB	_	0	root	_	_
+9	meh	_	INTJ	INTJ	_	8	discourse	_	_
+10	?	_	PUNCT	PUNCT	_	8	punct	_	_
+
+1	better	_	ADV	ADJ	_	4	aux	_	_
+2	dont	_	VERB	VERB	_	4	aux	_	_
+3	anyhaw	_	ADV	ADV	_	4	advmod	_	_
+4	comment	_	VERB	VERB	_	0	parataxis	_	_
+5	.	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Eh	eh	INTJ	INTJ	_	4	discourse	_	_
+2	you	you	PRON	PRON	_	4	nsubj	_	_
+3	better	better	ADV	ADV	_	4	aux	_	_
+4	read	read	VERB	VERB	_	0	root	_	_
+5	my	my	PRON	PRON	_	6	nmod:poss	_	_
+6	thread	thread	NOUN	NOUN	_	4	dobj	_	_
+7	properly	properly	ADV	ADV	_	4	advmod	_	_
+8	.	.	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Do	do	AUX	AUX	_	4	aux	_	_
+2	n't	n't	PART	PART	_	4	neg	_	_
+3	anyhow	anyhow	ADV	ADV	_	4	advmod	_	_
+4	hai	hai	VERB	VERB	_	0	root	_	_
+5	si	si	ADJ	ADJ	_	4	mwe	_	_
+6	lang	lang	NOUN	NOUN	_	4	mwe	_	_
+7	lah	lah	INTJ	INTJ	_	4	dobj	_	_
+8	!	!	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Wah	wah	INTJ	INTJ	_	6	discourse	_	_
+2	.	.	PUNCT	PUNCT	_	1	punct	_	_
+3	This	this	DET	DET	_	4	det	_	_
+4	time	time	NOUN	NOUN	_	6	nmod:tmod	_	_
+5	really	really	ADV	ADV	_	6	advmod	_	_
+6	bee	bee	NOUN	NOUN	_	0	root	_	_
+7	tang	tang	NOUN	NOUN	_	6	mwe	_	_
+8	ah	ah	INTJ	INTJ	_	6	discourse	_	_
+9	!	!	PUNCT	PUNCT	_	6	punct	_	_
+
+1	...	_	PUNCT	PUNCT	_	3	punct	_	_
+2	local	_	ADJ	ADJ	_	3	amod	_	_
+3	news	_	NOUN	NOUN	_	0	root	_	_
+4	lor	_	INTJ	INTJ	_	3	discourse	_	_
+5	!	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	I	_	PRON	PRON	_	2	nsubj	_	_
+2	want	_	VERB	VERB	_	0	root	_	_
+3	meet	_	VERB	VERB	_	2	xcomp	_	_
+4	and	_	CONJ	CONJ	_	3	cc	_	_
+5	jiak	_	VERB	VERB	_	3	conj	_	_
+6	tofu	_	NOUN	NOUN	_	5	dobj	_	_
+
+1	and	and	CONJ	CONJ	_	4	cc	_	_
+2	the	the	DET	DET	_	3	det	_	_
+3	point	point	NOUN	NOUN	_	4	nsubj	_	_
+4	is	is	VERB	VERB	_	0	root	_	_
+5	,	,	PUNCT	PUNCT	_	4	punct	_	_
+6	OLDMAN	oldman	PROPN	PROPN	_	8	nsubj	_	_
+7	always	always	ADV	ADV	_	8	advmod	_	_
+8	go	go	VERB	VERB	_	4	ccomp	_	_
+9	Tan	tan	PROPN	PROPN	_	11	name	_	_
+10	Tock	tock	PROPN	PROPN	_	11	name	_	_
+11	Seng	seng	PROPN	PROPN	_	8	dobj	_	_
+12	,	,	PUNCT	PUNCT	_	8	punct	_	_
+13	then	then	ADV	ADV	_	14	mark	_	_
+14	wat	wat	PRON	PRON	_	8	advcl	_	_
+15	to	to	PART	PART	_	16	mark	_	_
+16	say	say	VERB	VERB	_	14	acl	_	_
+17	abt	abt	ADP	ADP	_	18	case	_	_
+18	this	this	PRON	PRON	_	16	nmod	_	_
+19	!	!	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Your	_	PRON	PRON	_	4	nmod:poss	_	_
+2	sour	_	ADJ	ADJ	_	3	amod	_	_
+3	dough	_	NOUN	NOUN	_	4	compound	_	_
+4	bread	_	NOUN	NOUN	_	5	nsubj	_	_
+5	looks	_	VERB	VERB	_	0	root	_	_
+6	really	_	ADV	ADV	_	7	advmod	_	_
+7	professional	_	ADJ	ADJ	_	5	xcomp	_	_
+8	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	If	_	SCONJ	SCONJ	_	3	mark	_	_
+2	u	_	PRON	PRON	_	3	nsubj	_	_
+3	want	_	VERB	VERB	_	8	advcl	_	_
+4	simpler	_	ADJ	ADJ	_	3	xcomp	_	_
+5	then	_	ADV	ADV	_	3	advmod	_	_
+6	...	_	PUNCT	PUNCT	_	3	punct	_	_
+7	maybe	_	ADV	ADV	_	8	advmod	_	_
+8	check	_	VERB	VERB	_	0	root	_	_
+9	out	_	ADP	ADP	_	8	compound:prt	_	_
+10	others	_	NOUN	NOUN	_	8	dobj	_	_
+
+1	Bye	bye	VERB	VERB	_	0	root	_	_
+2	for	for	ADP	ADP	_	3	case	_	_
+3	now	now	NOUN	NOUN	_	1	nmod	_	_
+4	or	or	CONJ	CONJ	_	1	cc	_	_
+5	bye	bye	VERB	VERB	_	1	conj	_	_
+6	forever	forever	ADV	ADV	_	5	advmod	_	_
+7	?	?	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Dun	_	AUX	AUX	_	2	aux	_	_
+2	scare	_	VERB	VERB	_	0	root	_	_
+3	me	_	PRON	PRON	_	2	dobj	_	_
+4	leh	_	INTJ	INTJ	_	2	discourse	_	_
+5	i	_	PRON	PRON	_	6	nsubj	_	_
+6	got	_	VERB	VERB	_	2	parataxis	_	_
+7	exam	_	NOUN	NOUN	_	6	dobj	_	_
+8	later	_	ADV	ADV	_	6	advmod	_	_
+
+1	EU	_	PROPN	PROPN	_	2	nsubj	_	_
+2	approves	_	VERB	VERB	_	0	root	_	_
+3	new	_	ADJ	ADJ	_	5	amod	_	_
+4	military	_	ADJ	ADJ	_	5	amod	_	_
+5	HQ	_	NOUN	NOUN	_	2	dobj	_	_
+
+1	mandai	_	PROPN	PROPN	_	3	nsubj	_	_
+2	quite	_	ADV	ADV	_	3	advmod	_	_
+3	big	_	ADJ	ADJ	_	0	root	_	_
+4	,	_	PUNCT	PUNCT	_	3	punct	_	_
+5	u	_	PRON	PRON	_	6	nsubj	_	_
+6	mean	_	VERB	VERB	_	3	parataxis	_	_
+7	the	_	DET	DET	_	9	det	_	_
+8	columbarium	_	NOUN	NOUN	_	9	compound	_	_
+9	side	_	NOUN	NOUN	_	6	dobj	_	_
+10	or	_	CONJ	CONJ	_	9	cc	_	_
+11	the	_	DET	DET	_	13	det	_	_
+12	zoo	_	NOUN	NOUN	_	13	compound	_	_
+13	side	_	NOUN	NOUN	_	9	conj	_	_
+14	?	_	PUNCT	PUNCT	_	6	punct	_	_
+
+1	From	from	ADP	ADP	_	4	case	_	_
+2	manual	manual	ADJ	ADJ	_	4	amod	_	_
+3	market	market	NOUN	NOUN	_	4	compound	_	_
+4	making	making	NOUN	NOUN	_	0	root	_	_
+5	,	,	PUNCT	PUNCT	_	7	punct	_	_
+6	not	not	PART	PART	_	7	neg	_	_
+7	trading	trading	NOUN	NOUN	_	4	remnant	_	_
+8	,	,	PUNCT	PUNCT	_	7	punct	_	_
+9	right	right	INTJ	INTJ	_	4	discourse	_	_
+10	?	?	PUNCT	PUNCT	_	4	punct	_	_
+
+1	People	people	NOUN	NOUN	_	2	nsubj	_	_
+2	scare	scare	VERB	VERB	_	0	root	_	_
+3	people	people	NOUN	NOUN	_	2	dobj	_	_
+4	,	,	PUNCT	PUNCT	_	2	punct	_	_
+5	scare	scare	VERB	VERB	_	2	parataxis	_	_
+6	die	die	ADJ	ADJ	_	7	amod	_	_
+7	people	people	NOUN	NOUN	_	5	dobj	_	_
+
+1	For	_	ADP	ADP	_	2	case	_	_
+2	tenants	_	NOUN	NOUN	_	5	nmod	_	_
+3	0.5	_	NUM	NUM	_	4	nummod	_	_
+4	k	_	NUM	NUM	_	5	nsubj	_	_
+5	enough	_	ADJ	ADJ	_	0	root	_	_
+6	already	_	ADV	ADV	_	5	punct	_	_
+
+1	tomorrow	tomorrow	NOUN	NOUN	_	4	nmod:tmod	_	_
+2	mainstream	mainstream	NOUN	NOUN	_	3	compound	_	_
+3	paper	paper	NOUN	NOUN	_	4	nsubj	_	_
+4	carry	carry	NOUN	NOUN	_	0	root	_	_
+5	news	news	NOUN	NOUN	_	4	dobj	_	_
+6	big	big	ADJ	ADJ	_	4	xcomp	_	_
+7	big	big	ADJ	ADJ	_	4	xcomp	_	_
+8	,	,	PUNCT	PUNCT	_	4	punct	_	_
+9	then	then	ADV	ADV	_	10	advmod	_	_
+10	hit	hit	VERB	VERB	_	4	advcl	_	_
+11	plateau	plateau	NOUN	NOUN	_	10	dobj	_	_
+12	leow	leow	ADV	ADV	_	10	advmod	_	_
+
+1	Cause	_	SCONJ	ADV	_	4	mark	_	_
+2	they	_	PRON	PRON	_	4	nsubj	_	_
+3	right	_	ADV	ADV	_	4	advmod	_	_
+4	have	_	VERB	VERB	_	12	advcl	_	_
+5	for	_	ADP	ADP	_	7	case	_	_
+6	lao	_	ADJ	ADJ	_	7	amod	_	_
+7	jiao	_	NOUN	NOUN	_	4	nmod	_	_
+8	,	_	PUNCT	PUNCT	_	4	punct	_	_
+9	us	_	PROPN	PROPN	_	12	dobj	_	_
+10	they	_	PRON	PRON	_	12	nsubj	_	_
+11	nv	_	ADV	ADV	_	10	advmod	_	_
+12	say	_	VERB	VERB	_	0	root	_	_
+13	leh	_	INTJ	INTJ	_	12	discourse	_	_
+14	.	_	PUNCT	PUNCT	_	12	punct	_	_
+15	.	_	PUNCT	PUNCT	_	12	punct	_	_
+
+1	Noble	noble	NOUN	NOUN	_	4	nsubj	_	_
+2	still	still	ADV	ADV	_	4	advmod	_	_
+3	can	can	AUX	AUX	_	4	aux	_	_
+4	survive	survive	VERB	VERB	_	0	root	_	_
+5	?	?	PUNCT	PUNCT	_	4	punct	_	_
+
+1	then	_	ADV	ADV	_	2	advmod	_	_
+2	got	_	VERB	VERB	_	5	advcl	_	_
+3	reason	_	NOUN	NOUN	_	2	dobj	_	_
+4	can	_	AUX	AUX	_	5	aux	_	_
+5	raise	_	VERB	VERB	_	0	root	_	_
+6	fare	_	NOUN	NOUN	_	5	dobj	_	_
+7	somemore	_	ADV	ADV	_	5	advmod	_	_
+8	...	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Last	last	ADJ	ADJ	_	2	amod	_	_
+2	time	time	NOUN	NOUN	_	3	nmod:tmod	_	_
+3	got	got	VERB	VERB	_	0	root	_	_
+4	1	1	NUM	NUM	_	7	nummod	_	_
+5	roti	roti	NOUN	NOUN	_	6	compound	_	_
+6	prata	prata	NOUN	NOUN	_	7	compound	_	_
+7	stall	stall	NOUN	NOUN	_	3	dobj	_	_
+8	,	,	PUNCT	PUNCT	_	3	punct	_	_
+9	you	you	PRON	PRON	_	10	nsubj	_	_
+10	ask	ask	VERB	VERB	_	16	advcl	_	_
+11	for	for	ADP	ADP	_	13	case	_	_
+12	1	1	NUM	NUM	_	13	nummod	_	_
+13	order	order	NOUN	NOUN	_	10	nmod	_	_
+14	they	they	PRON	PRON	_	16	nsubj	_	_
+15	purposely	purposely	ADV	ADV	_	16	advmod	_	_
+16	give	give	VERB	VERB	_	3	parataxis	_	_
+17	the	the	DET	DET	_	19	det	_	_
+18	upsize	upsize	ADJ	ADJ	_	19	amod	_	_
+19	one	one	NOUN	NOUN	_	16	dobj	_	_
+20	without	without	ADP	ADP	_	21	mark	_	_
+21	asking	asking	VERB	VERB	_	16	advcl	_	_
+22	.	.	PUNCT	PUNCT	_	16	punct	_	_
+
+1	i	_	PRON	PRON	_	2	nsubj	_	_
+2	heard	_	VERB	VERB	_	0	root	_	_
+3	chem	_	NOUN	NOUN	_	6	compound	_	_
+4	year	_	NOUN	NOUN	_	6	compound	_	_
+5	1	_	NUM	NUM	_	4	nummod	_	_
+6	modules	_	NOUN	NOUN	_	11	nmod	_	_
+7	the	_	DET	DET	_	9	det	_	_
+8	lab	_	ADJ	ADJ	_	9	amod	_	_
+9	hours	_	NOUN	NOUN	_	11	nsubj	_	_
+10	sibeh	_	ADV	ADV	_	11	advmod	_	_
+11	long	_	ADJ	ADJ	_	2	ccomp	_	_
+12	leh	_	INTJ	INTJ	_	2	discourse	_	_
+
+1	Dont	_	AUX	PROPN	_	3	aux	_	_
+2	so	_	ADV	ADV	_	3	advmod	_	_
+3	greedy	_	ADJ	ADJ	_	0	root	_	_
+4	lah	_	INTJ	INTJ	_	3	discourse	_	_
+5	...	_	PUNCT	PUNCT	_	3	punct	_	_
+6	short	_	ADJ	ADJ	_	3	parataxis	_	_
+7	in	_	ADP	ADP	_	8	case	_	_
+8	supply	_	NOUN	NOUN	_	6	nmod	_	_
+9	alrdy	_	ADV	ADV	_	6	advmod	_	_
+10	leh	_	INTJ	INTJ	_	6	discourse	_	_
+11	.	_	PUNCT	PUNCT	_	3	punct	_	_
+12	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Self	self	NOUN	NOUN	_	2	compound	_	_
+2	praise	praise	NOUN	NOUN	_	5	nsubj	_	_
+3	is	is	VERB	VERB	_	5	cop	_	_
+4	internatilonal	internatilonal	ADJ	ADJ	_	5	amod	_	_
+5	disgrace	disgrace	NOUN	NOUN	_	0	root	_	_
+6	.	.	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Continue	_	VERB	VERB	_	0	root	_	_
+2	act	_	VERB	VERB	_	1	xcomp	_	_
+3	blur	_	ADJ	ADJ	_	2	xcomp	_	_
+4	and	_	CONJ	CONJ	_	2	cc	_	_
+5	bochap	_	VERB	NOUN	_	2	conj	_	_
+6	lor	_	INTJ	INTJ	_	1	discourse	_	_
+7	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Ting	ting	PROPN	PROPN	_	2	name	_	_
+2	ting	ting	PROPN	PROPN	_	4	nsubjpass	_	_
+3	kena	kena	AUX	AUX	_	4	auxpass	_	_
+4	arrowed	arrowed	VERB	VERB	_	0	root	_	_
+5	to	to	PART	PART	_	6	mark	_	_
+6	give	give	VERB	VERB	_	4	xcomp	_	_
+7	that	that	DET	DET	_	8	det	_	_
+8	speech	speech	NOUN	NOUN	_	6	dobj	_	_
+9	ah	ah	INTJ	INTJ	_	4	discourse	_	_
+10	.	.	PUNCT	PUNCT	_	4	punct	_	_
+
+1	anyways	_	ADV	ADV	_	3	advmod	_	_
+2	still	_	ADV	ADV	_	3	advmod	_	_
+3	go	_	VERB	VERB	_	0	root	_	_
+4	that	_	DET	DET	_	7	det	_	_
+5	30	_	NUM	NUM	_	6	nummod	_	_
+6	sec	_	NOUN	NOUN	_	7	compound	_	_
+7	rule	_	NOUN	NOUN	_	3	dobj	_	_
+8	...	_	PUNCT	PUNCT	_	3	punct	_	_
+9	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Haha	_	INTJ	INTJ	_	3	discourse	_	_
+2	too	_	ADV	ADV	_	3	advmod	_	_
+3	kiasee	_	ADJ	ADJ	_	0	root	_	_
+4	to	_	PART	PART	_	5	mark	_	_
+5	try	_	VERB	VERB	_	3	advcl	_	_
+6	also	_	ADV	ADV	_	3	advmod	_	_
+7	lah	_	INTJ	INTJ	_	3	discourse	_	_
+8	...	_	PUNCT	PUNCT	_	3	punct	_	_
+9	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	LHL	lhl	PROPN	PROPN	_	2	compound	_	_
+2	generation	generation	NOUN	NOUN	_	7	nmod	_	_
+3	,	,	PUNCT	PUNCT	_	7	punct	_	_
+4	norm	norm	NOUN	NOUN	_	7	nsubj	_	_
+5	was	was	VERB	VERB	_	7	cop	_	_
+6	2	2	NUM	NUM	_	7	nummod	_	_
+7	children	child	NOUN	NOUN	_	0	root	_	_
+8	.	.	PUNCT	PUNCT	_	7	punct	_	_
+
+1	L8r	_	root	PROPN	_	0	nsubj	_	_
+2	she	_	PRON	PRON	_	4	nsubj	_	_
+3	sure	_	ADV	ADV	_	4	advmod	_	_
+4	angry	_	ADJ	ADJ	_	1	acl:relcl	_	_
+5	one	_	INTJ	INTJ	_	4	discourse	_	_
+6	.	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	me	_	PRON	PRON	_	5	nsubj	_	_
+2	not	_	PART	PART	_	5	neg	_	_
+3	a	_	DET	DET	_	5	det	_	_
+4	chendol	_	NOUN	NOUN	_	5	compound	_	_
+5	person	_	NOUN	NOUN	_	0	root	_	_
+6	lah	_	INTJ	INTJ	_	5	discourse	_	_
+7	haha	_	INTJ	INTJ	_	5	discourse	_	_
+8	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Trump	_	PROPN	PROPN	_	2	nsubj	_	_
+2	Cancels	_	VERB	PROPN	_	0	root	_	_
+3	Obama	_	PROPN	PROPN	_	7	compound	_	_
+4	`	_	PUNCT	PUNCT	_	5	punct	_	_
+5	Free-Trade	_	NOUN	NOUN	_	7	compound	_	_
+6	'	_	PUNCT	PUNCT	_	5	punct	_	_
+7	Deal	_	VERB	VERB	_	2	dobj	_	_
+8	With	_	ADP	ADP	_	10	case	_	_
+9	Communist	_	NOUN	NOUN	_	10	compound	_	_
+10	Vietnam	_	PROPN	NOUN	_	7	nmod	_	_
+11	That	_	PRON	DET	_	12	nsubj	_	_
+12	Legitimized	_	VERB	VERB	_	7	acl:relcl	_	_
+13	State-Owned	_	ADJ	ADJ	_	14	amod	_	_
+14	Businesses	_	NOUN	NOUN	_	12	dobj	_	_
+
+1	aiya	_	INTJ	INTJ	_	5	discourse	_	_
+2	go	_	VERB	VERB	_	5	csubj	_	_
+3	china	_	PROPN	PROPN	_	2	dobj	_	_
+4	oso	_	ADV	ADV	_	5	advmod	_	_
+5	same	_	ADJ	ADJ	_	0	xcomp	_	_
+6	ma	_	INTJ	INTJ	_	5	discourse	_	_
+7	...	_	PUNCT	PUNCT	_	5	punct	_	_
+8	bring	_	VERB	VERB	_	5	parataxis	_	_
+9	u	_	PRON	PRON	_	8	nsubj	_	_
+10	buy	_	VERB	VERB	_	8	xcomp	_	_
+11	all	_	DET	DET	_	14	det:predet	_	_
+12	the	_	DET	DET	_	14	det	_	_
+13	useless	_	ADJ	ADJ	_	14	amod	_	_
+14	medicine	_	NOUN	NOUN	_	10	dobj	_	_
+15	,	_	PUNCT	PUNCT	_	8	punct	_	_
+16	bixiu	_	INTJ	INTJ	_	8	discourse	_	_
+17	...	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	That	_	PRON	PRON	_	3	nsubj	_	_
+2	's	_	VERB	VERB	_	3	cop	_	_
+3	why	_	ADV	ADV	_	0	root	_	_
+4	last	_	ADJ	ADJ	_	5	amod	_	_
+5	time	_	NOUN	NOUN	_	12	nmod:tmod	_	_
+6	Bro	_	NOUN	NOUN	_	9	compound	_	_
+7	Lau	_	PROPN	PROPN	_	9	name	_	_
+8	Ti	_	PROPN	PROPN	_	9	name	_	_
+9	Ko	_	PROPN	PROPN	_	12	nsubj	_	_
+10	Jac	_	PROPN	PROPN	_	9	appos	_	_
+11	Jac	_	PROPN	PROPN	_	10	dup	_	_
+12	said	_	VERB	VERB	_	3	acl:relcl	_	_
+13	he	_	PRON	PRON	_	15	nsubj	_	_
+14	can	_	AUX	AUX	_	15	aux	_	_
+15	invest	_	VERB	VERB	_	12	ccomp	_	_
+16	for	_	ADP	ADP	_	17	case	_	_
+17	Temasek	_	PROPN	PROPN	_	15	nmod	_	_
+18	...	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	siao	siao	ADP	ADP	_	3	amod	_	_
+2	talk	talk	NOUN	NOUN	_	3	compound	_	_
+3	cock	cock	NOUN	NOUN	_	5	vocative	_	_
+4	.	.	PUNCT	PUNCT	_	3	punct	_	_
+5	Try	try	VERB	VERB	_	0	root	_	_
+6	paper	paper	NOUN	NOUN	_	7	compound	_	_
+7	trading	trading	NOUN	NOUN	_	5	dobj	_	_
+8	aka	aka	ADP	ADP	_	10	case	_	_
+9	stock	stock	NOUN	NOUN	_	10	compound	_	_
+10	challenge	challenge	NOUN	NOUN	_	7	appos	_	_
+11	with	with	ADP	ADP	_	12	case	_	_
+12	result	result	NOUN	NOUN	_	7	nmod	_	_
+13	then	then	SCONJ	SCONJ	_	14	mark	_	_
+14	say	say	VERB	VERB	_	5	advcl	_	_
+15	.	.	PUNCT	PUNCT	_	5	punct	_	_
+
+1	If	_	SCONJ	SCONJ	_	3	mark	_	_
+2	in	_	ADP	ADP	_	3	case	_	_
+3	kyoto	_	PROPN	PROPN	_	7	advcl	_	_
+4	,	_	PUNCT	PUNCT	_	7	punct	_	_
+5	u	_	PRON	PRON	_	7	nsubj	_	_
+6	can	_	AUX	AUX	_	7	aux	_	_
+7	try	_	VERB	VERB	_	0	root	_	_
+8	kyoto	_	PROPN	PROPN	_	9	compound	_	_
+9	beef	_	NOUN	NOUN	_	7	dobj	_	_
+10	n	_	CONJ	CONJ	_	9	cc	_	_
+11	omi	_	PROPN	PROPN	_	12	compound	_	_
+12	beef	_	NOUN	NOUN	_	9	conj	_	_
+13	...	_	PUNCT	PUNCT	_	7	punct	_	_
+14	.	_	PUNCT	PUNCT	_	7	punct	_	_
+
+1	I	_	PRON	PRON	_	2	nsubj	_	_
+2	thought	_	VERB	VERB	_	0	root	_	_
+3	only	_	ADV	ADV	_	4	advmod	_	_
+4	lazada	_	PROPN	PROPN	_	7	nsubj	_	_
+5	and	_	CONJ	CONJ	_	4	cc	_	_
+6	ST	_	PROPN	PROPN	_	4	conj	_	_
+7	selling	_	VERB	VERB	_	2	ccomp	_	_
+8	?	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	seriously	_	ADV	ADV	_	2	advmod	_	_
+2	WHERE	_	ADV	ADV	_	0	root	_	_
+3	THE	_	DET	DET	_	4	det	_	_
+4	PAK	_	NOUN	NOUN	_	2	nsubj	_	_
+5	IS	_	VERB	VERB	_	2	cop	_	_
+6	HE	_	PRON	PRON	_	2	nsubj	_	_
+7	?	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	We	_	PRON	PRON	_	4	nsubj	_	_
+2	are	_	VERB	VERB	_	4	cop	_	_
+3	the	_	DET	DET	_	4	det	_	_
+4	CHAMPION	_	NOUN	NOUN	_	0	root	_	_
+5	!!!!!!	_	PUNCT	PUNCT	_	4	punct	_	_
+6	1st	_	ADJ	ADJ	_	4	parataxis	_	_
+7	leh	_	INTJ	INTJ	_	6	discourse	_	_
+8	!!!	_	PUNCT	PUNCT	_	6	punct	_	_
+
+1	you	_	PRON	PRON	_	2	nsubj	_	_
+2	think	_	VERB	VERB	_	0	root	_	_
+3	SMS	_	NOUN	NOUN	_	5	nsubj	_	_
+4	is	_	VERB	VERB	_	5	cop	_	_
+5	free	_	ADJ	ADJ	_	2	ccomp	_	_
+6	??	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Bought	bought	VERB	VERB	_	0	root	_	_
+2	Noble	noble	PROPN	PROPN	_	1	dobj	_	_
+3	yesteday	yesteday	NOUN	NOUN	_	1	nmod:tmod	_	_
+4	!	!	PUNCT	PUNCT	_	1	punct	_	_
+5	huat	huat	INTJ	INTJ	_	1	discourse	_	_
+6	ah	ah	INTJ	INTJ	_	5	discourse	_	_
+7	!	!	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Reminds	_	VERB	VERB	_	0	root	_	_
+2	me	_	PRON	PRON	_	1	dobj	_	_
+3	of	_	ADP	ADP	_	5	case	_	_
+4	the	_	DET	DET	_	5	det	_	_
+5	premium	_	NOUN	NOUN	_	1	nmod	_	_
+6	I	_	PRON	PRON	_	7	nsubj	_	_
+7	paid	_	VERB	VERB	_	5	acl:relcl	_	_
+8	for	_	ADP	ADP	_	13	case	_	_
+9	the	_	DET	DET	_	13	det	_	_
+10	sony	_	PROPN	PROPN	_	13	compound	_	_
+11	vaio	_	PROPN	PROPN	_	12	compound	_	_
+12	z	_	PROPN	PROPN	_	13	compound	_	_
+13	laptops	_	NOUN	NOUN	_	7	nmod	_	_
+14	...	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	walaneh	walaneh	INTJ	INTJ	_	6	discourse	_	_
+2	!	!	PUNCT	PUNCT	_	1	punct	_	_
+3	Long	long	ADJ	ADJ	_	4	amod	_	_
+4	time	time	NOUN	NOUN	_	6	nmod:tmod	_	_
+5	no	no	PART	PART	_	6	neg	_	_
+6	see	see	VERB	VERB	_	0	root	_	_
+7	liao	liao	ADV	ADV	_	6	advmod	_	_
+8	,	,	PUNCT	PUNCT	_	6	punct	_	_
+9	alimama	alimama	PROPN	PROPN	_	6	vocative	_	_
+10	!	!	PUNCT	PUNCT	_	6	punct	_	_
+
+1	Then	_	ADV	ADV	_	5	advmod	_	_
+2	many	_	ADJ	ADJ	_	3	amod	_	_
+3	companies	_	NOUN	NOUN	_	5	nsubj	_	_
+4	not	_	PART	PART	_	5	neg	_	_
+5	civilised	_	VERB	VERB	_	0	root	_	_
+6	liao	_	ADV	ADV	_	5	punct	_	_
+
+1	si	_	ADJ	ADJ	_	3	amod	_	_
+2	ah	_	PROPN	PROPN	_	3	compound	_	_
+3	lau	_	PROPN	NOUN	_	12	vocative	_	_
+4	i	_	PRON	PRON	_	6	nsubj	_	_
+5	dun	_	AUX	AUX	_	6	aux	_	_
+6	go	_	VERB	VERB	_	12	advcl	_	_
+7	for	_	ADP	ADP	_	9	case	_	_
+8	prata	_	NOUN	NOUN	_	9	compound	_	_
+9	outing	_	NOUN	NOUN	_	6	nmod	_	_
+10	den	_	ADV	ADV	_	12	advmod	_	_
+11	u	_	PRON	PRON	_	12	nsubj	_	_
+12	know	_	VERB	VERB	_	0	root	_	_
+13	!	_	PUNCT	PUNCT	_	12	punct	_	_
+
+1	One	_	NUM	NUM	_	3	nummod	_	_
+2	plus	_	ADJ	ADP	_	3	amod	_	_
+3	point	_	NOUN	NOUN	_	0	root	_	_
+4	,	_	PUNCT	PUNCT	_	3	punct	_	_
+5	she	_	PRON	PRON	_	8	nsubj	_	_
+6	aint	_	VERB	VERB	_	8	cop	_	_
+7	ur	_	PRON	PRON	_	8	nmod:poss	_	_
+8	boss	_	NOUN	NOUN	_	3	dobj	_	_
+9	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	44	44	NUM	NUM	_	2	nummod	_	_
+2	hours	hour	NOUN	NOUN	_	6	nsubj	_	_
+3	are	are	VERB	VERB	_	6	cop	_	_
+4	for	for	ADP	ADP	_	6	case	_	_
+5	garment	garment	NOUN	NOUN	_	6	compound	_	_
+6	offices	office	NOUN	NOUN	_	0	root	_	_
+7	and	and	CONJ	CONJ	_	6	cc	_	_
+8	local	local	ADJ	ADJ	_	9	amod	_	_
+9	banks	bank	NOUN	NOUN	_	6	conj	_	_
+10	lah	lah	INTJ	INTJ	_	6	discourse	_	_
+11	.	.	PUNCT	PUNCT	_	6	punct	_	_
+
+1	Balek	_	VERB	VERB	_	0	root	_	_
+2	kampong	_	NOUN	NOUN	_	1	mwe	_	_
+3	liao	_	ADV	ADV	_	1	advmod	_	_
+4	lah	_	INTJ	INTJ	_	1	discourse	_	_
+5	!	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	I	_	PRON	PRON	_	2	nsubj	_	_
+2	move	_	VERB	VERB	_	0	root	_	_
+3	and	_	CONJ	CONJ	_	2	cc	_	_
+4	shoot	_	VERB	VERB	_	2	conj	_	_
+5	with	_	ADP	ADP	_	6	case	_	_
+6	AK	_	PROPN	PROPN	_	4	nmod	_	_
+7	bullet	_	NOUN	NOUN	_	8	nsubj	_	_
+8	fly	_	VERB	VERB	_	2	parataxis	_	_
+9	elsewhere	_	ADV	ADV	_	8	advmod	_	_
+
+1	No	_	INTJ	INTJ	_	5	discourse	_	_
+2	hor	_	INTJ	INTJ	_	1	discourse	_	_
+3	...	_	PUNCT	PUNCT	_	1	punct	_	_
+4	She	_	PRON	PRON	_	5	nsubj	_	_
+5	tell	_	VERB	VERB	_	0	root	_	_
+6	me	_	PRON	PRON	_	5	iobj	_	_
+7	will	_	AUX	AUX	_	8	aux	_	_
+8	paktor	_	VERB	VERB	_	5	ccomp	_	_
+9	if	_	SCONJ	SCONJ	_	14	mark	_	_
+10	i	_	PRON	PRON	_	14	nsubj	_	_
+11	no	_	DET	DET	_	14	neg	_	_
+12	suka	_	NOUN	NOUN	_	14	name	_	_
+13	suka	_	NOUN	NOUN	_	14	name	_	_
+14	ki	_	NOUN	NOUN	_	8	advcl	_	_
+15	tao	_	PROPN	PROPN	_	16	name	_	_
+16	hong	_	PROPN	PROPN	_	14	conj	_	_
+17	or	_	CONJ	CONJ	_	16	cc	_	_
+18	siao	_	PROPN	PROPN	_	19	name	_	_
+19	hong	_	PROPN	PROPN	_	16	conj	_	_
+20	.	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	tiagong	_	VERB	VERB	_	0	root	_	_
+2	is	_	VERB	VERB	_	4	auxpass	_	_
+3	factory	_	NOUN	NOUN	_	4	nsubj	_	_
+4	pumped	_	VERB	VERB	_	1	ccomp	_	_
+5	one	_	INTJ	INTJ	_	4	discourse	_	_
+6	.	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Occasionally	_	ADV	ADV	_	2	advmod	_	_
+2	get	_	VERB	VERB	_	0	root	_	_
+3	some	_	DET	DET	_	5	det	_	_
+4	visiting	_	VERB	VERB	_	5	amod	_	_
+5	lecturers	_	NOUN	NOUN	_	2	dobj	_	_
+6	from	_	ADP	ADP	_	8	case	_	_
+7	renowned	_	ADJ	ADJ	_	8	amod	_	_
+8	Uni	_	NOUN	NOUN	_	5	nmod	_	_
+9	's	_	PART	PART	_	8	case	_	_
+10	like	_	VERB	VERB	_	11	case	_	_
+11	Cranfield	_	PROPN	PROPN	_	2	nmod	_	_
+12	and	_	CONJ	CONJ	_	11	cc	_	_
+13	Aston	_	PROPN	PROPN	_	11	conj	_	_
+14	etc.	_	X	X	_	2	conj	_	_
+
+1	Peninsula	_	PROPN	PROPN	_	2	compound	_	_
+2	Plaza	_	NOUN	NOUN	_	6	nsubj	_	_
+3	is	_	VERB	VERB	_	6	cop	_	_
+4	the	_	DET	DET	_	6	det	_	_
+5	hangout	_	NOUN	NOUN	_	6	compound	_	_
+6	place	_	NOUN	NOUN	_	0	root	_	_
+7	of	_	ADP	ADP	_	9	case	_	_
+8	Myanmar	_	ADJ	ADJ	_	9	amod	_	_
+9	maids	_	NOUN	NOUN	_	6	nmod	_	_
+
+1	Double	double	ADJ	ADJ	_	2	amod	_	_
+2	confirm	confirm	NOUN	NOUN	_	0	root	_	_
+3	by	by	ADP	ADP	_	5	case	_	_
+4	lvlrsSTI	lvlrssti	PROPN	PROPN	_	5	compound	_	_
+5	thread	thread	NOUN	NOUN	_	2	nmod	_	_
+6	,	,	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Is	_	VERB	VERB	_	7	cop	_	_
+2	the	_	DET	DET	_	6	det	_	_
+3	Asia	_	PROPN	PROPN	_	6	compound	_	_
+4	web	_	NOUN	NOUN	_	6	compound	_	_
+5	direct	_	ADJ	ADJ	_	6	amod	_	_
+6	price	_	NOUN	NOUN	_	7	nsubj	_	_
+7	nett	_	ADJ	ADJ	_	0	root	_	_
+8	?	_	PUNCT	PUNCT	_	7	punct	_	_
+
+1	Can	can	AUX	AUX	_	3	aux	_	_
+2	not	not	PART	PART	_	3	neg	_	_
+3	let	let	VERB	VERB	_	0	root	_	_
+4	him	him	PRON	PRON	_	3	dobj	_	_
+5	win	win	VERB	VERB	_	3	xcomp	_	_
+6	lah	lah	INTJ	INTJ	_	3	discourse	_	_
+7	!	!	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Confirm	_	VERB	VERB	_	0	root	_	_
+2	sgbuffett	_	PROPN	PROPN	_	7	nsubj	_	_
+3	is	_	VERB	VERB	_	7	cop	_	_
+4	a	_	DET	DET	_	7	det	_	_
+5	Malaysian	_	ADJ	ADJ	_	7	amod	_	_
+6	Indian-Chinese	_	ADJ	ADJ	_	7	amod	_	_
+7	muslim	_	NOUN	NOUN	_	1	ccomp	_	_
+8	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	wa	_	INTJ	INTJ	_	6	discourse	_	_
+2	...	_	PUNCT	PUNCT	_	1	punct	_	_
+3	today	_	NOUN	NOUN	_	6	nmod:tmod	_	_
+4	ah	_	PROPN	PROPN	_	5	compound	_	_
+5	bui	_	PROPN	PROPN	_	6	nsubj	_	_
+6	stresss	_	VERB	VERB	_	0	root	_	_
+7	out	_	ADP	ADV	_	6	compound:prt	_	_
+8	liao	_	ADV	ADV	_	6	advmod	_	_
+9	.	_	PUNCT	PUNCT	_	6	punct	_	_
+10	.	_	PUNCT	PUNCT	_	6	punct	_	_
+
+1	Saw	_	VERB	VERB	_	0	root	_	_
+2	this	_	DET	DET	_	5	det	_	_
+3	Er	_	PROPN	PROPN	_	5	name	_	_
+4	Hung	_	PROPN	PROPN	_	5	name	_	_
+5	Keow	_	PROPN	PROPN	_	1	dobj	_	_
+6	and	_	CONJ	CONJ	_	5	cc	_	_
+7	Toh	_	PROPN	PROPN	_	9	name	_	_
+8	Ban	_	PROPN	PROPN	_	9	name	_	_
+9	An	_	PROPN	PROPN	_	5	conj	_	_
+10	very	_	ADV	ADV	_	11	advmod	_	_
+11	good	_	ADJ	ADJ	_	12	amod	_	_
+12	reviews	_	NOUN	NOUN	_	1	parataxis	_	_
+13	.	_	PUNCT	PUNCT	_	1	punct	_	_
+14	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Are	_	VERB	VERB	_	5	cop	_	_
+2	those	_	DET	DET	_	4	det	_	_
+3	Mathematics	_	NOUN	NOUN	_	4	compound	_	_
+4	modules	_	NOUN	NOUN	_	5	nsubj	_	_
+5	difficult	_	ADJ	ADJ	_	0	root	_	_
+6	?	_	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Hahahha	_	INTJ	INTJ	_	4	discourse	_	_
+2	I	_	PRON	PRON	_	4	nsubj	_	_
+3	am	_	AUX	AUX	_	4	aux	_	_
+4	going	_	VERB	VERB	_	0	root	_	_
+5	Disneyland	_	PROPN	PROPN	_	4	dobj	_	_
+6	alone	_	ADV	ADV	_	4	advmod	_	_
+7	!	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	I	_	PRON	PRON	_	2	nsubj	_	_
+2	did	_	VERB	VERB	_	0	root	_	_
+3	another	_	DET	DET	_	4	det	_	_
+4	reboot	_	NOUN	NOUN	_	2	dobj	_	_
+5	and	_	CONJ	CONJ	_	2	cc	_	_
+6	was	_	VERB	VERB	_	7	cop	_	_
+7	okay	_	ADJ	ADJ	_	2	conj	_	_
+8	liao	_	ADV	ADV	_	7	advmod	_	_
+
+1	Can	can	AUX	AUX	_	2	aux	_	_
+2	warm	warm	VERB	VERB	_	0	root	_	_
+3	up	up	ADP	ADP	_	2	compound:prt	_	_
+4	it	it	PRON	PRON	_	2	dobj	_	_
+5	,	,	PUNCT	PUNCT	_	2	punct	_	_
+6	it	it	PRON	PRON	_	8	nsubj	_	_
+7	's	's	AUX	AUX	_	8	aux	_	_
+8	glowing	glowing	VERB	VERB	_	2	parataxis	_	_
+9	.	.	PUNCT	PUNCT	_	2	punct	_	_
+
+1	anyway	_	ADV	ADV	_	2	advmod	_	_
+2	have	_	VERB	VERB	_	0	root	_	_
+3	a	_	DET	DET	_	5	det	_	_
+4	fun	_	ADJ	ADJ	_	5	amod	_	_
+5	trip	_	NOUN	NOUN	_	2	dobj	_	_
+6	in	_	ADP	ADP	_	7	case	_	_
+7	taiwan	_	PROPN	PROPN	_	5	nmod	_	_
+8	!!	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	anyone	_	PRON	PRON	_	2	nsubj	_	_
+2	received	_	VERB	VERB	_	0	root	_	_
+3	thier	_	PRON	PRON	_	4	nmod:poss	_	_
+4	offers	_	NOUN	NOUN	_	2	dobj	_	_
+5	for	_	ADP	ADP	_	8	case	_	_
+6	ntu	_	PROPN	PROPN	_	8	compound	_	_
+7	information	_	NOUN	NOUN	_	8	compound	_	_
+8	engineering	_	NOUN	NOUN	_	2	nmod	_	_
+9	already	_	ADV	ADV	_	2	advmod	_	_
+10	?	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	can	_	AUX	AUX	_	2	aux	_	_
+2	make	_	VERB	VERB	_	0	root	_	_
+3	money	_	NOUN	NOUN	_	2	dobj	_	_
+4	loh	_	INTJ	INTJ	_	2	discourse	_	_
+5	...	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	back	back	VERB	VERB	_	0	root	_	_
+2	up	up	ADP	ADP	_	1	compound:prt	_	_
+3	already	already	ADV	ADV	_	1	advmod	_	_
+4	,	,	PUNCT	PUNCT	_	1	punct	_	_
+5	kateks	kateks	NOUN	NOUN	_	6	nsubj	_	_
+6	taking	taking	VERB	VERB	_	1	parataxis	_	_
+7	cover	cover	NOUN	NOUN	_	6	dobj	_	_
+8	.	.	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Where	_	ADV	ADV	_	2	advmod	_	_
+2	got	_	VERB	VERB	_	0	root	_	_
+3	end	_	NOUN	NOUN	_	2	dobj	_	_
+4	leh	_	INTJ	INTJ	_	2	discourse	_	_
+5	?	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Later	_	ADV	ADV	_	2	advmod	_	_
+2	kill	_	VERB	VERB	_	0	root	_	_
+3	the	_	DET	DET	_	4	det	_	_
+4	kateks	_	NOUN	NOUN	_	2	dobj	_	_
+5	again	_	ADV	ADV	_	2	advmod	_	_
+
+1	Maybe	_	ADV	ADV	_	3	advmod	_	_
+2	nobody	_	PRON	PRON	_	3	nsubj	_	_
+3	applied	_	VERB	VERB	_	0	root	_	_
+4	so	_	SCONJ	ADV	_	5	mark	_	_
+5	bobian	_	ADJ	ADJ	_	3	advcl	_	_
+
+1	Imagine	_	VERB	VERB	_	0	root	_	_
+2	you	_	PRON	PRON	_	3	nsubj	_	_
+3	are	_	VERB	VERB	_	1	ccomp	_	_
+4	at	_	ADP	ADP	_	6	case	_	_
+5	a	_	DET	DET	_	6	det	_	_
+6	coffeeshop	_	NOUN	NOUN	_	3	nmod	_	_
+7	when	_	ADV	ADV	_	9	mark	_	_
+8	you	_	PRON	PRON	_	9	nsubj	_	_
+9	see	_	VERB	VERB	_	3	advcl	_	_
+10	a	_	DET	DET	_	12	det	_	_
+11	chio	_	ADJ	ADJ	_	12	amod	_	_
+12	bu	_	NOUN	NOUN	_	9	dobj	_	_
+13	.	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	and	_	CONJ	CONJ	_	3	cc	_	_
+2	handle	_	NOUN	NOUN	_	3	compound	_	_
+3	length	_	NOUN	NOUN	_	0	root	_	_
+4	lor	_	INTJ	INTJ	_	3	discourse	_	_
+5	!	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Lower	_	ADJ	ADJ	_	2	amod	_	_
+2	station	_	NOUN	NOUN	_	6	nsubj	_	_
+3	is	_	VERB	VERB	_	6	cop	_	_
+4	near	_	ADP	ADP	_	6	case	_	_
+5	Gohtong	_	PROPN	PROPN	_	6	compound	_	_
+6	Jaya	_	PROPN	PROPN	_	0	root	_	_
+7	,	_	PUNCT	PUNCT	_	6	punct	_	_
+8	can	_	AUX	AUX	_	9	aux	_	_
+9	go	_	VERB	VERB	_	6	parataxis	_	_
+10	n	_	CONJ	CONJ	_	9	cc	_	_
+11	explore	_	VERB	VERB	_	9	conj	_	_
+12	there	_	ADV	ADV	_	9	advmod	_	_
+
+1	That	that	PRON	PRON	_	4	nsubj	_	_
+2	's	's	VERB	VERB	_	4	cop	_	_
+3	the	the	DET	DET	_	4	det	_	_
+4	thing	thing	NOUN	NOUN	_	0	root	_	_
+5	rite	rite	INTJ	INTJ	_	4	discourse	_	_
+6	.	.	PUNCT	PUNCT	_	4	punct	_	_
+7	only	only	ADV	ADV	_	9	advmod	_	_
+8	she	she	PRON	PRON	_	9	nsubj	_	_
+9	can	can	AUX	AUX	_	4	parataxis	_	_
+10	!	!	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Last	_	ADJ	ADJ	_	2	amod	_	_
+2	time	_	NOUN	NOUN	_	4	nmod:tmod	_	_
+3	I	_	PRON	PRON	_	4	nsubj	_	_
+4	went	_	VERB	VERB	_	0	root	_	_
+5	to	_	PART	PART	_	6	mark	_	_
+6	learn	_	VERB	VERB	_	4	xcomp	_	_
+7	futures	_	ADJ	ADJ	_	9	amod	_	_
+8	commodity	_	NOUN	NOUN	_	9	compound	_	_
+9	trading	_	NOUN	NOUN	_	6	dobj	_	_
+10	the	_	DET	DET	_	11	det	_	_
+11	trainer	_	NOUN	NOUN	_	12	nsubj	_	_
+12	said	_	VERB	VERB	_	4	conj	_	_
+13	so	_	ADV	ADV	_	12	advmod	_	_
+14	lah	_	INTJ	INTJ	_	12	discourse	_	_
+15	!	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	U	_	PRON	PRON	_	2	nsubj	_	_
+2	go	_	VERB	VERB	_	0	root	_	_
+3	try	_	VERB	VERB	_	2	xcomp	_	_
+4	lah	_	INTJ	INTJ	_	2	discourse	_	_
+5	.	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Stop	_	NOUN	NOUN	_	0	root	_	_
+2	aiming	_	VERB	VERB	_	1	xcomp	_	_
+3	your	_	PRON	PRON	_	4	nmod:poss	_	_
+4	parents	_	NOUN	NOUN	_	6	nmod:poss	_	_
+5	'	_	PART	PART	_	4	case	_	_
+6	CPF	_	PROPN	PROPN	_	2	dobj	_	_
+7	!!	_	PUNCT	PUNCT	_	1	punct	_	_
+
+1	U	_	PRON	PRON	_	2	nsubj	_	_
+2	think	_	VERB	VERB	_	0	root	_	_
+3	u	_	PRON	PRON	_	7	nsubj	_	_
+4	male	_	NOUN	NOUN	_	5	compound	_	_
+5	lead	_	NOUN	NOUN	_	3	appos	_	_
+6	can	_	AUX	AUX	_	7	aux	_	_
+7	act	_	VERB	VERB	_	2	ccomp	_	_
+8	suave	_	ADJ	ADJ	_	7	xcomp	_	_
+9	meh	_	INTJ	INTJ	_	2	discourse	_	_
+
+1	but	but	CONJ	CONJ	_	2	cc	_	_
+2	costs	cost	VERB	VERB	_	0	root	_	_
+3	much	much	ADV	ADV	_	4	advmod	_	_
+4	more	more	ADV	ADV	_	2	advmod	_	_
+5	leh	leh	INTJ	INTJ	_	2	discourse	_	_
+
+1	We	we	PRON	PRON	_	2	nsubj	_	_
+2	huat	huat	ADJ	ADJ	_	0	root	_	_
+3	big	big	ADJ	ADJ	_	2	advmod	_	_
+4	bg	bg	ADJ	ADJ	_	2	advmod	_	_
+5	liao	liao	ADV	ADV	_	2	advmod	_	_
+6	la	la	INTJ	INTJ	_	2	discourse	_	_
+
+1	Wat	_	PRON	PRON	_	0	root	_	_
+2	abt	_	ADP	ADP	_	3	case	_	_
+3	u	_	PRON	PRON	_	1	nmod	_	_
+4	ppl	_	NOUN	NOUN	_	3	appos	_	_
+5	,	_	PUNCT	PUNCT	_	1	punct	_	_
+6	still	_	ADV	ADV	_	8	advmod	_	_
+7	dun	_	AUX	AUX	_	8	aux	_	_
+8	wan	_	VERB	VERB	_	1	parataxis	_	_
+9	to	_	PART	PART	_	10	mark	_	_
+10	ride	_	VERB	VERB	_	8	xcomp	_	_
+11	UDs	_	PROPN	NOUN	_	10	dobj	_	_
+12	?	_	PUNCT	PUNCT	_	8	punct	_	_
+
+1	BTW	btw	ADV	ADV	_	3	advmod	_	_
+2	Google	google	PROPN	PROPN	_	3	nsubj	_	_
+3	comes	come	VERB	VERB	_	0	root	_	_
+4	from	from	ADP	ADP	_	5	case	_	_
+5	Goo	goo	PROPN	PROPN	_	3	nmod	_	_
+6	.	.	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Lol	_	INTJ	INTJ	_	3	discourse	_	_
+2	you	_	PRON	PRON	_	3	nsubj	_	_
+3	same	_	ADJ	ADJ	_	0	root	_	_
+4	as	_	ADP	ADP	_	5	case	_	_
+5	me	_	PRON	PRON	_	3	nmod	_	_
+6	sia	_	INTJ	INTJ	_	3	discourse	_	_
+
+1	perhaps	perhaps	ADV	ADV	_	5	advmod	_	_
+2	that	that	DET	DET	_	4	det	_	_
+3	altis	altis	PROPN	PROPN	_	4	compound	_	_
+4	owner	owner	NOUN	NOUN	_	5	nsubj	_	_
+5	darent	darent	VERB	VERB	_	0	root	_	_
+6	druve	druve	VERB	VERB	_	5	xcomp	_	_
+7	a	a	DET	DET	_	8	det	_	_
+8	mercs	mercs	NOUN	NOUN	_	6	dobj	_	_
+9	because	because	SCONJ	SCONJ	_	12	mark	_	_
+10	he	he	PRON	PRON	_	12	nsubj	_	_
+11	no	no	DET	DET	_	12	neg	_	_
+12	class	class	NOUN	NOUN	_	5	advcl	_	_
+13	?	?	PUNCT	PUNCT	_	5	punct	_	_
+
+1	rice	_	NOUN	NOUN	_	2	compound	_	_
+2	dumplings	_	NOUN	NOUN	_	8	nsubj	_	_
+3	from	_	ADP	ADP	_	6	case	_	_
+4	country	_	NOUN	NOUN	_	6	compound	_	_
+5	battle	_	NOUN	NOUN	_	6	compound	_	_
+6	reward	_	NOUN	NOUN	_	2	nmod	_	_
+7	can	_	AUX	AUX	_	8	aux	_	_
+8	use	_	VERB	VERB	_	0	root	_	_
+9	under	_	ADP	ADP	_	11	case	_	_
+10	dao	_	NOUN	NOUN	_	11	compound	_	_
+11	ju	_	NOUN	NOUN	_	8	nmod	_	_
+
+1	chiu	_	PRON	PRON	_	2	nsubj	_	_
+2	got	_	VERB	VERB	_	0	root	_	_
+3	watch	_	NOUN	NOUN	_	4	compound	_	_
+4	hulu	_	PROPN	PROPN	_	2	dobj	_	_
+5	or	_	CONJ	CONJ	_	2	cc	_	_
+6	subscribe	_	VERB	VERB	_	2	conj	_	_
+7	netflix	_	PROPN	PROPN	_	6	dobj	_	_
+8	?	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Waalu	waalu	INTJ	INTJ	_	8	discourse	_	_
+2	!	!	PUNCT	PUNCT	_	1	punct	_	_
+3	other	other	PRON	PRON	_	6	nmod:poss	_	_
+4	's	's	PART	PART	_	3	case	_	_
+5	Forum	forum	NOUN	NOUN	_	6	compound	_	_
+6	Guru	guru	NOUN	NOUN	_	8	nsubj	_	_
+7	suddenly	suddenly	ADV	ADV	_	8	advmod	_	_
+8	make	make	VERB	VERB	_	0	root	_	_
+9	"	"	PUNCT	PUNCT	_	12	punct	_	_
+10	BiG	big	ADJ	ADJ	_	12	amod	_	_
+11	you	you	NOUN	NOUN	_	12	compound	_	_
+12	tuRn	turn	NOUN	NOUN	_	8	dobj	_	_
+13	"	"	PUNCT	PUNCT	_	12	punct	_	_
+14	liao	liao	ADV	ADV	_	8	advmod	_	_
+15	.	.	PUNCT	PUNCT	_	8	punct	_	_
+
+1	lets	let	VERB	VERB	_	0	root	_	_
+2	the	the	DET	DET	_	3	det	_	_
+3	goodoos	goodoos	NOUN	NOUN	_	1	dobj	_	_
+4	buy	buy	VERB	VERB	_	1	xcomp	_	_
+5	first	first	ADV	ADV	_	4	advmod	_	_
+6	mah	mah	INTJ	INTJ	_	1	discourse	_	_
+7	.	.	PUNCT	PUNCT	_	1	punct	_	_
+
+1	Got	got	AUX	AUX	_	2	aux	_	_
+2	do	do	VERB	VERB	_	0	root	_	_
+3	goreng	goreng	NOUN	NOUN	_	2	dobj	_	_
+4	pisang	pisang	NOUN	NOUN	_	3	mwe	_	_
+5	or	or	CONJ	CONJ	_	2	cc	_	_
+6	not	not	PART	PART	_	2	conj	_	_
+7	?	?	PUNCT	PUNCT	_	2	punct	_	_
+
+1	sunmoon	sunmoon	NOUN	NOUN	_	2	nsubj	_	_
+2	leads	lead	VERB	VERB	_	0	root	_	_
+3	the	the	DET	DET	_	4	det	_	_
+4	pennies	penny	NOUN	NOUN	_	2	dobj	_	_
+5	big	big	ADJ	ADJ	_	6	amod	_	_
+6	cheong	cheong	NOUN	NOUN	_	2	nmod	_	_
+
+1	Got	got	VERB	VERB	_	0	root	_	_
+2	lah	lah	INTJ	INTJ	_	1	discourse	_	_
+3	,	,	PUNCT	PUNCT	_	1	punct	_	_
+4	all	all	DET	DET	_	6	det:predet	_	_
+5	the	the	DET	DET	_	6	det	_	_
+6	drugs	drug	NOUN	NOUN	_	12	nsubj	_	_
+7	sold	sold	VERB	VERB	_	6	acl	_	_
+8	in	in	ADP	ADP	_	9	case	_	_
+9	Pharmacies	pharmacy	NOUN	NOUN	_	7	nmod	_	_
+10	are	are	VERB	VERB	_	12	cop	_	_
+11	legal	legal	ADJ	ADJ	_	12	amod	_	_
+12	drugs	drug	NOUN	NOUN	_	1	parataxis	_	_
+13	,	,	PUNCT	PUNCT	_	12	punct	_	_
+14	that	that	PRON	PRON	_	15	nsubj	_	_
+15	includes	includes	VERB	VERB	_	12	parataxis	_	_
+16	NTUC	ntuc	PROPN	PROPN	_	17	compound	_	_
+17	Unity	unity	PROPN	PROPN	_	15	dobj	_	_
+18	,	,	PUNCT	PUNCT	_	17	punct	_	_
+19	Watson	watson	PROPN	PROPN	_	17	conj	_	_
+20	's	's	PART	PART	_	19	case	_	_
+21	and	and	CONJ	CONJ	_	17	cc	_	_
+22	Guardian	guardian	PROPN	PROPN	_	17	conj	_	_
+23	in	in	ADP	ADP	_	24	case	_	_
+24	Singapore	singapore	PROPN	PROPN	_	15	nmod	_	_
+
+1	Only	only	ADJ	ADJ	_	3	amod	_	_
+2	Russia	russia	PROPN	PROPN	_	3	compound	_	_
+3	warhead	warhead	NOUN	NOUN	_	5	nsubj	_	_
+4	can	can	AUX	AUX	_	5	aux	_	_
+5	hit	hit	VERB	VERB	_	0	root	_	_
+6	usa	usa	PROPN	PROPN	_	5	dobj	_	_
+7	.	.	PUNCT	PUNCT	_	5	punct	_	_
+8	Nearer	nearer	ADJ	ADJ	_	5	parataxis	_	_
+9	.	.	PUNCT	PUNCT	_	5	punct	_	_
+
+1	20	_	NUM	NUM	_	2	nummod	_	_
+2	yrs	_	NOUN	NOUN	_	3	nmod:npmod	_	_
+3	ago	_	ADV	ADV	_	7	advmod	_	_
+4	engineer	_	NOUN	NOUN	_	6	compound	_	_
+5	starting	_	ADJ	VERB	_	6	amod	_	_
+6	pay	_	NOUN	VERB	_	7	nsubj	_	_
+7	$	_	SYM	SYM	_	0	root	_	_
+8	2,800	_	NUM	NUM	_	7	nummod	_	_
+
+1	Next	_	ADJ	ADJ	_	2	amod	_	_
+2	thurs	_	PROPN	PROPN	_	4	nmod:tmod	_	_
+3	i	_	PRON	PRON	_	4	nsubj	_	_
+4	wan	_	VERB	VERB	_	0	root	_	_
+5	na	_	PART	PART	_	6	mark	_	_
+6	go	_	VERB	VERB	_	4	xcomp	_	_
+7	jiak	_	VERB	VERB	_	6	xcomp	_	_
+8	...	_	PUNCT	PUNCT	_	4	punct	_	_
+
+1	Ya	_	INTJ	INTJ	_	4	discourse	_	_
+2	sia	_	INTJ	INTJ	_	1	discourse	_	_
+3	I	_	PRON	PRON	_	4	nsubj	_	_
+4	realised	_	VERB	VERB	_	0	root	_	_
+5	both	_	DET	DET	_	6	det	_	_
+6	Hulk	_	NOUN	NOUN	_	10	dobj	_	_
+7	and	_	CONJ	CONJ	_	6	cc	_	_
+8	Thor	_	NOUN	NOUN	_	6	conj	_	_
+9	not	_	PART	PART	_	10	neg	_	_
+10	inside	_	ADJ	ADJ	_	4	ccomp	_	_
+
+1	Is	is	AUX	AUX	_	3	aux	_	_
+2	Yishun	yishun	PROPN	PROPN	_	3	nsubj	_	_
+3	becoming	becoming	VERB	VERB	_	0	root	_	_
+4	the	the	DET	DET	_	7	det	_	_
+5	next	next	ADJ	ADJ	_	7	amod	_	_
+6	Tiong	tiong	PROPN	PROPN	_	7	name	_	_
+7	Bahru	bahru	PROPN	PROPN	_	3	dobj	_	_
+8	?	?	PUNCT	PUNCT	_	3	punct	_	_
+
+1	can	_	AUX	AUX	_	2	aux	_	_
+2	wear	_	VERB	VERB	_	0	root	_	_
+3	as	_	ADV	ADP	_	4	advmod	_	_
+4	normal	_	ADJ	ADJ	_	2	xcomp	_	_
+5	buttoned	_	ADJ	ADJ	_	4	conj	_	_
+6	,	_	PUNCT	PUNCT	_	4	punct	_	_
+7	inverted	_	ADJ	ADJ	_	4	conj	_	_
+8	unbuttoned	_	ADJ	ADJ	_	7	conj	_	_
+9	or	_	CONJ	CONJ	_	4	cc	_	_
+10	inverted	_	ADJ	ADJ	_	4	conj	_	_
+11	buttoned	_	ADJ	ADJ	_	10	conj	_	_
+12	.	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	Buy	buy	VERB	VERB	_	0	root	_	_
+2	USD	usd	PROPN	PROPN	_	1	dobj	_	_
+3	sell	sell	VERB	VERB	_	1	conj	_	_
+4	gold	gold	NOUN	NOUN	_	3	dobj	_	_
+5	,	,	PUNCT	PUNCT	_	1	punct	_	_
+6	Even	even	ADV	ADV	_	9	advmod	_	_
+7	warren	warren	PROPN	PROPN	_	9	compound	_	_
+8	Buffett	buffett	PROPN	PROPN	_	7	name	_	_
+9	told	told	VERB	VERB	_	1	parataxis	_	_
+10	us	u	PRON	PRON	_	9	iobj	_	_
+11	gold	gold	VERB	VERB	_	19	dobj	_	_
+12	drop	drop	ADV	ADV	_	11	acl	_	_
+13	to	to	ADP	ADP	_	14	case	_	_
+14	US	u	PROPN	PROPN	_	12	nmod	_	_
+15	800	800	NUM	NUM	_	14	nummod	_	_
+16	also	also	ADV	ADV	_	19	advmod	_	_
+17	do	do	AUX	AUX	_	19	aux	_	_
+18	n't	n't	PART	PART	_	19	neg	_	_
+19	buy	buy	VERB	VERB	_	9	ccomp	_	_
+20	.	.	PUNCT	PUNCT	_	1	punct	_	_
+
+1	It	it	PRON	PRON	_	5	nsubj	_	_
+2	should	should	AUX	AUX	_	5	aux	_	_
+3	,	,	PUNCT	PUNCT	_	5	punct	_	_
+4	just	just	ADV	ADV	_	5	advmod	_	_
+5	have	have	VERB	VERB	_	0	root	_	_
+6	to	to	PART	PART	_	7	mark	_	_
+7	wait	wait	VERB	VERB	_	5	xcomp	_	_
+8	.	.	PUNCT	PUNCT	_	5	punct	_	_
+
+1	Uncle	uncle	NOUN	NOUN	_	0	root	_	_
+2	with	with	ADP	ADP	_	4	case	_	_
+3	school	school	NOUN	NOUN	_	4	compound	_	_
+4	mei	mei	PROPN	PROPN	_	1	nmod	_	_
+5	mei	mei	PROPN	PROPN	_	4	mwe	_	_
+
+1	Can	can	AUX	AUX	_	5	aux	_	_
+2	not	not	PART	PART	_	5	neg	_	_
+3	be	be	VERB	VERB	_	5	cop	_	_
+4	so	so	ADV	ADV	_	5	advmod	_	_
+5	direct	direct	ADJ	ADJ	_	0	root	_	_
+6	lah	lah	INTJ	INTJ	_	5	discourse	_	_
+7	!	!	PUNCT	PUNCT	_	5	punct	_	_
+
+1	still	_	ADV	ADV	_	2	advmod	_	_
+2	go	_	VERB	VERB	_	0	root	_	_
+3	30	_	NUM	NUM	_	4	nummod	_	_
+4	sec	_	NOUN	NOUN	_	5	compound	_	_
+5	rule	_	NOUN	NOUN	_	2	dobj	_	_
+6	leh	_	INTJ	INTJ	_	2	discourse	_	_
+
+1	Only	only	ADV	ADV	_	2	advmod	_	_
+2	minutes	minute	NOUN	NOUN	_	0	root	_	_
+3	'	'	PUNCT	PUNCT	_	2	punct	_	_
+4	walk	walk	VERB	VERB	_	2	acl	_	_
+5	to	to	ADP	ADP	_	6	case	_	_
+6	CBD	cbd	PROPN	PROPN	_	4	nmod	_	_
+
+1	Yup	_	INTJ	INTJ	_	4	discourse	_	_
+2	that	_	PRON	PRON	_	4	nsubj	_	_
+3	's	_	VERB	VERB	_	4	cop	_	_
+4	what	_	PRON	PRON	_	0	root	_	_
+5	I	_	PRON	PRON	_	6	nsubj	_	_
+6	did	_	AUX	AUX	_	4	acl:relcl	_	_
+7	lor	_	INTJ	INTJ	_	4	discourse	_	_
+
+1	Trump	trump	PROPN	PROPN	_	3	nsubj	_	_
+2	will	will	AUX	AUX	_	3	aux	_	_
+3	give	give	VERB	VERB	_	0	root	_	_
+4	lhl	lhl	PROPN	PROPN	_	3	iobj	_	_
+5	state	state	NOUN	NOUN	_	6	compound	_	_
+6	dinner	dinner	NOUN	NOUN	_	3	dobj	_	_
+7	?	?	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Thats	that	PRON	PRON	_	2	cop	_	_
+2	's	is	PRON	PRON	_	2	cop	_	_
+3	why	why	ADV	ADV	_	0	root	_	_
+4	fan	fan	PROPN	PROPN	_	4	name	_	_
+5	xiaofei	xiaofei	PROPN	PROPN	_	6	nsubj	_	_
+6	very	very	ADV	ADV	_	6	advmod	_	_
+7	worried	worried	ADJ	ADJ	_	2	acl:relcl	_	_
+8	.	.	PUNCT	PUNCT	_	2	punct	_	_
+
+1	must	_	AUX	AUX	_	2	aux	_	_
+2	tell	_	VERB	VERB	_	0	root	_	_
+3	him	_	PRON	PRON	_	2	dobj	_	_
+4	...	_	PUNCT	PUNCT	_	2	punct	_	_
+5	if	_	SCONJ	SCONJ	_	6	mark	_	_
+6	not	_	PART	PART	_	8	advcl	_	_
+7	he	_	PRON	PRON	_	8	nsubj	_	_
+8	blur	_	ADJ	ADJ	_	2	parataxis	_	_
+9	like	_	ADP	ADP	_	10	case	_	_
+10	sotong	_	NOUN	NOUN	_	8	nmod	_	_
+11	.	_	PUNCT	PUNCT	_	2	punct	_	_
+12	.	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	swee	swee	ADJ	ADJ	_	0	root	_	_
+2	ah	ah	INTJ	INTJ	_	1	discourse	_	_
+3	,	,	PUNCT	PUNCT	_	1	punct	_	_
+4	kateks	kateks	NOUN	NOUN	_	5	nsubj	_	_
+5	clearing	clearing	VERB	VERB	_	1	parataxis	_	_
+6	21	21	NUM	NUM	_	5	dobj	_	_
+
+1	never	_	ADV	ADV	_	2	neg	_	_
+2	stay	_	VERB	VERB	_	0	root	_	_
+3	pratunam	_	PROPN	PROPN	_	5	compound	_	_
+4	market	_	NOUN	NOUN	_	5	compound	_	_
+5	area	_	NOUN	NOUN	_	2	dobj	_	_
+6	long	_	ADJ	ADJ	_	7	amod	_	_
+7	time	_	NOUN	NOUN	_	2	nmod:tmod	_	_
+8	liao	_	ADV	ADV	_	2	advmod	_	_
+
+1	Loading	_	VERB	VERB	_	7	csubj	_	_
+2	other	_	ADJ	ADJ	_	3	amod	_	_
+3	websites	_	NOUN	NOUN	_	1	dobj	_	_
+4	and	_	CONJ	CONJ	_	1	cc	_	_
+5	speedtest	_	VERB	VERB	_	1	conj	_	_
+6	all	_	ADV	ADV	_	7	advmod	_	_
+7	ok	_	ADJ	INTJ	_	0	root	_	_
+
+1	got	_	VERB	VERB	_	5	root	_	_
+2	this	_	DET	DET	_	3	det	_	_
+3	price	_	NOUN	NOUN	_	1	dobj	_	_
+4	,	_	PUNCT	PUNCT	_	1	punct	_	_
+5	sell	_	VERB	VERB	_	0	root	_	_
+6	house	_	NOUN	NOUN	_	5	dobj	_	_
+7	to	_	PART	PART	_	8	mark	_	_
+8	whack	_	VERB	VERB	_	5	xcomp	_	_
+9	all	_	DET	DET	_	8	dobj	_	_
+10	in	_	ADP	ADP	_	8	compound:prt	_	_
+11	liao	_	ADV	ADV	_	5	advmod	_	_
+12	loh	_	INTJ	INTJ	_	5	discourse	_	_
+
+1	mi	_	PRON	PRON	_	3	nsubj	_	_
+2	no	_	DET	DET	_	3	neg	_	_
+3	need	_	VERB	VERB	_	0	root	_	_
+4	scared	_	ADJ	ADJ	_	3	xcomp	_	_
+5	of	_	ADP	ADP	_	6	case	_	_
+6	noopi	_	NOUN	NOUN	_	4	nmod	_	_
+7	...	_	PUNCT	PUNCT	_	3	punct	_	_
+8	.	_	PUNCT	PUNCT	_	3	punct	_	_
+
+1	Act	_	VERB	VERB	_	0	root	_	_
+2	stupid	_	ADJ	ADJ	_	1	xcomp	_	_
+3	...	_	PUNCT	PUNCT	_	1	punct	_	_
+4	Pple	_	NOUN	NOUN	_	5	nsubj	_	_
+5	know	_	VERB	VERB	_	1	parataxis	_	_
+6	he	_	PRON	PRON	_	8	nsubj	_	_
+7	actually	_	ADV	ADV	_	8	advmod	_	_
+8	retarded	_	ADJ	ADJ	_	5	ccomp	_	_
+9	but	_	CONJ	CONJ	_	8	cc	_	_
+10	act	_	VERB	VERB	_	8	conj	_	_
+11	stupid	_	ADJ	ADJ	_	10	xcomp	_	_
+
+1	yaloh	_	INTJ	INTJ	_	4	discourse	_	_
+2	,	_	PUNCT	PUNCT	_	4	punct	_	_
+3	around	_	ADP	ADP	_	4	case	_	_
+4	there	_	ADV	ADV	_	0	root	_	_
+5	nia	_	ADV	ADV	_	4	advmod	_	_
+6	...	_	PUNCT	PUNCT	_	4	punct	_	_
+7	vvv	_	ADV	X	_	8	advmod	_	_
+8	near	_	ADJ	ADJ	_	4	parataxis	_	_
+9	loh	_	INTJ	INTJ	_	8	discourse	_	_
+10	...	_	PUNCT	PUNCT	_	8	punct	_	_
+
+1	wont	wont	AUX	AUX	_	2	aux	_	_
+2	happen	happen	VERB	VERB	_	0	root	_	_
+3	ever	ever	ADV	ADV	_	2	advmod	_	_
+4	again	again	ADV	ADV	_	2	advmod	_	_
+5	.	.	PUNCT	PUNCT	_	2	punct	_	_
+
+1	dun	_	AUX	AUX	_	2	aux	_	_
+2	bullie	_	VERB	VERB	_	0	root	_	_
+3	ah	_	PROPN	PROPN	_	4	compound	_	_
+4	CK	_	PROPN	PROPN	_	2	dobj	_	_
+5	la	_	INTJ	INTJ	_	2	discourse	_	_
+6	.	_	PUNCT	PUNCT	_	2	punct	_	_
+7	.	_	PUNCT	PUNCT	_	2	punct	_	_
+
+1	vol	vol	NOUN	NOUN	_	2	nsubj	_	_
+2	kee	kee	ADJ	ADJ	_	0	root	_	_
+3	siao	siao	ADV	ADV	_	2	mwe	_	_
+4	...	...	PUNCT	PUNCT	_	2	punct	_	_
+5	if	if	SCONJ	SCONJ	_	8	mark	_	_
+6	can	can	AUX	AUX	_	8	aux	_	_
+7	not	not	PART	PART	_	8	neg	_	_
+8	clear	clear	VERB	VERB	_	10	advcl	_	_
+9	better	better	AUX	AUX	_	10	aux	_	_
+10	sell	sell	VERB	VERB	_	2	parataxis	_	_
+11	...	...	PUNCT	PUNCT	_	10	punct	_	_
+12	always	always	ADV	ADV	_	14	advmod	_	_
+13	kena	kena	AUX	AUX	_	14	auxpass	_	_
+14	stuck	stuck	VERB	VERB	_	10	parataxis	_	_
+15	here	here	ADV	ADV	_	14	advmod	_	_
+
+1	Sinkies	_	NOUN	NOUN	_	2	compound	_	_
+2	Chinese	_	PROPN	PROPN	_	4	nsubj	_	_
+3	never	_	ADV	ADV	_	4	neg	_	_
+4	pwn	_	VERB	VERB	_	0	root	_	_
+5	sinkies	_	NOUN	NOUN	_	6	compound	_	_
+6	Chinese	_	PROPN	PROPN	_	4	dobj	_	_
+7	tonight	_	NOUN	NOUN	_	10	nmod:tmod	_	_
+8	ca	_	AUX	AUX	_	10	aux	_	_
+9	n't	_	PART	PART	_	10	neg	_	_
+10	sleep	_	VERB	VERB	_	4	parataxis	_	_
+11	well	_	ADV	ADV	_	10	advmod	_	_
+

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+MODELS_DIR="/m-pinotHD/echau18/bert/outputs"
+MBERT_CONFIG="/m-pinotHD/echau18/bert/mbert/bert_config.json"
+
+ARGS=( "$@" )
+
+PREFIX=("${ARGS[0]}")
+EPOCH_1_SIZE=("${ARGS[1]}")
+
+eval "$(conda shell.bash hook)"
+conda activate allentune
+
+cd $MODELS_DIR/$PREFIX
+pwd
+
+for ep in 2 3 4 6 7 8 9 11 12 13 14 16 17 18 19; do
+    STEP_COUNT=$((ep * EPOCH_1_SIZE))
+    echo "Epoch $ep: $STEP_COUNT"
+    mkdir res_epoch_"$ep"
+    pytorch_transformers bert \
+                         model.ckpt-"$STEP_COUNT" \
+                         $MBERT_CONFIG \
+                         res_epoch_"$ep"/pytorch_model.bin
+done
