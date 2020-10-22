@@ -53,6 +53,8 @@ We provide the raw unlabeled data in `data/unlabeled`.  Here's how you can
 generate BERT-compatible shards (use either the base mBERT vocab or a VA vocab
 as the vocabulary file).
 
+A subset of the trained models is available [here](https://drive.google.com/drive/folders/1AZi33t6u-xSA4L_cWQC7tz9VuZUxP9FP?usp=sharing).
+
 ```bash
 python create_pretraining_data.py --do_lower_case=False --max_seq_length=128 \
     --random_seed 13370 --dupe_factor=5 --max_predictions_per_seq=20 \
