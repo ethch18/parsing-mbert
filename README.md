@@ -121,3 +121,16 @@ summarize results (`./bert-allentune-report`), and evaluate
 (`./bert-allentune-evaluate`).  Results are reported using the `mail` command;
 feel free to comment or edit this to your preferred notification system.
 
+## Citation
+If you've used this code or found our paper helpful, please cite:
+```
+@misc{chau2020parsing,
+      title={Parsing with Multilingual BERT, a Small Corpus, and a Small Treebank}, 
+      author={Ethan C. Chau and Lucy H. Lin and Noah A. Smith},
+      year={2020},
+      eprint={2009.14124},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
+
