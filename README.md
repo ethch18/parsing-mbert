@@ -124,13 +124,18 @@ feel free to comment or edit this to your preferred notification system.
 ## Citation
 If you've used this code or found our paper helpful, please cite:
 ```
-@misc{chau2020parsing,
-      title={Parsing with Multilingual BERT, a Small Corpus, and a Small Treebank}, 
-      author={Ethan C. Chau and Lucy H. Lin and Noah A. Smith},
-      year={2020},
-      eprint={2009.14124},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@inproceedings{chau-etal-2020-parsing,
+    title = "Parsing with Multilingual {BERT}, a Small Corpus, and a Small Treebank",
+    author = "Chau, Ethan C.  and
+      Lin, Lucy H.  and
+      Smith, Noah A.",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2020",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.findings-emnlp.118",
+    doi = "10.18653/v1/2020.findings-emnlp.118",
 }
 ```
 
