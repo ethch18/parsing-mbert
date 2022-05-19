@@ -71,7 +71,7 @@ def create_optimizer(loss,
     learning_rate = (
         (1.0 - is_warmup) * learning_rate + is_warmup * warmup_learning_rate)
     second_learning_rate = (
-        (1.0 - is_warmup) * second_learning_rate + is_warmup * warmup_learning_rate)
+        (1.0 - is_warmup) * second_learning_rate + is_warmup * warmup_second_learning_rate)
 
   # It is recommended that you use this optimizer for fine tuning, since this
   # is how the model was trained (note that the Adam m/v variables are NOT
@@ -86,7 +86,7 @@ def create_optimizer(loss,
       exclude_from_weight_decay=["LayerNorm", "layer_norm", "bias"])
   
   second_optimizer = AdamWeightDecayOptimizer(
-      learning_rate=learning_rate,
+      learning_rate=second_learning_rate,
       weight_decay_rate=0.01,
       beta_1=0.9,
       beta_2=0.999,
@@ -96,6 +96,7 @@ def create_optimizer(loss,
 
   if use_tpu:
     optimizer = tf.contrib.tpu.CrossShardOptimizer(optimizer)
+    second_optimizer = tf.contrib.tpu.CrossShardOptimizer(second_optimizer)
 
   # WordPiece embeddings are stored in Variable
   # 'bert/embeddings/word_embeddings:0' with shape (119547, 768)
