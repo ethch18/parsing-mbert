@@ -1,7 +1,12 @@
 # Parsing with Multilingual BERT, a Small Corpus, and a Small Treebank
 
-This repo contains code and data for the paper "Parsing with Multilingual BERT, a
-Small Corpus, and a Small Treebank" by Ethan C. Chau, Lucy H. Lin, and Noah A. Smith.
+This repo contains code and data for the paper ["Parsing with Multilingual BERT, a
+Small Corpus, and a Small Treebank"](https://aclanthology.org/2020.findings-emnlp.118)
+by Ethan C. Chau, Lucy H. Lin, and Noah A. Smith.
+
+## **Update (6/14/2022)**
+Added full diffs for AllenNLP and a full bert training repository (with
+corrected TVA implementation) in `updated_libs.tgz`.
 
 ## Setting up
 1. Clone the repo: `git clone git@github.com:ethch18/parsing-mbert.git`
@@ -38,6 +43,9 @@ Small Corpus, and a Small Treebank" by Ethan C. Chau, Lucy H. Lin, and Noah A. S
     * bilm-tf: see `diffs/elmo`.  Copy `data.py` and `training.py` into `bilm/`
         and `train_elmo_configurable.py` into `bin/`.
     * bert: see `diffs/bert`.  Copy everything into the root directory.
+    * **New (6/14/2022)**: full diffs for AllenNLP and a full bert training
+      repository (with corrected TVA implementation) can be found in
+      `updated_libs.tgz`. 
 7. Edit the directory paths in `config/`, `scripts/`, and the various top-level
    scripts to match your directory structure.
 
